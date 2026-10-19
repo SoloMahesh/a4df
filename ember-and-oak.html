@@ -1,0 +1,2583 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ember & Oak — Wood-fired kitchen in Indiranagar, Bengaluru</title>
+<meta name="description" content="Ember & Oak is a wood-fired kitchen and coffee room in Indiranagar, Bengaluru. See the menu, the Hearth Counter tasting menu and Sunday long lunch, and request a table.">
+<meta name="theme-color" content="#241914">
+<meta property="og:type" content="restaurant.restaurant">
+<meta property="og:title" content="Ember & Oak — Good food. Unhurried moments.">
+<meta property="og:description" content="A wood-fired kitchen in Indiranagar, Bengaluru. Demo site for a design proposal.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&h=630&q=70">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23241914'/%3E%3Cpath d='M16 5c3 5 7 7 7 13a7 7 0 0 1-14 0c0-3 2-5 3-7 0 3 1 4 3 5-1-4 0-8 1-11z' fill='none' stroke='%23D6B77A' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=70" imagesrcset="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=65 800w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=70 1400w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2200&q=70 2200w" imagesizes="100vw">
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- Structured data for search engines. All values are DEMO placeholders. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"Ember & Oak","servesCuisine":["Contemporary Indian","Wood-fired","South Indian"],"priceRange":"₹₹₹","address":{"@type":"PostalAddress","streetAddress":"100 Feet Road (demo)","addressLocality":"Bengaluru","addressRegion":"Karnataka","postalCode":"560038","addressCountry":"IN"},"telephone":"+91-98765-43210","acceptsReservations":"True","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday"],"opens":"12:00","closes":"23:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Friday","Saturday","Sunday"],"opens":"12:00","closes":"23:30"}]}
+</script>
+<style>
+/* =========================================================
+   EMBER & OAK — DESIGN SYSTEM
+   Signature shape: the hearth arch (the mouth of a wood-fired
+   oven). Used on key imagery only, never on UI chrome.
+   ========================================================= */
+:root{
+  /* brand */
+  --espresso:#241914; --espresso-2:#2F221B; --espresso-3:#3B2B22;
+  --cream:#F5EFE5; --cream-2:#EDE4D5; --cream-3:#E3D7C3;
+  --ember:#C86A42; --ember-ink:#9E4E2C; --ember-glow:#E08A62;
+  --olive:#737A4C; --olive-ink:#575D36;
+  --gold:#D6B77A;
+  /* semantic, light */
+  --bg:var(--cream); --surface:var(--cream-2); --surface-2:var(--cream-3);
+  --ink:var(--espresso); --ink-soft:#5A4A40; --ink-faint:#7A685B;
+  --line:rgba(36,25,20,.16); --line-strong:rgba(36,25,20,.4);
+  --accent:var(--ember-ink); --field:#FBF8F2;
+  --btn-bg:var(--espresso); --btn-ink:var(--cream);
+  --veg:#2E7D32; --nonveg:#8B3A1A;
+  /* type */
+  --serif:"Gloock","Iowan Old Style",Georgia,serif;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --s-1:clamp(.84rem,.8rem + .15vw,.92rem);
+  --s0:clamp(1rem,.96rem + .2vw,1.1rem);
+  --s1:clamp(1.22rem,1.1rem + .55vw,1.55rem);
+  --s2:clamp(1.55rem,1.25rem + 1.2vw,2.35rem);
+  --s3:clamp(2.1rem,1.5rem + 2.6vw,3.8rem);
+  --s4:clamp(2.9rem,1.6rem + 5.6vw,7.4rem);
+  /* space */
+  --gutter:clamp(1.25rem,4vw,4rem);
+  --max:1380px;
+  --head-h:76px;
+  --ease:cubic-bezier(.22,.7,.18,1);
+  --ease-in:cubic-bezier(.6,0,.8,.3);
+  --dur:.45s;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.14 0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    color-scheme:dark;
+    --bg:#1C1410; --surface:var(--espresso); --surface-2:var(--espresso-2);
+    --ink:var(--cream); --ink-soft:#CDBFAE; --ink-faint:#A8998A;
+    --line:rgba(245,239,229,.15); --line-strong:rgba(245,239,229,.4);
+    --accent:var(--ember-glow); --field:#2A1F19;
+    --btn-bg:var(--cream); --btn-ink:var(--espresso);
+    --veg:#6FBF73; --nonveg:#E08A62; --olive-ink:#B4BA88;
+  }
+}
+
+/* ---------- base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--hh,76px) + 1rem)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:var(--s0);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;text-rendering:optimizeLegibility}
+body::after{content:"";position:fixed;inset:0;background-image:var(--grain);opacity:.05;pointer-events:none;z-index:200;mix-blend-mode:multiply}
+@media (prefers-color-scheme:dark){body::after{mix-blend-mode:screen;opacity:.035}}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-underline-offset:.2em;text-decoration-thickness:1px}
+a:hover{text-decoration-color:var(--ember)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.04;margin:0;letter-spacing:-.012em;text-wrap:balance}
+p{margin:0 0 1em;text-wrap:pretty}
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.narrow{max-width:64ch}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+[tabindex="-1"]:focus{outline:none}
+.dark :focus-visible{outline-color:var(--gold)}
+.skip{position:fixed;left:1rem;top:-5rem;z-index:300;background:var(--gold);color:var(--espresso);padding:.75rem 1rem;font-weight:600;text-decoration:none}
+.skip:focus{top:1rem}
+[hidden]{display:none!important}
+.muted{color:var(--ink-soft)}
+.small{font-size:var(--s-1)}
+.dark{background:var(--espresso);color:var(--cream);--ink:var(--cream);--ink-soft:#CDBFAE;--ink-faint:#A8998A;--line:rgba(245,239,229,.16);--line-strong:rgba(245,239,229,.45);--accent:var(--ember-glow);--btn-bg:var(--cream);--btn-ink:var(--espresso);--field:#2F241D;--veg:#7CC47F;--nonveg:#E08A62}
+.surface{background:var(--surface)}
+
+/* ---------- images ---------- */
+.frame{display:block;position:relative;overflow:hidden;background:var(--espresso-2);isolation:isolate}
+.frame>img{width:100%;height:100%;object-fit:cover;transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
+.frame>img[data-loading]{opacity:0}
+.frame.failed>img{display:none}
+.frame.failed::after{content:attr(data-alt);position:absolute;inset:0;display:grid;place-items:center;padding:1.2rem;text-align:center;font-family:var(--serif);font-size:1rem;line-height:1.25;color:var(--gold);background:radial-gradient(110% 70% at 50% 115%,rgba(200,106,66,.5),transparent 62%),var(--espresso)}
+.frame.quiet.failed::after{content:""}
+.arch{border-radius:999px 999px 0 0}
+.arch-sm{border-radius:200px 200px 0 0}
+
+/* ---------- buttons, chips ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:48px;padding:.8rem 1.45rem;border:1px solid transparent;border-radius:999px;text-decoration:none;font-weight:600;font-size:.97rem;line-height:1.2;white-space:nowrap;transition:background var(--dur),color var(--dur),border-color var(--dur),transform .2s var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-solid{background:var(--btn-bg);color:var(--btn-ink)}
+.btn-solid:hover{background:var(--ember);color:var(--cream);text-decoration:none}
+.btn-ember{background:var(--ember-ink);color:#fff}
+.btn-ember:hover{background:#7E3D22}
+.btn-line{border-color:var(--line-strong);background:transparent;color:var(--ink)}
+.btn-line:hover{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.dark .btn-line:hover{color:var(--espresso)}
+.btn-sm{min-height:40px;padding:.5rem 1rem;font-size:.9rem}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.btn-wide{width:100%}
+.link{background:none;border:0;padding:0;color:var(--accent);text-decoration:underline;text-underline-offset:.2em;font-weight:500}
+.chip{flex:none;display:inline-flex;align-items:center;gap:.45rem;min-height:44px;padding:.45rem 1.05rem;border:1px solid var(--line-strong);border-radius:999px;background:transparent;font-size:.94rem;transition:background .25s,color .25s,border-color .25s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"],.chip[aria-checked="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.icon-btn{width:48px;height:48px;flex:none;border-radius:50%;border:1px solid var(--line-strong);background:transparent;display:grid;place-items:center;transition:background .25s,border-color .25s,color .25s}
+.icon-btn:hover{background:var(--ember);border-color:var(--ember);color:#fff}
+.icon-btn svg{width:18px;height:18px}
+
+/* diet marks: Indian veg / non-veg symbol, always paired with text */
+.vmark{display:inline-grid;place-items:center;width:15px;height:15px;border:1.5px solid var(--veg);border-radius:2px;flex:none;vertical-align:-2px}
+.vmark::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--veg)}
+.vmark.nv{border-color:var(--nonveg)}
+.vmark.nv::after{border-radius:0;width:0;height:0;background:none;border-left:4px solid transparent;border-right:4px solid transparent;border-bottom:7px solid var(--nonveg)}
+.tag{display:inline-flex;align-items:center;gap:.35rem;font-size:.8rem;line-height:1.2;padding:.18rem .55rem;border-radius:4px;border:1px solid var(--line-strong);color:var(--ink-soft)}
+.tag.pick{border-color:var(--gold);color:var(--ink);background:rgba(214,183,122,.2)}
+.spice{display:inline-flex;gap:2px;align-items:center}
+.spice i{width:6px;height:10px;border-radius:3px 3px 2px 2px;background:var(--line-strong)}
+.spice i.on{background:var(--ember)}
+
+/* ---------- announcement + header ---------- */
+.announce{position:relative;z-index:45;background:var(--ember-ink);color:#fff;font-size:.9rem}
+.announce .wrap{display:flex;align-items:center;justify-content:center;gap:1rem;min-height:40px;padding-block:.35rem;text-align:center}
+.announce a{font-weight:600}
+.announce button{background:none;border:0;color:inherit;width:36px;height:36px;display:grid;place-items:center;flex:none;margin-left:auto;margin-right:-.5rem}
+.announce button svg{width:14px;height:14px}
+.announce p{margin:0;flex:1}
+.site-head{position:fixed;top:0;left:0;right:0;z-index:40;color:var(--cream);transition:background .4s,transform .45s var(--ease)}
+.site-head.solid{background:rgba(30,21,17,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.site-head.compact .announce{display:none}
+.page:not([data-page="home"]){padding-top:var(--hh,76px)}
+.head-in{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:var(--head-h)}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;font-family:var(--serif);font-size:1.4rem;line-height:1;white-space:nowrap}
+.brand svg{width:30px;height:30px;flex:none}
+.nav-links{display:flex;gap:clamp(1rem,2vw,2.1rem);list-style:none;margin:0;padding:0}
+.nav-links a{text-decoration:none;font-size:.95rem;position:relative;padding:.5rem 0;white-space:nowrap}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:.15rem;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav-links a:hover::after,.nav-links a[aria-current="page"]::after{transform:scaleX(1)}
+.head-actions{display:flex;align-items:center;gap:.6rem}
+.head-actions .btn{min-height:42px;padding:.5rem 1.1rem}
+.head-actions .btn-line{border-color:rgba(245,239,229,.4);color:var(--cream)}
+.head-actions .btn-line:hover{background:var(--cream);color:var(--espresso)}
+.head-actions .btn-solid{background:var(--cream);color:var(--espresso)}
+.head-actions .btn-solid:hover{background:var(--ember);color:#fff}
+.tray-btn{position:relative;border-color:rgba(245,239,229,.4);color:var(--cream)}
+.tray-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--ember-ink);color:#fff;font-size:.72rem;font-weight:600;display:grid;place-items:center}
+.tray-count:empty{display:none}
+.menu-toggle{display:none;width:48px;height:48px;border:0;background:transparent;position:relative;color:var(--cream)}
+.menu-toggle span{position:absolute;left:12px;right:12px;height:1.5px;background:currentColor;transition:transform .3s var(--ease)}
+.menu-toggle span:nth-child(1){top:19px}.menu-toggle span:nth-child(2){top:28px}
+.menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] span:nth-child(2){transform:translateY(-4.5px) rotate(-45deg)}
+.drawer-nav{position:fixed;inset:0;z-index:38;background:var(--espresso);color:var(--cream);padding:calc(var(--hh,76px) + 1.5rem) var(--gutter) calc(2rem + env(safe-area-inset-bottom));display:flex;flex-direction:column;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility .35s}
+.drawer-nav.open{opacity:1;visibility:visible}
+.drawer-nav a.big{font-family:var(--serif);font-size:clamp(2rem,9vw,2.8rem);text-decoration:none;padding:.4rem 0;border-bottom:1px solid rgba(245,239,229,.12);transform:translateY(12px);opacity:0;transition:transform .5s var(--ease),opacity .5s}
+.drawer-nav.open a.big{transform:none;opacity:1}
+.drawer-nav.open a.big:nth-child(2){transition-delay:.04s}.drawer-nav.open a.big:nth-child(3){transition-delay:.08s}.drawer-nav.open a.big:nth-child(4){transition-delay:.12s}.drawer-nav.open a.big:nth-child(5){transition-delay:.16s}.drawer-nav.open a.big:nth-child(6){transition-delay:.2s}.drawer-nav.open a.big:nth-child(7){transition-delay:.24s}
+.drawer-nav .meta{margin-top:auto;padding-top:2rem;color:rgba(245,239,229,.75);font-size:.95rem}
+.drawer-nav .meta .btn{margin-top:1rem}
+@media (max-width:1080px){.nav-links{display:none}.menu-toggle{display:block}.head-actions .btn-line.hide-sm{display:none}}
+@media (max-width:560px){.head-actions .btn-solid{display:none}.brand{font-size:1.25rem}}
+
+/* ---------- route transitions ---------- */
+.page{display:none}
+.page.active{display:block;animation:pageIn .6s var(--ease) both}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+.curtain{position:fixed;inset:0;z-index:150;background:var(--espresso);transform:translateY(100%);pointer-events:none}
+.curtain.run{animation:curtain .9s var(--ease) forwards}
+@keyframes curtain{0%{transform:translateY(100%)}42%,58%{transform:translateY(0)}100%{transform:translateY(-100%)}}
+.curtain::after{content:"";position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3c3 5 8 8 8 15a8 8 0 0 1-16 0c0-4 2-6 4-8 0 3 1 5 3 6-1-5 0-9 1-13z' fill='none' stroke='%23D6B77A' stroke-width='1.2'/%3E%3C/svg%3E")}
+
+/* ---------- sections ---------- */
+.sec{padding-block:clamp(4.5rem,10vw,9rem)}
+.sec-sm{padding-block:clamp(3rem,6vw,5rem)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.25rem 4rem;align-items:end;margin-bottom:clamp(2.2rem,5vw,4rem)}
+.sec-head h2{font-size:var(--s3)}
+.sec-head p{color:var(--ink-soft);max-width:48ch;margin:0}
+.sec-head .actions{grid-column:2;display:flex;gap:.6rem;flex-wrap:wrap}
+@media (max-width:820px){.sec-head{grid-template-columns:1fr}.sec-head .actions{grid-column:1}}
+.kicker{display:block;font-size:var(--s-1);color:var(--accent);margin-bottom:.9rem;font-weight:500}
+.dark .kicker{color:var(--gold)}
+
+/* ---------- HOME HERO ---------- */
+.hero{position:relative;min-height:100svh;color:var(--cream);background:var(--espresso);overflow:hidden;isolation:isolate}
+.hero-media{position:absolute;inset:0;z-index:-3}
+.hero-media img{transform:scale(1.08);animation:settle 2.8s var(--ease) forwards}
+@keyframes settle{to{transform:scale(1)}}
+.hero-shade{position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(28,20,16,.94) 0%,rgba(28,20,16,.78) 36%,rgba(28,20,16,.2) 72%),linear-gradient(0deg,rgba(28,20,16,.9) 0%,transparent 42%)}
+#embers{position:absolute;inset:0;z-index:-1;pointer-events:none;width:100%;height:100%;opacity:0;transition:opacity 1.6s}
+#embers.on{opacity:1}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end;gap:3rem;min-height:100svh;padding-top:calc(var(--hh,76px) + 5rem);padding-bottom:clamp(2rem,5vh,4rem)}
+.hero h1{font-size:var(--s4);line-height:.93;max-width:9.6ch}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.07em}
+.hero h1 .ln>span{display:block;transform:translateY(108%);animation:rise 1.15s var(--ease) .15s forwards}
+.hero h1 .ln:nth-child(2)>span{animation-delay:.28s;color:var(--gold)}
+@keyframes rise{to{transform:none}}
+.fade-in{opacity:0;animation:fadeUp .9s var(--ease) forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero-copy{max-width:42ch;margin:1.7rem 0 0;color:rgba(245,239,229,.86);font-size:var(--s1);line-height:1.45;animation-delay:.6s}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2.1rem;animation-delay:.75s}
+.hero-actions .btn-line{color:var(--cream);border-color:rgba(245,239,229,.5)}
+.hero-actions .btn-line:hover{background:var(--cream);color:var(--espresso)}
+.status{display:inline-flex;align-items:center;gap:.6rem;margin-bottom:1.5rem;font-size:var(--s-1);color:rgba(245,239,229,.88);animation-delay:.35s}
+.status .dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--gold)}
+.status.open .dot{background:#9DB36A;box-shadow:0 0 0 4px rgba(157,179,106,.25)}
+.status.closed .dot{background:var(--ember);box-shadow:0 0 0 4px rgba(200,106,66,.25)}
+.hero-plate{justify-self:end;width:min(100%,380px);margin:0;animation-delay:.9s}
+.hero-plate .frame{aspect-ratio:3/4;clip-path:inset(100% 0 0 0);animation:unveil 1.5s var(--ease) 1s forwards}
+@keyframes unveil{to{clip-path:inset(0)}}
+.hero-plate figcaption{display:flex;justify-content:space-between;gap:1rem;margin-top:.85rem;font-size:var(--s-1);color:rgba(245,239,229,.78)}
+.hero-plate figcaption b{font-weight:500;color:var(--cream)}
+.scroll-cue{position:absolute;left:50%;bottom:1.4rem;width:1px;height:46px;background:linear-gradient(var(--gold),transparent);transform-origin:top;animation:cue 2.4s var(--ease) 2s infinite;opacity:.8}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media (max-width:900px){
+  .hero{min-height:auto}
+  .hero-media{position:relative;height:58svh;min-height:360px}
+  .hero-shade{background:linear-gradient(0deg,var(--espresso) 0%,rgba(36,25,20,0) 34%) 0 0/100% 58svh no-repeat,linear-gradient(180deg,rgba(28,20,16,.55),transparent 28%) 0 0/100% 58svh no-repeat}
+  #embers{height:58svh;min-height:360px}
+  .hero-grid{grid-template-columns:1fr;min-height:0;padding-top:0;margin-top:-4.5rem;gap:1.5rem;padding-bottom:3rem}
+  .hero h1{font-size:clamp(2.8rem,13.5vw,4.6rem)}
+  .hero-copy{font-size:1.06rem}
+  .hero-actions .btn{flex:1 1 calc(50% - .4rem)}
+  .hero-plate,.scroll-cue{display:none}
+}
+
+/* quick info strip */
+.infobar{border-bottom:1px solid var(--line)}
+.infobar .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.infobar .cell{padding:1.4rem 1.5rem 1.4rem 0;border-right:1px solid var(--line);min-width:0}
+.infobar .cell+.cell{padding-left:1.5rem}
+.infobar .cell:last-child{border-right:0}
+.infobar h2{font-family:var(--sans);font-size:var(--s-1);font-weight:500;color:var(--ink-soft);margin-bottom:.3rem;letter-spacing:0}
+.infobar p{margin:0;font-size:1rem}
+@media (max-width:900px){.infobar .wrap{grid-template-columns:1fr 1fr}.infobar .cell{border-right:0;padding:1.1rem 0}.infobar .cell+.cell{padding-left:0}.infobar .cell:nth-child(odd){padding-right:1rem}.infobar .cell:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* ways to dine */
+.ways{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:clamp(1rem,2.5vw,2.5rem);align-items:end}
+.way{display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.way .frame{aspect-ratio:3/4}
+.way:first-child .frame{aspect-ratio:4/5}
+.way:hover .frame>img{transform:scale(1.04)}
+.way h3{font-size:var(--s2);margin:1.2rem 0 .5rem}
+.way p{color:var(--ink-soft);margin:0 0 .8rem;max-width:40ch}
+.way .meta{display:flex;justify-content:space-between;gap:1rem;border-top:1px solid var(--line);padding-top:.8rem;font-size:var(--s-1)}
+.way .meta b{font-weight:600}
+@media (max-width:900px){.ways{grid-template-columns:1fr;gap:3rem}.way .frame,.way:first-child .frame{aspect-ratio:4/3}}
+
+/* signature rail */
+.rail-wrap{position:relative}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(250px,28vw,380px);gap:clamp(1rem,2vw,1.8rem);overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gutter) 1.2rem;scroll-padding-inline:var(--gutter);scrollbar-width:thin;scrollbar-color:var(--ember) transparent;cursor:grab}
+.rail.dragging{cursor:grabbing;scroll-snap-type:none}
+.rail.dragging *{pointer-events:none}
+.rail::-webkit-scrollbar{height:4px}.rail::-webkit-scrollbar-thumb{background:var(--ember)}
+.sig{scroll-snap-align:start;display:flex;flex-direction:column;background:none;border:0;padding:0;text-align:left;color:inherit}
+.sig .frame{aspect-ratio:4/5}
+.sig:nth-child(even) .frame{margin-top:3rem}
+.sig:hover .frame>img{transform:scale(1.04)}
+.sig .sig-t{font-family:var(--serif);font-size:var(--s1);line-height:1.15;margin:1rem 0 .3rem;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.sig .sig-t span{font-family:var(--sans);font-size:.95rem;font-weight:500;white-space:nowrap}
+.sig .sig-d{display:block;color:var(--ink-soft);font-size:.95rem}
+.rail-ctrls{display:flex;gap:.5rem}
+@media (max-width:820px){.sig:nth-child(even) .frame{margin-top:0}.rail{grid-auto-columns:76vw}}
+
+/* provenance */
+.source{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,6vw,6rem);align-items:start}
+.source .frame{aspect-ratio:4/5;position:sticky;top:calc(var(--hh,76px) + 2rem)}
+.source-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong)}
+.source-list li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.2rem 1.5rem;padding:1.4rem 0;border-bottom:1px solid var(--line)}
+.source-list h3{font-size:var(--s1)}
+.source-list .km{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:500;white-space:nowrap}
+.source-list p{grid-column:1/-1;margin:0;color:var(--ink-soft);font-size:.97rem;max-width:56ch}
+.source-list .what{grid-column:1/-1;font-size:var(--s-1);color:var(--ink-faint)}
+@media (max-width:900px){.source{grid-template-columns:1fr}.source .frame{position:relative;top:0;aspect-ratio:16/10}}
+
+/* chef intro */
+.chef{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(2rem,6vw,6rem);align-items:center}
+.chef .frame{aspect-ratio:4/5}
+.chef blockquote{margin:0;font-family:var(--serif);font-size:var(--s2);line-height:1.18}
+.chef cite{display:block;margin-top:1.2rem;font-style:normal;font-family:var(--sans);font-size:var(--s-1);color:var(--ink-soft)}
+.chef .actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:2rem}
+@media (max-width:900px){.chef{grid-template-columns:1fr}.chef .frame{aspect-ratio:1;max-width:420px}}
+
+/* events */
+.events{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong)}
+.event{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:1.5rem;align-items:center;padding:1.5rem 0;border-bottom:1px solid var(--line)}
+.event time{display:flex;flex-direction:column;line-height:1}
+.event time b{font-family:var(--serif);font-weight:400;font-size:2.6rem}
+.event time span{font-size:var(--s-1);color:var(--ink-soft);margin-top:.35rem}
+.event h3{font-size:var(--s1);margin-bottom:.3rem}
+.event p{margin:0;color:var(--ink-soft);font-size:.96rem;max-width:60ch}
+.event .side{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;text-align:right}
+.event .seats{font-size:var(--s-1);color:var(--ink-soft)}
+.event .seats.low{color:var(--accent);font-weight:500}
+@media (max-width:700px){.event{grid-template-columns:72px 1fr;gap:1rem}.event time b{font-size:2rem}.event .side{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center;text-align:left}}
+
+/* gallery strip + gallery */
+.gstrip{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:clamp(.5rem,1vw,1rem);height:clamp(260px,34vw,480px)}
+.gstrip .g{height:100%}
+@media (max-width:820px){.gstrip{grid-template-columns:1fr 1fr;height:auto}.gstrip .g{aspect-ratio:1}.gstrip .g:first-child{grid-column:1/-1;aspect-ratio:16/10}}
+.g{position:relative;padding:0;border:0;background:none;overflow:hidden;cursor:zoom-in;display:block;width:100%}
+.g .frame{position:absolute;inset:0}
+.g:hover .frame>img,.g:focus-visible .frame>img{transform:scale(1.04)}
+.gallery{columns:3 280px;column-gap:clamp(.6rem,1.2vw,1.1rem)}
+.gallery .g{break-inside:avoid;margin-bottom:clamp(.6rem,1.2vw,1.1rem)}
+.gallery .g .frame{position:relative}
+.gallery .g[data-shape="tall"] .frame{aspect-ratio:3/4}
+.gallery .g[data-shape="wide"] .frame{aspect-ratio:4/3}
+.gallery .g[data-shape="sq"] .frame{aspect-ratio:1}
+.gallery .g .cap{position:absolute;left:0;right:0;bottom:0;padding:2rem 1rem .8rem;color:var(--cream);font-size:.9rem;text-align:left;background:linear-gradient(transparent,rgba(28,20,16,.8));opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s var(--ease)}
+.gallery .g:hover .cap,.gallery .g:focus-visible .cap{opacity:1;transform:none}
+@media (hover:none){.gallery .g .cap{opacity:1;transform:none}}
+.filters{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:2rem}
+
+/* newsletter + cta band */
+.cta-band{position:relative;overflow:hidden}
+.cta-band .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:center}
+.cta-band h2{font-size:var(--s3)}
+.cta-band .ring{position:absolute;right:-12vw;top:50%;width:min(70vw,900px);aspect-ratio:1;transform:translateY(-50%);opacity:.14;pointer-events:none}
+@media (max-width:820px){.cta-band .wrap{grid-template-columns:1fr}}
+.inline-form{display:flex;gap:.6rem;flex-wrap:wrap}
+.inline-form input{flex:1 1 220px;min-height:52px;padding:.8rem 1.1rem;border:1px solid var(--line-strong);border-radius:999px;background:var(--field);font-size:16px}
+.inline-form input:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(214,183,122,.45)}
+.form-msg{min-height:1.4em;margin-top:.7rem;font-size:.92rem}
+.form-msg.err{color:var(--accent)}
+
+/* ---------- INNER PAGE HEADER ---------- */
+.phead{padding:calc(var(--head-h) * 0 + clamp(3rem,7vw,6rem)) 0 clamp(3rem,6vw,5rem)}
+.phead .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(2rem,5vw,5rem);align-items:end}
+.phead h1{font-size:var(--s4);line-height:.95}
+.phead p{color:var(--ink-soft);font-size:var(--s1);line-height:1.45;max-width:40ch;margin:1.4rem 0 0}
+.phead .frame{aspect-ratio:3/4;max-height:460px;width:100%}
+.phead .crumbs{font-size:var(--s-1);color:var(--ink-faint);margin-bottom:1.5rem}
+.phead .crumbs a{color:inherit}
+@media (max-width:820px){.phead .wrap{grid-template-columns:1fr}.phead .frame{aspect-ratio:16/10;max-height:none}}
+@media (max-width:700px){.page[data-page="menu"] .phead .frame{display:none}.phead{padding-top:2rem}.announce{font-size:.82rem}.announce .wrap{justify-content:flex-start;text-align:left}}
+
+/* ---------- MENU PAGE ---------- */
+.menu-tools{position:sticky;top:var(--hh,76px);z-index:6;background:var(--bg);padding:1rem 0;border-bottom:1px solid var(--line)}
+.menu-tools .row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem 1.5rem}
+.cats{display:flex;gap:.4rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;flex:1 1 auto;min-width:0;padding:2px}
+.cats::-webkit-scrollbar{display:none}
+.tool-right{display:flex;gap:.5rem;align-items:center;flex-wrap:nowrap}
+.search{position:relative;width:min(280px,100%)}
+.search input{width:100%;min-height:44px;padding:.5rem 1rem .5rem 2.5rem;border:1px solid var(--line-strong);border-radius:999px;background:var(--field);font-size:16px}
+.search input:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(214,183,122,.45)}
+.search svg{position:absolute;left:.95rem;top:50%;transform:translateY(-50%);width:16px;height:16px;opacity:.6;pointer-events:none}
+.toggle{display:inline-flex;align-items:center;gap:.6rem;min-height:44px;padding:.3rem .9rem .3rem .4rem;border:1px solid var(--line-strong);border-radius:999px;background:transparent;font-size:.93rem}
+.toggle .knob{width:36px;height:22px;border-radius:11px;background:var(--line-strong);position:relative;transition:background .25s}
+.toggle .knob::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .25s var(--ease)}
+.toggle[aria-pressed="true"] .knob{background:var(--veg)}
+.toggle[aria-pressed="true"] .knob::after{transform:translateX(14px)}
+@media (max-width:1100px){.tool-right{flex-wrap:wrap}}
+@media (max-width:700px){.search{width:100%}.tool-right{width:100%}.tool-right .search{flex:1 1 100%}}
+.menu-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,5vw,5rem);margin-top:2.5rem;align-items:start}
+.plate{position:sticky;top:calc(var(--hh,76px) + 6.5rem);margin:0}
+.plate .frame{aspect-ratio:4/5}
+.plate .frame>img{position:absolute;inset:0}
+.plate .frame>img.back{opacity:0}
+.plate-cap{margin-top:1rem;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.plate-cap h2{font-size:var(--s1)}
+.plate-cap p{margin:0;color:var(--ink-soft)}
+.plate-note{margin-top:.6rem;font-size:var(--s-1);color:var(--ink-soft)}
+@media (max-width:900px){.menu-body{grid-template-columns:1fr}.plate{display:none}}
+.menu-list{position:relative;min-height:300px}
+.menu-list.swap::after{content:"";position:absolute;inset:-.5rem -1rem;background:var(--ember);animation:wipe .72s var(--ease) forwards;pointer-events:none;z-index:2}
+@keyframes wipe{0%{transform:scaleX(0);transform-origin:left}45%{transform:scaleX(1);transform-origin:left}55%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+.mgroup+.mgroup{margin-top:3.5rem}
+.mgroup>h2{font-size:var(--s2);display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--ink)}
+.mgroup>h2 small{font-family:var(--sans);font-size:var(--s-1);color:var(--ink-soft)}
+.mgroup>.intro{margin:.9rem 0 0;color:var(--ink-soft);font-size:.95rem}
+.dish{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.3rem 1.2rem;padding:1.3rem 0;border-bottom:1px solid var(--line);position:relative}
+.dish .open{grid-column:1/2;display:flex;align-items:baseline;gap:.6rem;background:none;border:0;padding:0;text-align:left;font-family:var(--serif);font-size:var(--s1);line-height:1.15;transition:transform .35s var(--ease)}
+.dish .open:hover,.dish .open:focus-visible{transform:translateX(.4rem)}
+.dish .open .vmark{transform:translateY(-1px)}
+.dish .price{font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap;text-align:right}
+.dish .desc{grid-column:1/2;color:var(--ink-soft);font-size:.96rem;margin:0;max-width:56ch}
+.dish .meta{grid-column:1/2;display:flex;gap:.4rem .6rem;flex-wrap:wrap;align-items:center;margin-top:.3rem}
+.dish .add{grid-column:2;grid-row:2/4;align-self:end;justify-self:end}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line-strong);border-radius:999px;height:40px}
+.qty button{width:38px;height:38px;border:0;background:none;border-radius:50%;font-size:1.1rem;display:grid;place-items:center}
+.qty button:hover{background:var(--surface)}
+.qty output{min-width:1.6rem;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.add-btn{min-height:40px;padding:.45rem .95rem;border-radius:999px;border:1px solid var(--line-strong);background:none;font-size:.88rem;font-weight:600;display:inline-flex;align-items:center;gap:.35rem;white-space:nowrap}
+.add-btn:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dish.has-thumb{grid-template-columns:72px minmax(0,1fr) auto}
+.dish.has-thumb .thumb{grid-column:1;grid-row:1/4;width:72px;height:72px;border-radius:36px 36px 2px 2px}
+.dish.has-thumb .open,.dish.has-thumb .desc,.dish.has-thumb .meta{grid-column:2}
+.dish.has-thumb .price{grid-column:3}
+.dish.has-thumb .add{grid-column:3}
+@media (min-width:901px){.dish.has-thumb{grid-template-columns:minmax(0,1fr) auto}.dish.has-thumb .thumb{display:none}.dish.has-thumb .open,.dish.has-thumb .desc,.dish.has-thumb .meta{grid-column:1}.dish.has-thumb .price,.dish.has-thumb .add{grid-column:2}}
+@media (max-width:480px){.dish.has-thumb{grid-template-columns:60px minmax(0,1fr) auto}.dish.has-thumb .thumb{width:60px;height:60px}}
+.empty{padding:3rem 0;color:var(--ink-soft)}
+.legend{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:2.5rem;font-size:var(--s-1);color:var(--ink-soft);align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:.45rem}
+.note{margin-top:1.4rem;padding:1.1rem 1.3rem;border-left:3px solid var(--olive);background:var(--surface);font-size:var(--s-1);color:var(--ink-soft);max-width:72ch}
+.note strong{color:var(--ink)}
+.guide-cta{display:flex;align-items:center;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap;padding:1.4rem 1.6rem;margin-bottom:2rem;background:var(--espresso);color:var(--cream);border-radius:2px}
+.guide-cta p{margin:0;max-width:46ch;color:rgba(245,239,229,.85)}
+.guide-cta h2{font-size:var(--s1);color:var(--cream);margin-bottom:.25rem}
+.guide-cta .btn{background:var(--cream);color:var(--espresso)}
+.guide-cta .btn:hover{background:var(--ember);color:#fff}
+
+/* ---------- EXPERIENCES ---------- */
+.xp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,6vw,6rem);align-items:center}
+.xp+.xp{margin-top:clamp(4rem,9vw,8rem)}
+.xp.flip .xp-media{order:2}
+.xp-media .frame{aspect-ratio:4/5}
+.xp h2{font-size:var(--s3);margin-bottom:1.1rem}
+.xp .lead{font-size:var(--s1);line-height:1.45;color:var(--ink-soft);margin-bottom:1.5rem}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:1.5rem 0;border-top:1px solid var(--line)}
+.facts div{padding:.9rem 0;border-bottom:1px solid var(--line)}
+.facts div:nth-child(odd){padding-right:1rem}
+.facts dt{font-size:var(--s-1);color:var(--ink-soft)}
+.facts dd{margin:0;font-weight:500}
+.xp .actions{display:flex;gap:.6rem;flex-wrap:wrap}
+@media (max-width:900px){.xp{grid-template-columns:1fr}.xp.flip .xp-media{order:0}.xp-media .frame{aspect-ratio:4/3}}
+.courses{list-style:none;margin:0;padding:0;counter-reset:c}
+.course{display:grid;grid-template-columns:3.2rem minmax(0,1fr);gap:1rem;padding:1.3rem 0;border-bottom:1px solid var(--line)}
+.course::before{counter-increment:c;content:counter(c, decimal-leading-zero);font-family:var(--serif);font-size:1.5rem;color:var(--gold);line-height:1.1}
+.course h3{font-size:var(--s1);margin-bottom:.2rem}
+.course p{margin:0;color:var(--ink-soft);font-size:.96rem}
+.course .veg-alt{display:block;margin-top:.35rem;font-size:var(--s-1);color:var(--ink-faint)}
+.tasting{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(2rem,6vw,6rem)}
+.tasting aside{position:sticky;top:calc(var(--hh,76px) + 2rem);align-self:start}
+.tasting aside h2{font-size:var(--s3);margin-bottom:1rem}
+.price-card{margin-top:1.5rem;border-top:1px solid var(--line-strong)}
+.price-card div{display:flex;justify-content:space-between;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line)}
+.price-card b{font-weight:600;font-variant-numeric:tabular-nums}
+@media (max-width:900px){.tasting{grid-template-columns:1fr}.tasting aside{position:relative;top:0}}
+.room{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(2rem,5vw,5rem);align-items:center}
+.plan{width:100%;height:auto;border:1px solid var(--line);background:var(--surface)}
+.plan .tbl{fill:var(--bg);stroke:var(--ink);stroke-width:1.2;transition:fill .3s}
+.plan .seat{fill:var(--ink-faint)}
+.plan .zone{fill:none;stroke:var(--line-strong);stroke-dasharray:4 4}
+.plan text{font-family:var(--sans);font-size:11px;fill:var(--ink-soft)}
+.plan .hearth{fill:var(--ember)}
+.plan g[data-room]{cursor:pointer}
+.plan g[data-room].on .tbl{fill:var(--gold)}
+.rooms-list{list-style:none;margin:0;padding:0}
+.rooms-list button{width:100%;text-align:left;display:grid;grid-template-columns:1fr auto;gap:.2rem 1rem;padding:1.1rem 0;border:0;border-bottom:1px solid var(--line);background:none}
+.rooms-list button[aria-pressed="true"] .rn{color:var(--accent)}
+.rooms-list button[aria-pressed="true"]{box-shadow:inset 3px 0 0 var(--ember);padding-left:1rem}
+.rooms-list button{transition:padding .3s var(--ease)}
+.rooms-list .rn{font-family:var(--serif);font-size:var(--s1);line-height:1.15}
+.rooms-list span{font-size:var(--s-1);color:var(--ink-soft)}
+.rooms-list .rd{grid-column:1/-1;font-size:.95rem}
+@media (max-width:900px){.room{grid-template-columns:1fr}}
+
+/* ---------- STORY ---------- */
+.story-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(1rem,2.5vw,2.5rem);align-items:start}
+.story-grid .a{grid-column:1/8;aspect-ratio:5/6}
+.story-grid .t{grid-column:8/13;padding-top:clamp(0rem,5vw,5rem)}
+.story-grid .t h2{font-size:var(--s3);margin-bottom:1.4rem}
+.story-grid .t p{font-size:1.06rem;line-height:1.75;color:var(--ink-soft)}
+.story-grid .b{grid-column:9/13;aspect-ratio:3/4;margin-top:-5rem}
+.story-grid .q{grid-column:2/8;margin:clamp(2rem,5vw,4rem) 0 0;font-family:var(--serif);font-size:var(--s2);line-height:1.2;color:var(--gold)}
+.story-grid .q cite{display:block;margin-top:1rem;font:normal var(--s-1)/1.4 var(--sans);color:var(--ink-soft)}
+@media (max-width:900px){.story-grid>*{grid-column:1/-1!important}.story-grid .a{aspect-ratio:4/3}.story-grid .b{margin-top:0;aspect-ratio:16/10}.story-grid .t{padding-top:0}}
+.reveal{clip-path:inset(0 0 100% 0);transition:clip-path 1.3s var(--ease)}
+.reveal.in{clip-path:inset(0)}
+.steps-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(1rem,2vw,2rem);counter-reset:s}
+.steps-list li{border-top:1px solid var(--line-strong);padding-top:1.2rem}
+.steps-list li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-size:.9rem;margin-bottom:1rem}
+.steps-list h3{font-size:var(--s1);margin-bottom:.5rem}
+.steps-list p{margin:0;color:var(--ink-soft);font-size:.95rem}
+@media (max-width:900px){.steps-list{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps-list{grid-template-columns:1fr}}
+.jobs{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong)}
+.jobs li{display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap;padding:1.2rem 0;border-bottom:1px solid var(--line)}
+.jobs h3{font-size:var(--s1)}
+.jobs span{color:var(--ink-soft);font-size:var(--s-1)}
+.placeholder-note{display:inline-block;margin-top:.8rem;font-size:.82rem;color:var(--accent);border:1px dashed currentColor;padding:.3rem .6rem;border-radius:4px}
+.dark .placeholder-note{color:var(--gold)}
+
+/* ---------- FORMS ---------- */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem 1.2rem}
+.field{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.field.full,.form .full{grid-column:1/-1}
+.field>label,.field>.label{font-weight:500;font-size:.95rem}
+.field small{font-weight:400;color:var(--ink-soft)}
+.field input,.field select,.field textarea{width:100%;min-height:52px;padding:.8rem 1rem;border:1px solid var(--line-strong);border-radius:6px;background:var(--field);font-size:16px;transition:border-color .2s,box-shadow .2s}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23887766' stroke-width='1.6'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(214,183,122,.45)}
+.field [aria-invalid="true"]{border-color:var(--ember-ink);box-shadow:0 0 0 1px var(--ember-ink)}
+.err{min-height:1.2em;font-size:.86rem;color:var(--accent)}
+.err:not(:empty)::before{content:"! ";font-weight:700}
+.hint{font-size:.86rem;color:var(--ink-soft)}
+.stepper{display:flex;align-items:center;border:1px solid var(--line-strong);border-radius:6px;background:var(--field);min-height:52px}
+.stepper button{width:52px;height:50px;border:0;background:none;font-size:1.3rem}
+.stepper button:disabled{opacity:.3;cursor:not-allowed}
+.stepper output{flex:1;text-align:center;font-weight:500}
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:.6rem}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.opt label{display:flex;flex-direction:column;gap:.15rem;height:100%;padding:.9rem 1rem;border:1px solid var(--line-strong);border-radius:6px;background:var(--field);cursor:pointer;transition:border-color .2s,background .2s}
+.opt label b{font-weight:600}
+.opt label span{font-size:.86rem;color:var(--ink-soft)}
+.opt input:checked+label{border-color:var(--ink);background:var(--surface);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt input:checked+label b::before{content:"✓ ";color:var(--accent)}
+.opt input:focus-visible+label{outline:2px solid var(--gold);outline-offset:2px}
+.opt input:disabled+label{opacity:.45;cursor:not-allowed}
+.checks{display:flex;flex-wrap:wrap;gap:.5rem}
+.check{position:relative}
+.check input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.check label{display:inline-flex;align-items:center;gap:.4rem;min-height:42px;padding:.4rem .9rem;border:1px solid var(--line-strong);border-radius:999px;font-size:.92rem;cursor:pointer}
+.check input:checked+label{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.check input:checked+label::before{content:"✓"}
+.check input:focus-visible+label{outline:2px solid var(--gold);outline-offset:2px}
+.consent{display:flex;gap:.7rem;align-items:flex-start;font-size:.93rem}
+.consent input{width:22px;height:22px;margin-top:.1rem;accent-color:var(--espresso);flex:none}
+.form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.4rem;margin-top:.3rem}
+.form-foot p{margin:0;font-size:var(--s-1);color:var(--ink-soft);flex:1 1 240px}
+@media (max-width:600px){.form{grid-template-columns:1fr}.form-foot .btn{width:100%}}
+.progress{display:flex;gap:1.4rem;list-style:none;padding:0;margin:0 0 2rem;font-size:var(--s-1);color:var(--ink-soft);flex-wrap:wrap}
+.progress li{display:flex;align-items:center;gap:.5rem}
+.progress b{width:26px;height:26px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;font-weight:500;font-size:.8rem}
+.progress li[aria-current="step"]{color:var(--ink);font-weight:500}
+.progress li[aria-current="step"] b{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.progress li.done b{background:var(--olive);border-color:var(--olive);color:#fff}
+.summary{border-top:1px solid var(--ink)}
+.summary dl{display:grid;grid-template-columns:minmax(110px,1fr) 2.2fr;margin:0}
+.summary dt,.summary dd{padding:.9rem 0;border-bottom:1px solid var(--line);margin:0}
+.summary dt{color:var(--ink-soft)}
+.summary dd{overflow-wrap:anywhere}
+.demo-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .75rem;border-radius:4px;background:var(--olive);color:#fff;font-size:.84rem;font-weight:600;margin-bottom:1rem}
+.done-box h2{font-size:var(--s2);margin-bottom:1rem}
+.res-layout{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(2rem,6vw,6rem);align-items:start}
+.res-layout aside{position:sticky;top:calc(var(--hh,76px) + 2rem)}
+.res-layout aside h2{font-size:var(--s2);margin-bottom:1rem}
+.policy{list-style:none;margin:1.5rem 0 0;padding:0;border-top:1px solid var(--line)}
+.policy li{padding:.85rem 0;border-bottom:1px solid var(--line);font-size:.95rem;color:var(--ink-soft)}
+.policy li b{display:block;color:var(--ink);font-weight:600}
+@media (max-width:900px){.res-layout{grid-template-columns:1fr}.res-layout aside{position:relative;top:0;order:2;border-top:1px solid var(--line);padding-top:2rem}}
+.tabs{display:flex;gap:.4rem;margin-bottom:2rem;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs [role="tab"]{min-height:48px;padding:.6rem 1.1rem;border:0;background:none;border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:500;color:var(--ink-soft)}
+.tabs [role="tab"][aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ember)}
+
+/* ---------- GIFT ---------- */
+.gift{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(2rem,6vw,6rem);align-items:start}
+.gift-preview{position:sticky;top:calc(var(--hh,76px) + 2rem)}
+.gcard{position:relative;aspect-ratio:1.6;border-radius:14px;overflow:hidden;background:radial-gradient(120% 90% at 85% 120%,rgba(200,106,66,.75),transparent 55%),var(--espresso);color:var(--cream);padding:clamp(1.2rem,3vw,2rem);display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 60px -30px rgba(36,25,20,.6);transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .3s var(--ease)}
+.gcard::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.12;mix-blend-mode:screen}
+.gcard .arch-line{position:absolute;right:8%;bottom:-6%;width:38%;aspect-ratio:3/4;border:1px solid rgba(214,183,122,.55);border-bottom:0;border-radius:999px 999px 0 0}
+.gcard .top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;position:relative}
+.gcard .top span{font-family:var(--serif);font-size:clamp(1.1rem,2vw,1.4rem)}
+.gcard .amt{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);line-height:1;position:relative}
+.gcard .to{position:relative;font-size:.9rem;color:rgba(245,239,229,.85);max-width:62%}
+.gcard .to b{display:block;font-family:var(--serif);font-weight:400;font-size:1.2rem;color:var(--cream)}
+.gcard .msg{position:relative;font-style:italic;font-size:.88rem;color:rgba(245,239,229,.75);max-width:60%;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+@media (max-width:900px){.gift{grid-template-columns:1fr}.gift-preview{position:relative;top:0}}
+
+/* ---------- VISIT ---------- */
+.visit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(2rem,4vw,4rem)}
+.visit-grid h2{font-size:var(--s1);margin-bottom:1rem}
+.visit-grid address{font-style:normal;line-height:1.7}
+.hours{width:100%;border-collapse:collapse;font-size:.97rem}
+.hours th{text-align:left;font-weight:500;padding:.5rem 1rem .5rem 0;vertical-align:top;white-space:nowrap}
+.hours td{padding:.5rem 0;color:var(--ink-soft)}
+.hours tr.today th,.hours tr.today td{color:var(--accent);font-weight:600}
+.hours tr+tr{border-top:1px solid var(--line)}
+.stack{display:flex;flex-direction:column;gap:.6rem;margin-top:1.3rem;align-items:flex-start}
+.socials{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1.4rem}
+@media (max-width:900px){.visit-grid{grid-template-columns:1fr}}
+.map{position:relative;aspect-ratio:21/9;background:var(--espresso);color:var(--cream);overflow:hidden;display:grid;place-items:center;text-align:center}
+.map svg.streets{position:absolute;inset:0;width:100%;height:100%;opacity:.35}
+.map .pin{position:relative;display:flex;flex-direction:column;align-items:center;gap:1rem;padding:1rem}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media (max-width:700px){.map{aspect-ratio:4/3}}
+.getting{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem;margin-top:3rem}
+.getting h3{font-size:var(--s1);margin-bottom:.5rem}
+.getting p{margin:0;color:var(--ink-soft);font-size:.96rem}
+@media (max-width:800px){.getting{grid-template-columns:1fr}}
+.faq{border-top:1px solid var(--line-strong)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem 0;cursor:pointer;font-family:var(--serif);font-size:var(--s1);line-height:1.2}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:14px;height:14px;background:linear-gradient(currentColor,currentColor) center/100% 1.5px no-repeat,linear-gradient(currentColor,currentColor) center/1.5px 100% no-repeat;transition:transform .35s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .ans{padding:0 0 1.4rem;color:var(--ink-soft);max-width:68ch}
+.faq .ans p:last-child{margin:0}
+
+/* ---------- ORDER ---------- */
+.order-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,2vw,2rem)}
+.order-opt{display:flex;flex-direction:column;gap:.6rem;padding:1.8rem;border:1px solid var(--line-strong);min-height:240px}
+.order-opt h2{font-size:var(--s2)}
+.order-opt p{color:var(--ink-soft);margin:0;flex:1}
+.order-opt.primary{background:var(--espresso);color:var(--cream);border-color:var(--espresso);--ink-soft:#CDBFAE;--btn-bg:var(--cream);--btn-ink:var(--espresso)}
+@media (max-width:900px){.order-grid{grid-template-columns:1fr}}
+
+/* ---------- FOOTER ---------- */
+.foot{background:var(--espresso);color:rgba(245,239,229,.78);padding:clamp(4rem,8vw,6rem) 0 calc(2rem + env(safe-area-inset-bottom))}
+.foot a{color:var(--cream)}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2.5rem}
+.foot h2{font-family:var(--sans);font-size:var(--s-1);font-weight:600;color:var(--gold);margin-bottom:1rem;letter-spacing:0}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.foot ul a{text-decoration:none}
+.foot ul a:hover{text-decoration:underline}
+.foot-word{font-family:var(--serif);color:var(--cream);font-size:clamp(3.6rem,15.5vw,15rem);line-height:.82;letter-spacing:-.025em;margin:clamp(3rem,7vw,6rem) 0 0;white-space:nowrap}
+.foot-word span{color:var(--ember)}
+.foot-legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem 2rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(245,239,229,.15);font-size:var(--s-1)}
+@media (max-width:900px){.foot-top{grid-template-columns:1fr 1fr}.foot-top>div:first-child{grid-column:1/-1}}
+@media (max-width:480px){.foot-top{grid-template-columns:1fr}}
+
+/* ---------- DIALOGS ---------- */
+dialog{border:0;padding:0;max-width:none;max-height:none;color:var(--ink);background:var(--bg)}
+dialog::backdrop{background:rgba(20,13,10,.78);backdrop-filter:blur(3px)}
+dialog[open]{animation:dlgIn .4s var(--ease)}
+@keyframes dlgIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.modal{width:min(980px,calc(100vw - 2rem));max-height:calc(100dvh - 2rem);overflow:auto}
+.modal-sm{width:min(560px,calc(100vw - 2rem));max-height:calc(100dvh - 2rem);overflow:auto;padding:clamp(1.5rem,4vw,2.5rem)}
+.modal-sm h2{font-size:var(--s2);margin-bottom:.6rem;padding-right:3rem}
+.x{position:absolute;top:1rem;right:1rem;z-index:3;background:var(--bg)}
+.dm-grid{display:grid;grid-template-columns:1fr 1fr}
+.dm-img{aspect-ratio:4/5;min-height:100%}
+.dm-body{padding:clamp(1.5rem,4vw,3rem);display:flex;flex-direction:column}
+.dm-body h2{font-size:var(--s3);margin:.4rem 0 .9rem;padding-right:2.5rem}
+.dm-price{font-size:var(--s1);font-weight:500;margin-bottom:1rem}
+.dm-body p{color:var(--ink-soft)}
+.dm-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin:.4rem 0 1rem}
+.dm-pair{padding:1rem 0;border-top:1px solid var(--line);font-size:.95rem}
+.dm-pair b{display:block;font-weight:600}
+.dm-diet{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line);font-size:var(--s-1);color:var(--ink-soft)}
+.dm-actions{display:flex;gap:.6rem;margin-top:1.4rem;flex-wrap:wrap}
+@media (max-width:720px){.dm-grid{grid-template-columns:1fr}.dm-img{aspect-ratio:4/3;min-height:0}}
+.sheet{position:fixed;inset:0 0 0 auto;margin:0;width:min(460px,100vw);height:100dvh;max-height:none;flex-direction:column}
+.sheet:not([open]){display:none}
+.sheet[open]{display:flex;animation:sheetIn .45s var(--ease)}
+@keyframes sheetIn{from{transform:translateX(100%)}to{transform:none}}
+.sheet header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.4rem 1.5rem;border-bottom:1px solid var(--line)}
+.sheet header h2{font-size:var(--s2)}
+.sheet .body{flex:1;overflow:auto;padding:0 1.5rem}
+.sheet footer{padding:1.2rem 1.5rem calc(1.2rem + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--surface)}
+.tray-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.3rem 1rem;padding:1rem 0;border-bottom:1px solid var(--line);align-items:center}
+.tray-item h3{font-size:1.08rem;display:flex;gap:.5rem;align-items:baseline}
+.tray-item .p{color:var(--ink-soft);font-size:.92rem;font-variant-numeric:tabular-nums}
+.totals{display:grid;gap:.3rem;font-size:.95rem;margin-bottom:1rem}
+.totals div{display:flex;justify-content:space-between;gap:1rem;font-variant-numeric:tabular-nums}
+.totals .grand{font-weight:600;font-size:1.08rem;padding-top:.4rem;border-top:1px solid var(--line)}
+.sheet .btns{display:grid;gap:.5rem}
+.tray-empty{padding:3rem 0;text-align:center;color:var(--ink-soft)}
+.lightbox{width:100vw;height:100dvh;background:transparent;color:var(--cream)}
+.lightbox[open]{animation:none}
+.lb-in{position:relative;width:100%;height:100%;display:grid;grid-template-rows:1fr auto;padding:clamp(1rem,3vw,2.5rem)}
+.lb-stage{position:relative;display:grid;place-items:center;min-height:0;touch-action:pan-y;user-select:none}
+.lb-stage .frame{width:100%;height:100%;background:transparent}
+.lb-stage .frame>img{object-fit:contain;transition:opacity .3s,transform .45s var(--ease)}
+.lb-stage .frame>img.out{opacity:0;transform:scale(.985)}
+.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:1rem}
+.lb-bar p{margin:0;font-size:.95rem;color:rgba(245,239,229,.88)}
+.lb-ctrls{display:flex;gap:.5rem}
+.lightbox .icon-btn{border-color:rgba(245,239,229,.35);background:rgba(36,25,20,.6);color:var(--cream)}
+.lb-close{position:absolute;top:clamp(1rem,3vw,2.5rem);right:clamp(1rem,3vw,2.5rem);z-index:2}
+.thumbs{display:flex;gap:.4rem;overflow-x:auto;padding-top:.8rem;scrollbar-width:none}
+.thumbs button{flex:none;width:64px;height:48px;padding:0;border:2px solid transparent;opacity:.55;background:none;overflow:hidden}
+.thumbs button[aria-current="true"]{border-color:var(--gold);opacity:1}
+.thumbs .frame{width:100%;height:100%}
+.guide-q{border:0;padding:0;margin:0 0 1.4rem}
+.guide-q legend{font-weight:600;margin-bottom:.6rem;padding:0}
+.guide-result ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.guide-result li{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+.guide-result li span{display:flex;gap:.5rem;align-items:baseline}
+
+/* ---------- FLOATING ---------- */
+.toast{position:fixed;left:50%;bottom:calc(1.5rem + var(--bar-h,0px));transform:translate(-50%,calc(100% + 3rem));visibility:hidden;background:var(--espresso);color:var(--cream);padding:.9rem 1.3rem;border-radius:8px;z-index:160;transition:transform .45s var(--ease),visibility .45s;max-width:calc(100vw - 2rem);font-size:.95rem;box-shadow:0 16px 40px -16px rgba(0,0,0,.5);display:flex;gap:1rem;align-items:center}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+.toast button{background:none;border:0;color:var(--gold);font-weight:600;padding:.3rem 0;text-decoration:underline}
+.wa-fab{position:fixed;right:1.4rem;bottom:1.4rem;z-index:30;width:56px;height:56px;border-radius:50%;background:#1F7A4D;color:#fff;display:grid;place-items:center;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);transition:transform .3s var(--ease)}
+.wa-fab:hover{transform:scale(1.06)}
+.wa-fab svg{width:26px;height:26px}
+.mbar{display:none}
+@media (max-width:760px){
+  :root{--bar-h:68px}
+  .wa-fab{display:none}
+  .mbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:35;background:rgba(30,21,17,.97);backdrop-filter:blur(10px);color:var(--cream);padding-bottom:env(safe-area-inset-bottom);border-top:1px solid rgba(245,239,229,.1)}
+  .mbar a,.mbar button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;min-height:var(--bar-h);font-size:.74rem;text-decoration:none;background:none;border:0;color:inherit;position:relative}
+  .mbar svg{width:20px;height:20px}
+  .mbar .rv{background:var(--ember-ink);color:#fff;font-weight:600}
+  .mbar .tray-count{top:8px;right:calc(50% - 22px)}
+  body{padding-bottom:calc(var(--bar-h) + env(safe-area-inset-bottom))}
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{clip-path:none}
+  .hero-media img{transform:none}
+  .scroll-cue{display:none}
+}
+@media (max-width:900px){#faq-wrap{grid-template-columns:1fr!important}}
+@media print{
+  .site-head,.announce,.mbar,.wa-fab,.foot,.menu-tools,.plate,.add,.guide-cta,.curtain,.toast,body::after,.dish .thumb{display:none!important}
+  body.print-menu .page{display:none!important}
+  body.print-menu .page[data-page="menu"]{display:block!important;padding-top:0}
+  .phead .frame{display:none}
+  .menu-body{grid-template-columns:1fr!important}
+  .dish{break-inside:avoid;grid-template-columns:1fr auto!important}
+  body{background:#fff;color:#000}
+}
+
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-flame" viewBox="0 0 32 32"><path d="M16 3c3 5 8 8 8 15a8 8 0 0 1-16 0c0-4 2-6 4-8 0 3 1 5 3 6-1-5 0-9 1-13z" fill="none" stroke="#D6B77A" stroke-width="1.4"/><path d="M16 29v-7" stroke="#C86A42" stroke-width="1.4"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z" fill="currentColor"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4zM20 5h-5a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-tray" viewBox="0 0 24 24"><path d="M3 15h18M5 15a7 7 0 0 1 14 0M12 6V4M2 19h20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 9V3h10v6M7 17H4v-7h16v7h-3M7 14h10v7H7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="curtain" aria-hidden="true"></div>
+
+
+<header class="site-head" id="head">
+<div class="announce" id="announce" hidden>
+  <div class="wrap"><p id="announce-text"></p><button type="button" id="announce-close" aria-label="Dismiss announcement"><svg><use href="#i-x"/></svg></button></div>
+</div>
+  <div class="wrap head-in">
+    <a class="brand" href="#/" aria-label="Ember & Oak home"><svg aria-hidden="true"><use href="#i-flame"/></svg><span>Ember &amp; Oak</span></a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#/menu">Menu</a></li>
+        <li><a href="#/experiences">Experiences</a></li>
+        <li><a href="#/story">Our story</a></li>
+        <li><a href="#/gallery">Gallery</a></li>
+        <li><a href="#/gift">Gift cards</a></li>
+        <li><a href="#/visit">Visit</a></li>
+      </ul>
+    </nav>
+    <div class="head-actions">
+      <button class="icon-btn tray-btn" type="button" data-open-tray aria-label="My table, 0 dishes"><svg><use href="#i-tray"/></svg><span class="tray-count" data-tray-count></span></button>
+      <a class="btn btn-line hide-sm" href="#/order">Order</a>
+      <a class="btn btn-solid" href="#/reserve">Reserve</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="drawer-nav" aria-label="Open navigation"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="drawer-nav" id="drawer-nav" aria-label="Mobile" hidden>
+  <a class="big" href="#/menu">Menu</a>
+  <a class="big" href="#/experiences">Experiences</a>
+  <a class="big" href="#/story">Our story</a>
+  <a class="big" href="#/gallery">Gallery</a>
+  <a class="big" href="#/gift">Gift cards</a>
+  <a class="big" href="#/order">Order for pickup</a>
+  <a class="big" href="#/visit">Visit &amp; FAQ</a>
+  <div class="meta"><p data-status-short></p><p data-address-inline></p><a class="btn btn-ember btn-wide" href="#/reserve">Reserve a table</a></div>
+</nav>
+
+<main id="main" tabindex="-1">
+
+<!-- ===================================================== HOME -->
+<div class="page" data-page="home" data-title="Ember & Oak — Wood-fired kitchen in Indiranagar, Bengaluru">
+  <section class="hero" aria-labelledby="h-home">
+    <div class="hero-media frame quiet" data-parallax=".16">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=70"
+           srcset="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=65 800w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=70 1400w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2200&q=70 2200w"
+           sizes="100vw" alt="" fetchpriority="high" decoding="async">
+    </div>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <canvas id="embers" aria-hidden="true"></canvas>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="status fade-in" data-status role="status"><span class="dot" aria-hidden="true"></span><span data-status-text>Checking today's hours</span></p>
+        <h1 id="h-home"><span class="ln"><span>Good food.</span></span><span class="ln"><span>Unhurried moments.</span></span></h1>
+        <p class="hero-copy fade-in">A wood-fired kitchen in Indiranagar. We cook Karnataka and Kerala produce over embers and seasoned oak, pour single-estate coffee, and keep your table for the whole evening.</p>
+        <div class="hero-actions fade-in">
+          <a class="btn btn-ember" href="#/reserve">Reserve a table</a>
+          <a class="btn btn-line" href="#/menu">Explore the menu</a>
+        </div>
+      </div>
+      <figure class="hero-plate fade-in" data-parallax="-.06">
+        <div class="frame arch" data-alt="Tonight from the hearth"><img data-u="1504674900247-0877df9cc836" data-w="760" alt="A plate of charred meat and greens, lit warmly"></div>
+        <figcaption><b>From the hearth tonight</b><span>Oak-fired lamb shoulder</span></figcaption>
+      </figure>
+    </div>
+    <span class="scroll-cue" aria-hidden="true"></span>
+  </section>
+
+  <section class="infobar" aria-label="At a glance">
+    <div class="wrap">
+      <div class="cell"><h2>Today</h2><p data-today-hours></p></div>
+      <div class="cell"><h2>Find us</h2><p data-address-inline></p></div>
+      <div class="cell"><h2>Average for two</h2><p data-cost-two></p></div>
+      <div class="cell"><h2>Talk to us</h2><p><a data-tel></a></p></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-ways">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="h-ways">Three ways to sit at our fire</h2>
+        <p>Come for a long à la carte dinner, take a stool at the hearth for the tasting menu, or bring the family for Sunday lunch. Each books a little differently, so we explain it all before you reserve.</p>
+      </div>
+      <div class="ways">
+        <a class="way" href="#/experiences/alacarte">
+          <div class="frame arch" data-alt="The dining room"><img data-u="1517248135467-4c7edcad34c4" data-w="900" alt="The main dining room set for dinner"></div>
+          <h3>Dinner in the room</h3><p>Our full à la carte menu, built for sharing. Walk-ins welcome at the bar.</p>
+          <div class="meta"><span>Tue to Sun, from 7 pm</span><b>À la carte</b></div>
+        </a>
+        <a class="way" href="#/experiences/counter">
+          <div class="frame arch" data-alt="The hearth counter"><img data-u="1466978913421-dad2ebd01d17" data-w="700" alt="Cooks working at a wood-fired hearth"></div>
+          <h3>The Hearth Counter</h3><p>Eight courses cooked in front of you. Eight seats, two seatings a night.</p>
+          <div class="meta"><span>Thu to Sat</span><b data-price-counter></b></div>
+        </a>
+        <a class="way" href="#/experiences/sunday">
+          <div class="frame arch" data-alt="Sunday long lunch"><img data-u="1528605248644-14dd04022da1" data-w="700" alt="Friends sharing a long lunch around a table"></div>
+          <h3>Sunday long lunch</h3><p>Family-style platters from the fire, passed down a long table.</p>
+          <div class="meta"><span>Sundays, 12 to 4 pm</span><b data-price-sunday></b></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec surface" aria-labelledby="h-sig">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="h-sig">What people come back for</h2>
+        <div><p>Six dishes that have stayed on the menu through every season. Drag, swipe or use the arrows.</p>
+          <div class="rail-ctrls" style="margin-top:1.2rem"><button class="icon-btn" type="button" data-rail="-1" aria-label="Scroll dishes left"><svg><use href="#i-left"/></svg></button><button class="icon-btn" type="button" data-rail="1" aria-label="Scroll dishes right"><svg><use href="#i-right"/></svg></button></div>
+        </div>
+      </div>
+    </div>
+    <div class="rail-wrap"><div class="rail" id="sig-rail" tabindex="0" aria-label="Signature dishes"></div></div>
+    <div class="wrap" style="margin-top:2.5rem"><a class="btn btn-solid" href="#/menu">See the full menu</a></div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-src">
+    <div class="wrap source">
+      <div class="frame reveal" data-alt="From the farm"><img data-u="1488459716781-31db52582fe9" data-w="900" alt="Crates of fresh vegetables at a market"></div>
+      <div>
+        <span class="kicker">Where it comes from</span>
+        <h2 id="h-src" style="font-size:var(--s3);margin-bottom:1.2rem">We can name every farm</h2>
+        <p class="muted" style="max-width:52ch;margin-bottom:2rem">Most of what we cook travels less than a day to reach the kitchen. These are the growers and makers behind the current menu.</p>
+        <ul class="source-list" id="source-list"></ul>
+        <p class="placeholder-note">Sample suppliers. Replace with the restaurant's real partners.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec dark" aria-labelledby="h-chef">
+    <div class="wrap chef">
+      <div class="frame arch reveal" data-alt="The chef"><img data-u="1577219491135-ce391730fb2c" data-w="800" alt="The head chef plating a dish at the pass"></div>
+      <div>
+        <span class="kicker">The kitchen</span>
+        <h2 id="h-chef" class="vh">Our chef</h2>
+        <blockquote>“Fire is honest. It tells you whether the ingredient was good long before you taste it.”</blockquote>
+        <cite>Chef's name, head chef and founder <span class="placeholder-note" style="margin:0 0 0 .5rem">placeholder</span></cite>
+        <div class="actions"><a class="btn btn-solid" href="#/story">Read our story</a><a class="btn btn-line" href="#/experiences/counter">Cook-along at the counter</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-events">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="h-events">Coming up at the hearth</h2>
+        <div><p>Supper clubs, guest chefs and coffee sessions. Seats are limited, so request early.</p></div>
+      </div>
+      <ol class="events" id="events-home"></ol>
+      <p class="placeholder-note">Sample events with dates generated for this demo.</p>
+    </div>
+  </section>
+
+  <section class="sec-sm" aria-labelledby="h-glance">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:2rem"><h2 id="h-glance">Inside the room</h2><div class="actions" style="justify-self:end"><a class="btn btn-line" href="#/gallery">Open the gallery</a></div></div>
+      <div class="gstrip" id="gstrip"></div>
+    </div>
+  </section>
+
+  <section class="sec dark cta-band" aria-labelledby="h-news">
+    <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#D6B77A" stroke-width=".6"><circle cx="100" cy="100" r="96"/><circle cx="101" cy="99" r="84"/><circle cx="99" cy="101" r="71"/><circle cx="100" cy="98" r="58"/><circle cx="102" cy="100" r="45"/><circle cx="99" cy="99" r="33"/><circle cx="100" cy="101" r="21"/><circle cx="100" cy="100" r="9"/></g></svg>
+    <div class="wrap">
+      <div>
+        <h2 id="h-news">First to know when the menu changes</h2>
+        <p style="color:rgba(245,239,229,.8);max-width:46ch;margin-top:1rem">One short letter a month: new dishes, counter dates and supper club seats before they go public.</p>
+      </div>
+      <form class="newsletter" novalidate>
+        <div class="inline-form">
+          <label class="vh" for="nl-home">Email address</label>
+          <input id="nl-home" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <button class="btn btn-ember" type="submit">Join the letter</button>
+        </div>
+        <p class="form-msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ===================================================== MENU -->
+<div class="page" data-page="menu" data-title="Menu — Ember & Oak">
+  <header class="phead">
+    <div class="wrap">
+      <div>
+        <p class="crumbs"><a href="#/">Home</a> / Menu</p>
+        <h1>The menu</h1>
+        <p>Built for sharing. Most tables order two or three small plates and a main per two guests. Add dishes to <button class="link" type="button" data-open-tray>My table</button> to plan your meal or order for pickup.</p>
+      </div>
+      <div class="frame arch" data-alt="The pass"><img data-u="1476224203421-9ac39bcb3327" data-w="700" alt="A spread of dishes on a wooden table"></div>
+    </div>
+  </header>
+  <div class="menu-tools">
+    <div class="wrap row">
+      <div class="cats" role="group" aria-label="Menu sections" id="cats"></div>
+      <div class="tool-right">
+        <button class="toggle" type="button" id="veg-only" aria-pressed="false"><span class="knob" aria-hidden="true"></span>Vegetarian only</button>
+        <div class="search"><label for="q" class="vh">Search the menu</label><svg aria-hidden="true"><use href="#i-search"/></svg><input id="q" type="search" placeholder="Search dishes or ingredients" autocomplete="off"></div>
+      </div>
+    </div>
+  </div>
+  <section class="wrap" aria-label="Dishes" style="padding-bottom:clamp(4rem,8vw,7rem)">
+    <div class="menu-body">
+      <figure class="plate" aria-hidden="true">
+        <div class="frame arch" id="plate-frame" data-alt="Ember & Oak"><img id="plate-a" alt=""><img id="plate-b" class="back" alt=""></div>
+        <figcaption><div class="plate-cap"><h2 id="plate-name"></h2><p id="plate-price"></p></div><p class="plate-note">Hover or focus a dish to see it here.</p></figcaption>
+      </figure>
+      <div>
+        <div class="guide-cta">
+          <div><h2>Not sure what to order?</h2><p>Answer three quick questions and we'll suggest a balanced spread for your table.</p></div>
+          <button class="btn" type="button" data-open-guide>Help me choose</button>
+        </div>
+        <p class="vh" aria-live="polite" id="menu-count"></p>
+        <div class="menu-list" id="menu-list"></div>
+        <div class="legend" aria-label="Menu key">
+          <span><i class="vmark" aria-hidden="true"></i>Vegetarian</span>
+          <span><i class="vmark nv" aria-hidden="true"></i>Non-vegetarian</span>
+          <span><span class="spice" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>Spice level</span>
+          <span><span class="tag pick">Chef's pick</span></span>
+          <button class="btn btn-line btn-sm" type="button" id="print-menu"><svg><use href="#i-print"/></svg>Print menu</button>
+        </div>
+        <p class="note"><strong>Sample menu for this proposal.</strong> Dishes, prices and dietary labels are placeholders for the restaurant to replace. Prices shown exclude 5% GST. Allergen information must be supplied and reviewed by the restaurant; please tell our team about any allergy before ordering. FSSAI licence number: <span data-fssai></span>.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================================================== EXPERIENCES -->
+<div class="page" data-page="experiences" data-title="Experiences — Ember & Oak">
+  <header class="phead">
+    <div class="wrap">
+      <div>
+        <p class="crumbs"><a href="#/">Home</a> / Experiences</p>
+        <h1>Ways to dine</h1>
+        <p>Every format runs off the same hearth. Here's exactly what to expect from each, so nothing surprises you at the table.</p>
+      </div>
+      <div class="frame arch" data-alt="The hearth"><img data-u="1555396273-367ea4eb4db5" data-w="700" alt="A warmly lit dining room with wooden tables"></div>
+    </div>
+  </header>
+
+  <section class="sec" style="padding-top:0" aria-label="Formats">
+    <div class="wrap">
+      <article class="xp" id="xp-alacarte">
+        <div class="xp-media"><div class="frame arch" data-alt="Dinner in the room"><img data-u="1517248135467-4c7edcad34c4" data-w="900" alt="The dining room in the evening"></div></div>
+        <div>
+          <span class="kicker">À la carte</span>
+          <h2>Dinner in the room</h2>
+          <p class="lead">Order as you like from the full menu. Plates arrive as they leave the fire, so the table fills up gradually.</p>
+          <dl class="facts"><div><dt>When</dt><dd>Tue to Sun, 7 to 11 pm</dd></div><div><dt>Average for two</dt><dd data-cost-two></dd></div><div><dt>Table time</dt><dd>Yours for the evening</dd></div><div><dt>Groups</dt><dd>Up to 12, larger by enquiry</dd></div></dl>
+          <div class="actions"><a class="btn btn-solid" href="#/reserve?xp=alacarte">Reserve dinner</a><a class="btn btn-line" href="#/menu">See the menu</a></div>
+        </div>
+      </article>
+
+      <article class="xp flip" id="xp-sunday">
+        <div class="xp-media"><div class="frame arch" data-alt="Sunday long lunch"><img data-u="1528605248644-14dd04022da1" data-w="900" alt="A long table of friends sharing food"></div></div>
+        <div>
+          <span class="kicker">Sundays only</span>
+          <h2>Sunday long lunch</h2>
+          <p class="lead">A set family-style lunch: four rounds of platters from the fire, passed down the table. Children under 10 eat free.</p>
+          <dl class="facts"><div><dt>When</dt><dd>Sundays, 12 to 4 pm</dd></div><div><dt>Price</dt><dd data-price-sunday></dd></div><div><dt>Format</dt><dd>Set menu, sharing</dd></div><div><dt>Vegetarian</dt><dd>Full vegetarian version</dd></div></dl>
+          <div class="actions"><a class="btn btn-solid" href="#/reserve?xp=sunday">Reserve Sunday lunch</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec dark" id="xp-counter" aria-labelledby="h-counter">
+    <div class="wrap tasting">
+      <aside>
+        <span class="kicker">Thu to Sat, eight seats</span>
+        <h2 id="h-counter">The Hearth Counter</h2>
+        <p style="color:rgba(245,239,229,.82)">Eight courses cooked and served across the counter by the chefs who make them. Two seatings: 7 pm and 9:30 pm, about two and a half hours each. Everyone at a seating starts together, so please arrive ten minutes early.</p>
+        <div class="price-card" id="counter-prices"></div>
+        <p class="small" style="color:rgba(245,239,229,.7);margin-top:1rem">Prices per guest, excluding GST. A vegetarian menu is available; tell us when you book. The menu changes every six to eight weeks.</p>
+        <a class="btn btn-ember" href="#/reserve?xp=counter" style="margin-top:.8rem">Request counter seats</a>
+      </aside>
+      <div>
+        <h3 class="vh">Current tasting menu</h3>
+        <ol class="courses" id="courses"></ol>
+        <p class="placeholder-note">Sample tasting menu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="xp-private" aria-labelledby="h-private">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="h-private">Private dining and events</h2>
+        <p>Birthdays, offsites, wedding dinners and launches. Choose a space on the plan to see what it holds, then send an enquiry and our events team will reply with menus and a quote.</p>
+      </div>
+      <div class="room">
+        <svg class="plan" id="plan" viewBox="0 0 600 380" role="img" aria-labelledby="plan-t">
+          <title id="plan-t">Floor plan showing the dining room, the hearth counter, the oak room and the courtyard</title>
+          <rect class="zone" x="10" y="10" width="580" height="360"/>
+          <rect class="hearth" x="250" y="20" width="100" height="18" rx="3"/><text x="300" y="56" text-anchor="middle">Hearth</text>
+          <g data-room="counter"><rect class="tbl" x="200" y="70" width="200" height="22" rx="3"/><g class="seat"><circle cx="215" cy="104" r="6"/><circle cx="240" cy="104" r="6"/><circle cx="265" cy="104" r="6"/><circle cx="290" cy="104" r="6"/><circle cx="315" cy="104" r="6"/><circle cx="340" cy="104" r="6"/><circle cx="365" cy="104" r="6"/><circle cx="385" cy="104" r="6"/></g><text x="300" y="128" text-anchor="middle">Hearth Counter</text></g>
+          <g data-room="oak"><rect class="zone" x="20" y="150" width="170" height="210"/><rect class="tbl" x="55" y="200" width="100" height="110" rx="4"/><text x="105" y="345" text-anchor="middle">Oak Room</text></g>
+          <g data-room="room"><rect class="zone" x="205" y="150" width="215" height="210"/><circle class="tbl" cx="250" cy="200" r="20"/><circle class="tbl" cx="320" cy="200" r="20"/><circle class="tbl" cx="385" cy="200" r="20"/><circle class="tbl" cx="250" cy="275" r="20"/><circle class="tbl" cx="320" cy="275" r="20"/><circle class="tbl" cx="385" cy="275" r="20"/><text x="312" y="345" text-anchor="middle">Dining room</text></g>
+          <g data-room="courtyard"><rect class="zone" x="435" y="150" width="145" height="210"/><rect class="tbl" x="465" y="185" width="85" height="30" rx="3"/><rect class="tbl" x="465" y="245" width="85" height="30" rx="3"/><text x="507" y="345" text-anchor="middle">Courtyard</text></g>
+        </svg>
+        <div>
+          <ul class="rooms-list" id="rooms-list"></ul>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem"><a class="btn btn-solid" href="#/reserve?tab=events" id="enquire-room">Send an event enquiry</a></div>
+          <p class="placeholder-note">Sample floor plan and capacities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec surface" aria-labelledby="h-events2">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="h-events2">Events calendar</h2><p>Monthly supper clubs, guest chefs and coffee sessions. Request seats and we'll confirm by WhatsApp.</p></div>
+      <ol class="events" id="events-all"></ol>
+      <p class="placeholder-note">Sample events with dates generated for this demo.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ===================================================== STORY -->
+<div class="page" data-page="story" data-title="Our story — Ember & Oak">
+  <header class="phead">
+    <div class="wrap">
+      <div>
+        <p class="crumbs"><a href="#/">Home</a> / Our story</p>
+        <h1>A kitchen built around one fire</h1>
+        <p>Coastal Karnataka cooking, Coorg coffee country, and a city that loves to eat late.</p>
+      </div>
+      <div class="frame arch" data-alt="The kitchen"><img data-u="1556910103-1c02745aae4d" data-w="700" alt="Hands preparing vegetables on a wooden board"></div>
+    </div>
+  </header>
+  <section class="sec dark" aria-labelledby="h-st">
+    <div class="wrap story-grid">
+      <div class="a frame reveal" data-alt="The chef at the pass"><img data-u="1577219491135-ce391730fb2c" data-w="1100" alt="The chef finishing a plate by hand"></div>
+      <div class="t">
+        <h2 id="h-st">Where it started</h2>
+        <p>Our chef grew up between a Mangalorean family kitchen and a Coorg coffee estate, where the best food was cooked slowly over wood. After a decade in kitchens in Bengaluru, Mumbai and abroad, Ember &amp; Oak is that memory with a city address: one long hearth, seasoned oak and coconut husk, and produce from farms within a day's drive.</p>
+        <p>We cook what the morning brings. Ragi from Mandya, pepper from Coorg, fish from the Karavali coast. Nothing is rushed, including you.</p>
+        <span class="placeholder-note">Sample copy. Replace with the chef's own words.</span>
+      </div>
+      <blockquote class="q">“I want people to leave smelling a little of woodsmoke and wanting to come back on Sunday.”<cite>Chef's name, head chef and founder (placeholder)</cite></blockquote>
+      <div class="b frame reveal" data-alt="Preparation"><img data-u="1466978913421-dad2ebd01d17" data-w="800" alt="Cooks working at the hearth before service"></div>
+    </div>
+  </section>
+  <section class="sec" aria-labelledby="h-day">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="h-day">A day at the hearth</h2><p>The fire is lit once each morning and managed all day. Each stage of it cooks something different.</p></div>
+      <ol class="steps-list">
+        <li><h3>Lighting, 9 am</h3><p>Oak and coconut husk are lit. Bread and stocks go in as the fire climbs.</p></li>
+        <li><h3>Full flame, noon</h3><p>The hottest hours: searing, charring corn and blistering peppers for lunch.</p></li>
+        <li><h3>Embers, 7 pm</h3><p>The fire settles into coals for dinner. Fish, meat and vegetables cook directly on the embers.</p></li>
+        <li><h3>Ashes, midnight</h3><p>Beetroot, onions and tomorrow's lamb are buried in the dying heat overnight.</p></li>
+      </ol>
+    </div>
+  </section>
+  <section class="sec surface" aria-labelledby="h-values">
+    <div class="wrap source">
+      <div class="frame reveal" data-alt="Coffee"><img data-u="1447933601403-0c6688de566e" data-w="900" alt="Roasted coffee beans"></div>
+      <div>
+        <h2 id="h-values" style="font-size:var(--s3);margin-bottom:1.2rem">Our suppliers</h2>
+        <ul class="source-list" id="source-list-2"></ul>
+        <p class="placeholder-note">Sample suppliers.</p>
+      </div>
+    </div>
+  </section>
+  <section class="sec" aria-labelledby="h-jobs">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="h-jobs">Work with us</h2><p>We pay above the city's industry average, close on Mondays, and share tips equally across the kitchen and floor.</p></div>
+      <ul class="jobs" id="jobs"></ul>
+      <p class="placeholder-note">Sample roles and policies.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ===================================================== GALLERY -->
+<div class="page" data-page="gallery" data-title="Gallery — Ember & Oak">
+  <header class="phead" style="padding-bottom:2rem">
+    <div class="wrap"><div><p class="crumbs"><a href="#/">Home</a> / Gallery</p><h1>Inside the room</h1><p>Low light, worn oak, the sound of the fire. Select any image to open it full screen.</p></div></div>
+  </header>
+  <section class="wrap" aria-label="Photographs" style="padding-bottom:clamp(4rem,8vw,7rem)">
+    <div class="filters" role="group" aria-label="Filter photographs" id="g-filters"></div>
+    <div class="gallery" id="gallery"></div>
+  </section>
+</div>
+
+<!-- ===================================================== RESERVE -->
+<div class="page" data-page="reserve" data-title="Reserve — Ember & Oak">
+  <header class="phead" style="padding-bottom:2.5rem">
+    <div class="wrap"><div><p class="crumbs"><a href="#/">Home</a> / Reserve</p><h1>Request a table</h1><p>Tell us when you'd like to come. The team checks availability and confirms by phone or WhatsApp, usually within two hours during opening times.</p></div></div>
+  </header>
+  <section class="wrap res-layout" style="padding-bottom:clamp(4rem,8vw,7rem)" aria-label="Reservation">
+    <aside>
+      <h2>Before you book</h2>
+      <ul class="policy">
+        <li><b>Your table</b>Dinner tables are yours for the evening. Counter seatings run for about two and a half hours.</li>
+        <li><b>Running late</b>We hold tables for 20 minutes. Call or message us and we'll do our best.</li>
+        <li><b>Changes</b>Let us know at least 24 hours ahead if your plans change. Counter seats may need a deposit once confirmed.</li>
+        <li><b>Larger groups</b>For more than 12 guests or exclusive use, use the event enquiry tab.</li>
+      </ul>
+      <p class="placeholder-note">Sample policies for the restaurant to confirm.</p>
+    </aside>
+    <div>
+      <div class="tabs" role="tablist" aria-label="Request type">
+        <button role="tab" id="tab-table" aria-controls="panel-table" aria-selected="true" type="button">Table request</button>
+        <button role="tab" id="tab-events" aria-controls="panel-events" aria-selected="false" tabindex="-1" type="button">Private dining enquiry</button>
+      </div>
+
+      <div role="tabpanel" id="panel-table" aria-labelledby="tab-table">
+        <ol class="progress" aria-label="Progress">
+          <li data-step="1" aria-current="step"><b>1</b>Your visit</li>
+          <li data-step="2"><b>2</b>Your details</li>
+          <li data-step="3"><b>3</b>Review</li>
+          <li data-step="4"><b>4</b>Sent</li>
+        </ol>
+
+        <form class="form" id="res-form" novalidate>
+          <fieldset class="full" style="border:0;padding:0;margin:0" data-stage="1">
+            <legend class="field" style="font-weight:500;margin-bottom:.6rem;padding:0">Experience</legend>
+            <div class="options" id="xp-options"></div>
+            <span class="err" id="e-xp"></span>
+          </fieldset>
+          <div class="field" data-stage="1">
+            <label for="r-date">Date</label>
+            <input id="r-date" name="date" type="date" required aria-describedby="e-date h-date">
+            <span class="hint" id="h-date"></span>
+            <span class="err" id="e-date"></span>
+          </div>
+          <div class="field" data-stage="1">
+            <label for="r-time">Time</label>
+            <select id="r-time" name="time" required aria-describedby="e-time" disabled><option value="">Choose a date first</option></select>
+            <span class="err" id="e-time"></span>
+          </div>
+          <div class="field full" data-stage="1">
+            <span class="label" id="guests-label">Guests</span>
+            <div class="stepper" role="group" aria-labelledby="guests-label">
+              <button type="button" id="g-minus" aria-label="Remove a guest">−</button>
+              <output id="g-count" aria-live="polite">2 guests</output>
+              <button type="button" id="g-plus" aria-label="Add a guest">+</button>
+            </div>
+            <span class="hint" id="g-hint"></span>
+          </div>
+          <div class="field full" data-stage="1">
+            <label for="r-seat">Seating preference <small>(we'll do our best)</small></label>
+            <select id="r-seat" name="seat"><option value="">No preference</option><option>Dining room</option><option>Courtyard</option><option>Near the hearth</option><option>Quiet corner</option></select>
+          </div>
+          <div class="form-foot" data-stage="1"><button class="btn btn-solid" type="button" id="to-step2">Continue</button><p>Next: your contact details.</p></div>
+
+          <div class="field full" data-stage="2" hidden>
+            <label for="r-name">Name for the booking</label>
+            <input id="r-name" name="name" autocomplete="name" required aria-describedby="e-name">
+            <span class="err" id="e-name"></span>
+          </div>
+          <div class="field" data-stage="2" hidden>
+            <label for="r-phone">Mobile number</label>
+            <input id="r-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="98xxx xxxxx" required aria-describedby="e-phone">
+            <span class="err" id="e-phone"></span>
+          </div>
+          <div class="field" data-stage="2" hidden>
+            <label for="r-email">Email</label>
+            <input id="r-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email">
+            <span class="err" id="e-email"></span>
+          </div>
+          <fieldset class="field full" data-stage="2" hidden style="border:0;padding:0;margin:0">
+            <legend class="label" style="font-weight:500;margin-bottom:.5rem;padding:0">Dietary needs <small>(optional)</small></legend>
+            <div class="checks" id="diet-checks"></div>
+          </fieldset>
+          <div class="field full" data-stage="2" hidden>
+            <label for="r-occasion">Occasion <small>(optional)</small></label>
+            <select id="r-occasion" name="occasion"><option value="">No particular occasion</option><option>Birthday</option><option>Anniversary</option><option>Date night</option><option>Business dinner</option><option>Celebration</option><option>Proposal</option></select>
+          </div>
+          <div class="field full" data-stage="2" hidden>
+            <label for="r-msg">Anything else <small>(optional)</small></label>
+            <textarea id="r-msg" name="message" maxlength="500" placeholder="Allergies, accessibility needs, a cake to bring out, anything we should know"></textarea>
+            <span class="hint" id="msg-count">0 of 500 characters</span>
+          </div>
+          <div class="field full" data-stage="2" hidden id="tray-attach-wrap">
+            <label class="consent"><input type="checkbox" id="tray-attach"> <span>Share the dishes in My table with the kitchen (<span id="tray-attach-n"></span>)</span></label>
+          </div>
+          <div class="field full" data-stage="2" hidden>
+            <label class="consent"><input type="checkbox" id="r-consent" aria-describedby="e-consent"> <span>I understand this is a request, and my table is only booked once the restaurant confirms.</span></label>
+            <span class="err" id="e-consent"></span>
+          </div>
+          <div class="form-foot" data-stage="2" hidden><button class="btn btn-solid" type="submit">Review request</button><button class="btn btn-line" type="button" id="back-1">Back</button></div>
+        </form>
+
+        <div id="res-review" class="summary" hidden tabindex="-1">
+          <h2 class="vh">Review your request</h2>
+          <dl id="summary-list"></dl>
+          <div class="form-foot" style="margin-top:1.8rem">
+            <button class="btn btn-solid" id="send-btn" type="button">Send request</button>
+            <button class="btn btn-line" id="edit-btn" type="button">Edit details</button>
+            <p>Nothing is sent until you select Send request.</p>
+          </div>
+        </div>
+
+        <div id="res-done" class="done-box" hidden tabindex="-1">
+          <span class="demo-badge" id="demo-badge">Demo mode: this request was not sent anywhere</span>
+          <h2>Request received for review</h2>
+          <p>Reference <b id="ref"></b>. On the live site, the team would now check the book and reply to <span id="done-contact"></span>. <strong>Your table is not booked until they confirm.</strong></p>
+          <p class="muted">Want a faster answer? Send the same request straight to the restaurant on WhatsApp.</p>
+          <div class="form-foot">
+            <a class="btn btn-ember" id="done-wa" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Send on WhatsApp</a>
+            <button class="btn btn-line" id="done-ics" type="button"><svg><use href="#i-cal"/></svg>Add tentative to calendar</button>
+            <button class="btn btn-line" id="new-btn" type="button">Start another request</button>
+          </div>
+          <p class="small muted" style="margin-top:1.5rem">Prototype note: set <code>CONFIG.integrations.reservations</code> to a FastAPI route or reservation provider to deliver real requests.</p>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="panel-events" aria-labelledby="tab-events" hidden>
+        <form class="form" id="event-form" novalidate>
+          <div class="field"><label for="ev-type">Type of event</label><select id="ev-type" required aria-describedby="e-ev-type"><option value="">Choose one</option><option>Birthday or anniversary</option><option>Corporate dinner or offsite</option><option>Wedding function</option><option>Product launch</option><option>Exclusive restaurant hire</option><option>Something else</option></select><span class="err" id="e-ev-type"></span></div>
+          <div class="field"><label for="ev-space">Preferred space</label><select id="ev-space"><option value="">Not sure yet</option></select></div>
+          <div class="field"><label for="ev-date">Date</label><input id="ev-date" type="date" required aria-describedby="e-ev-date"><span class="err" id="e-ev-date"></span></div>
+          <div class="field"><label for="ev-guests">Number of guests</label><input id="ev-guests" type="number" inputmode="numeric" min="8" max="120" required aria-describedby="e-ev-guests"><span class="err" id="e-ev-guests"></span></div>
+          <div class="field full"><label for="ev-budget">Budget per guest <small>(before taxes)</small></label><select id="ev-budget"><option value="">Prefer to discuss</option><option>₹2,000 to ₹3,000</option><option>₹3,000 to ₹4,500</option><option>₹4,500 and above</option></select></div>
+          <div class="field"><label for="ev-name">Your name</label><input id="ev-name" autocomplete="name" required aria-describedby="e-ev-name"><span class="err" id="e-ev-name"></span></div>
+          <div class="field"><label for="ev-phone">Mobile number</label><input id="ev-phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="e-ev-phone"><span class="err" id="e-ev-phone"></span></div>
+          <div class="field full"><label for="ev-email">Email</label><input id="ev-email" type="email" autocomplete="email" required aria-describedby="e-ev-email"><span class="err" id="e-ev-email"></span></div>
+          <div class="field full"><label for="ev-notes">Tell us about it <small>(optional)</small></label><textarea id="ev-notes" maxlength="800" placeholder="Timings, menu style, AV needs, decor"></textarea></div>
+          <div class="form-foot"><button class="btn btn-solid" type="submit">Send enquiry</button><p>Our events team replies with menus and a quote. Nothing is booked until you agree terms.</p></div>
+        </form>
+        <div id="event-done" class="done-box" hidden tabindex="-1">
+          <span class="demo-badge">Demo mode: this enquiry was not sent anywhere</span>
+          <h2>Enquiry ready</h2>
+          <p>Reference <b id="ev-ref"></b>. On the live site this goes to the events team, who reply within one working day.</p>
+          <div class="form-foot"><a class="btn btn-ember" id="ev-wa" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Send on WhatsApp</a><button class="btn btn-line" type="button" id="ev-new">Start another enquiry</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================================================== GIFT -->
+<div class="page" data-page="gift" data-title="Gift cards — Ember & Oak">
+  <header class="phead" style="padding-bottom:2.5rem">
+    <div class="wrap"><div><p class="crumbs"><a href="#/">Home</a> / Gift cards</p><h1>Give an evening at the fire</h1><p>Send a gift card by email on the day you choose, or print it at home. Valid for 12 months across dinner, the counter and Sunday lunch.</p></div></div>
+  </header>
+  <section class="wrap gift" style="padding-bottom:clamp(4rem,8vw,7rem)" aria-label="Create a gift card">
+    <div class="gift-preview">
+      <div class="gcard" id="gcard" aria-hidden="true">
+        <span class="arch-line"></span>
+        <div class="top"><span>Ember &amp; Oak</span><svg width="28" height="28"><use href="#i-flame"/></svg></div>
+        <div class="amt" id="gc-amt">₹5,000</div>
+        <div class="to"><span>For</span><b id="gc-to">Someone special</b></div>
+        <p class="msg" id="gc-msg"></p>
+      </div>
+      <p class="small muted" style="margin-top:1rem" id="gc-desc">A live preview of the card your recipient receives.</p>
+    </div>
+    <form class="form" id="gift-form" novalidate>
+      <fieldset class="full" style="border:0;padding:0;margin:0">
+        <legend style="font-weight:500;margin-bottom:.6rem;padding:0">Choose a gift</legend>
+        <div class="options" id="gift-options"></div>
+      </fieldset>
+      <div class="field full" id="custom-wrap" hidden><label for="gc-custom">Custom amount</label><input id="gc-custom" type="number" inputmode="numeric" min="1000" max="50000" step="500" placeholder="₹1,000 to ₹50,000" aria-describedby="e-gc-custom"><span class="err" id="e-gc-custom"></span></div>
+      <div class="field"><label for="gc-recipient">Recipient's name</label><input id="gc-recipient" required maxlength="40" aria-describedby="e-gc-recipient"><span class="err" id="e-gc-recipient"></span></div>
+      <div class="field"><label for="gc-from">From</label><input id="gc-from" required maxlength="40" autocomplete="name" aria-describedby="e-gc-from"><span class="err" id="e-gc-from"></span></div>
+      <div class="field full"><label for="gc-message">Message <small>(optional)</small></label><textarea id="gc-message" maxlength="160" placeholder="Happy birthday. Dinner is on me."></textarea></div>
+      <fieldset class="full" style="border:0;padding:0;margin:0">
+        <legend style="font-weight:500;margin-bottom:.6rem;padding:0">Delivery</legend>
+        <div class="options">
+          <div class="opt"><input type="radio" name="gdel" id="gdel-email" value="email" checked><label for="gdel-email"><b>Email to recipient</b><span>On a date you choose</span></label></div>
+          <div class="opt"><input type="radio" name="gdel" id="gdel-print" value="print"><label for="gdel-print"><b>Print at home</b><span>Sent to you as a PDF</span></label></div>
+        </div>
+      </fieldset>
+      <div class="field" id="gc-email-wrap"><label for="gc-email">Recipient's email</label><input id="gc-email" type="email" aria-describedby="e-gc-email"><span class="err" id="e-gc-email"></span></div>
+      <div class="field" id="gc-date-wrap"><label for="gc-date">Send on</label><input id="gc-date" type="date" aria-describedby="e-gc-date"><span class="err" id="e-gc-date"></span></div>
+      <div class="field full"><label for="gc-buyer">Your email <small>(for the receipt)</small></label><input id="gc-buyer" type="email" autocomplete="email" required aria-describedby="e-gc-buyer"><span class="err" id="e-gc-buyer"></span></div>
+      <div class="form-foot"><button class="btn btn-solid" type="submit" id="gc-submit">Continue to payment</button><p>Payment is not connected in this prototype. Nothing will be charged.</p></div>
+    </form>
+  </section>
+</div>
+
+<!-- ===================================================== ORDER -->
+<div class="page" data-page="order" data-title="Order — Ember & Oak">
+  <header class="phead" style="padding-bottom:2.5rem">
+    <div class="wrap"><div><p class="crumbs"><a href="#/">Home</a> / Order</p><h1>Ember &amp; Oak at home</h1><p>Our kitchen packs the dishes that travel well. Order directly for pickup, or through the delivery apps.</p></div></div>
+  </header>
+  <section class="wrap" style="padding-bottom:clamp(4rem,8vw,7rem)" aria-label="Ordering options">
+    <div class="order-grid">
+      <div class="order-opt primary"><h2>Pickup, direct</h2><p>Build your order in My table, then send it to the kitchen on WhatsApp. Ready in about 30 minutes. No platform fees.</p><button class="btn btn-solid" type="button" data-open-tray>Open My table</button></div>
+      <div class="order-opt"><h2>Swiggy</h2><p>Delivery across Indiranagar, Domlur and Koramangala.</p><a class="btn btn-line" data-order="swiggy" target="_blank" rel="noopener">Order on Swiggy</a></div>
+      <div class="order-opt"><h2>Zomato</h2><p>Delivery across Indiranagar, Domlur and Koramangala.</p><a class="btn btn-line" data-order="zomato" target="_blank" rel="noopener">Order on Zomato</a></div>
+    </div>
+    <p class="note">Delivery links and areas are placeholders. Add the restaurant's real listing URLs in the configuration.</p>
+  </section>
+</div>
+
+<!-- ===================================================== VISIT -->
+<div class="page" data-page="visit" data-title="Visit — Ember & Oak">
+  <header class="phead" style="padding-bottom:2.5rem">
+    <div class="wrap"><div><p class="crumbs"><a href="#/">Home</a> / Visit</p><h1>Find us</h1><p>All contact details here are demo values, stored in one configuration block so the restaurant can replace them in minutes.</p></div></div>
+  </header>
+  <section class="wrap" aria-label="Map">
+    <div class="map" id="map">
+      <svg class="streets" viewBox="0 0 800 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#D6B77A" stroke-width="1"><path d="M0 120 L800 90"/><path d="M0 250 L800 230"/><path d="M180 0 L220 340"/><path d="M430 0 L410 340"/><path d="M640 0 L690 340"/><path d="M0 40 C200 60 300 20 800 30" stroke-width=".6"/><path d="M300 0 L330 340" stroke-width=".5"/><path d="M540 0 L520 340" stroke-width=".5"/><path d="M0 180 L800 165" stroke-width=".5"/></g></svg>
+      <div class="pin"><svg width="34" height="34" style="color:var(--ember)"><use href="#i-pin"/></svg><p style="margin:0" data-address-inline></p><button class="btn btn-line btn-sm" type="button" id="load-map" style="color:var(--cream);border-color:rgba(245,239,229,.5)">Load interactive map</button><span class="small" style="opacity:.7">Loads Google Maps, which may set cookies.</span></div>
+    </div>
+  </section>
+  <section class="sec" aria-label="Contact and hours">
+    <div class="wrap">
+      <div class="visit-grid">
+        <div><h2>Address</h2><address data-address></address><div class="stack"><a class="btn btn-solid" data-directions target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Get directions</a></div></div>
+        <div><h2>Opening hours</h2><table class="hours"><caption class="vh">Opening hours by day</caption><tbody data-hours></tbody></table></div>
+        <div><h2>Get in touch</h2>
+          <div class="stack"><a class="btn btn-line" data-tel-btn><svg><use href="#i-phone"/></svg><span data-tel-label></span></a><a class="btn btn-line" data-wa target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Message on WhatsApp</a><a data-email></a></div>
+          <div class="socials" data-socials></div>
+        </div>
+      </div>
+      <div class="getting">
+        <div><h3>By metro</h3><p>Indiranagar station on the Purple Line is about ten minutes on foot.</p></div>
+        <div><h3>By car</h3><p>Valet parking from 7 pm on weekdays and all day at weekends. Street parking is limited.</p></div>
+        <div><h3>Access</h3><p>Step-free entrance and an accessible washroom on the ground floor. Tell us if you need anything else.</p></div>
+      </div>
+      <p class="placeholder-note">Transport and access details to be confirmed by the restaurant.</p>
+    </div>
+  </section>
+  <section class="sec surface" aria-labelledby="h-faq">
+    <div class="wrap" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(2rem,5vw,5rem)" id="faq-wrap">
+      <div><h2 id="h-faq" style="font-size:var(--s3)">Questions guests ask</h2><p class="muted" style="margin-top:1rem">Can't find your answer? <a data-wa target="_blank" rel="noopener">Message us on WhatsApp</a>.</p></div>
+      <div class="faq" id="faq"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================================================== 404 -->
+<div class="page" data-page="404" data-title="Page not found — Ember & Oak">
+  <section class="sec"><div class="wrap narrow"><h1 style="font-size:var(--s4)">This table's empty</h1><p class="muted" style="font-size:var(--s1);margin:1.5rem 0 2rem">The page you followed doesn't exist. Head back to the menu or the home page.</p><a class="btn btn-solid" href="#/">Go to the home page</a> <a class="btn btn-line" href="#/menu">See the menu</a></div></section>
+</div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <h2>Ember &amp; Oak</h2>
+        <address style="font-style:normal" data-address></address>
+        <p style="margin-top:1rem"><a data-tel></a></p>
+        <form class="newsletter" novalidate style="margin-top:1.5rem;max-width:420px">
+          <div class="inline-form"><label class="vh" for="nl-foot">Email for the monthly letter</label><input id="nl-foot" type="email" autocomplete="email" placeholder="Monthly letter, your email" required><button class="btn btn-ember btn-sm" type="submit" style="min-height:52px">Join</button></div>
+          <p class="form-msg" role="status"></p>
+        </form>
+      </div>
+      <div><h2>Visit</h2><ul><li><a href="#/menu">Menu</a></li><li><a href="#/experiences">Experiences</a></li><li><a href="#/reserve">Reserve</a></li><li><a href="#/order">Order for pickup</a></li><li><a href="#/visit">Directions and FAQ</a></li></ul></div>
+      <div><h2>Hours</h2><ul data-hours-compact></ul></div>
+      <div><h2>More</h2><ul><li><a href="#/story">Our story</a></li><li><a href="#/gift">Gift cards</a></li><li><a href="#/reserve?tab=events">Private dining</a></li><li><a href="#/story">Careers</a></li><li data-socials-list></li></ul></div>
+    </div>
+    <p class="foot-word" aria-hidden="true">Ember <span>&amp;</span> Oak</p>
+    <div class="foot-legal">
+      <span>© <span data-year></span> Ember &amp; Oak. Fictional restaurant, design proposal.</span>
+      <span>FSSAI licence: <span data-fssai></span></span>
+      <span>Photography via Unsplash, for presentation only.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fab" data-wa target="_blank" rel="noopener" aria-label="Message Ember & Oak on WhatsApp"><svg><use href="#i-wa"/></svg></a>
+<nav class="mbar" aria-label="Quick actions">
+  <a data-tel-btn><svg aria-hidden="true"><use href="#i-phone"/></svg>Call</a>
+  <a href="#/menu"><svg aria-hidden="true"><use href="#i-book"/></svg>Menu</a>
+  <button type="button" data-open-tray><svg aria-hidden="true"><use href="#i-tray"/></svg>My table<span class="tray-count" data-tray-count></span></button>
+  <a class="rv" href="#/reserve"><svg aria-hidden="true"><use href="#i-cal"/></svg>Reserve</a>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toast-text"></span><button type="button" id="toast-action" hidden></button></div>
+
+<!-- DISH -->
+<dialog class="modal" id="dish-modal" aria-labelledby="dm-title">
+  <button class="icon-btn x" type="button" data-close aria-label="Close dish details"><svg><use href="#i-x"/></svg></button>
+  <div class="dm-grid">
+    <div class="dm-img frame" id="dm-frame"><img id="dm-img" alt=""></div>
+    <div class="dm-body">
+      <span class="kicker" id="dm-cat"></span>
+      <h2 id="dm-title"></h2>
+      <div class="dm-price" id="dm-price"></div>
+      <div class="dm-meta" id="dm-meta"></div>
+      <p id="dm-long"></p>
+      <div class="dm-pair" id="dm-pair"></div>
+      <div class="dm-diet">Dietary labels are placeholders awaiting the restaurant's review. Please tell the team about any allergy before ordering.</div>
+      <div class="dm-actions"><span id="dm-add"></span><a class="btn btn-line" href="#/reserve" data-close>Reserve a table</a></div>
+    </div>
+  </div>
+</dialog>
+
+<!-- MY TABLE -->
+<dialog class="sheet" id="tray" aria-labelledby="tray-title">
+  <header><h2 id="tray-title">My table</h2><button class="icon-btn" type="button" data-close aria-label="Close My table"><svg><use href="#i-x"/></svg></button></header>
+  <div class="body" id="tray-body"></div>
+  <footer id="tray-foot">
+    <div class="totals" id="tray-totals"></div>
+    <div class="btns">
+      <a class="btn btn-ember" id="tray-wa" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Send pickup order on WhatsApp</a>
+      <a class="btn btn-solid" href="#/reserve" data-close id="tray-reserve">Reserve and share with the kitchen</a>
+      <button class="btn btn-line btn-sm" type="button" id="tray-clear">Clear my table</button>
+    </div>
+    <p class="small muted" style="margin:.8rem 0 0">Estimate only, using sample prices. No service charge is added. Final bill at the restaurant.</p>
+  </footer>
+</dialog>
+
+<!-- GUIDE -->
+<dialog class="modal-sm" id="guide" aria-labelledby="guide-title">
+  <button class="icon-btn x" type="button" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+  <h2 id="guide-title">Help me choose</h2>
+  <p class="muted">Three questions. We'll suggest a balanced spread from the sample menu.</p>
+  <form id="guide-form">
+    <fieldset class="guide-q"><legend>How many of you?</legend><div class="checks" data-q="size"></div></fieldset>
+    <fieldset class="guide-q"><legend>What do you eat?</legend><div class="checks" data-q="diet"></div></fieldset>
+    <fieldset class="guide-q"><legend>How hungry?</legend><div class="checks" data-q="appetite"></div></fieldset>
+    <fieldset class="guide-q"><legend>Spice</legend><div class="checks" data-q="spice"></div></fieldset>
+    <button class="btn btn-solid" type="submit">Suggest a spread</button>
+  </form>
+  <div class="guide-result" id="guide-result" hidden tabindex="-1"></div>
+</dialog>
+
+<!-- EVENT SEATS -->
+<dialog class="modal-sm" id="seat-modal" aria-labelledby="seat-title">
+  <button class="icon-btn x" type="button" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+  <h2 id="seat-title"></h2>
+  <p class="muted" id="seat-sub"></p>
+  <form class="form" id="seat-form" novalidate style="grid-template-columns:1fr">
+    <div class="field"><label for="s-name">Name</label><input id="s-name" autocomplete="name" required aria-describedby="e-s-name"><span class="err" id="e-s-name"></span></div>
+    <div class="field"><label for="s-phone">Mobile number</label><input id="s-phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="e-s-phone"><span class="err" id="e-s-phone"></span></div>
+    <div class="field"><label for="s-seats">Seats</label><select id="s-seats"></select></div>
+    <div class="form-foot"><button class="btn btn-solid" type="submit">Request seats</button></div>
+  </form>
+  <div id="seat-done" hidden tabindex="-1">
+    <span class="demo-badge">Demo mode: not sent</span>
+    <p>Your seat request is ready. Send it to the restaurant on WhatsApp to hold your place; seats are confirmed by the team.</p>
+    <a class="btn btn-ember" id="seat-wa" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Send on WhatsApp</a>
+  </div>
+</dialog>
+
+<!-- GIFT PAY -->
+<dialog class="modal-sm" id="pay-modal" aria-labelledby="pay-title">
+  <button class="icon-btn x" type="button" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+  <span class="demo-badge">Demo mode: payment not connected</span>
+  <h2 id="pay-title">Gift card summary</h2>
+  <div class="summary"><dl id="pay-summary"></dl></div>
+  <p class="small muted" style="margin-top:1.2rem">In production this step opens a payment gateway such as Razorpay, then issues the card with a unique code. No payment was taken and no card was created.</p>
+  <button class="btn btn-solid" type="button" data-close style="margin-top:.5rem">Done</button>
+</dialog>
+
+<!-- LIGHTBOX -->
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <div class="lb-in">
+    <button class="icon-btn lb-close" type="button" data-close aria-label="Close photo viewer"><svg><use href="#i-x"/></svg></button>
+    <div class="lb-stage" id="lb-stage"><div class="frame quiet" id="lb-frame"><img id="lb-img" alt=""></div></div>
+    <div>
+      <div class="lb-bar"><p><span id="lb-cap"></span><br><span id="lb-count" style="opacity:.7"></span></p>
+        <div class="lb-ctrls"><button class="icon-btn" type="button" id="lb-prev" aria-label="Previous photo"><svg><use href="#i-left"/></svg></button><button class="icon-btn" type="button" id="lb-next" aria-label="Next photo"><svg><use href="#i-right"/></svg></button></div>
+      </div>
+      <div class="thumbs" id="lb-thumbs" aria-label="All photos"></div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* =========================================================
+   CONFIGURATION — every visible business detail lives here.
+   All values below are DEMO values for the proposal.
+   ========================================================= */
+const CONFIG = {
+  name: "Ember & Oak",
+  timezone: "Asia/Kolkata",
+  address: { street: "100 Feet Road (demo address)", area: "Indiranagar", city: "Bengaluru", state: "Karnataka", pin: "560038" },
+  phone: "+919876543210",
+  phoneDisplay: "+91 98765 43210",
+  email: "hello@emberandoak.example",
+  whatsapp: "919876543210",
+  fssai: "to be added by the restaurant",
+  costForTwo: 3200,
+  gstRate: 0.05,
+  bookAheadDays: 60,
+  announcement: { id: "counter-menu", text: "New Hearth Counter menu, now taking requests.", link: "#/experiences/counter", linkText: "See the courses" },
+  socials: [
+    { label: "Instagram", url: "#" },
+    { label: "Facebook", url: "#" },
+    { label: "Google reviews", url: "#" }
+  ],
+  orderLinks: { swiggy: "#", zomato: "#" },
+  // 0 = Sunday. Sittings as [open, close], 24-hour.
+  hours: {
+    0: [["12:00", "16:00"], ["19:00", "23:30"]],
+    1: [],
+    2: [["12:00", "15:30"], ["19:00", "23:00"]],
+    3: [["12:00", "15:30"], ["19:00", "23:00"]],
+    4: [["12:00", "15:30"], ["19:00", "23:00"]],
+    5: [["12:00", "15:30"], ["19:00", "23:30"]],
+    6: [["12:00", "16:00"], ["19:00", "23:30"]]
+  },
+  // Future integration points. Leave null to run in clearly-labelled demo mode.
+  integrations: {
+    reservations: null,   // e.g. "https://api.example.com/reservations"  (FastAPI POST)
+    events: null,         // e.g. "https://api.example.com/enquiries"
+    newsletter: null,     // e.g. Mailchimp / Brevo endpoint via your backend
+    payments: null        // e.g. Razorpay order-creation endpoint on your backend
+  }
+};
+
+const EXPERIENCES = [
+  { id: "alacarte", name: "Dinner in the room", note: "À la carte, Tue to Sun", maxGuests: 12, duration: 150 },
+  { id: "counter", name: "Hearth Counter", note: "8 courses, Thu to Sat", maxGuests: 8, duration: 150, price: 4800, priceVeg: 4200, pairing: [["Wine pairing", 2800], ["Zero-proof pairing", 1600]] },
+  { id: "sunday", name: "Sunday long lunch", note: "Set sharing menu", maxGuests: 16, duration: 180, price: 2400 }
+];
+
+const IMG = (id, w = 900) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=70`;
+
+const CATEGORIES = [
+  { id: "small", label: "Small plates", intro: "Two or three per couple is a good start." },
+  { id: "mains", label: "Mains", intro: "From the hearth. Most serve one generously or two to share." },
+  { id: "veg", label: "Vegetarian", intro: "Full mains, not afterthoughts." },
+  { id: "desserts", label: "Desserts", intro: "The last of the embers go into these." },
+  { id: "drinks", label: "Coffee & drinks", intro: "Single-estate coffee, house sodas. Our bar list is in the room." }
+];
+
+/* veg: true/false. spice 0–3. pick = chef's pick. Dietary flags are placeholders pending the restaurant's review. */
+const MENU = [
+  { cat:"small", name:"Charred corn ribs", price:420, veg:true, spice:1, desc:"Sweet corn blistered over embers, curry leaf butter, lime.", long:"Local sweet corn split into ribs so they curl on the grill, brushed with butter infused with curry leaf and a little Byadgi chilli. Finished with lime and flaky salt.", pair:"Smoked kokum soda" },
+  { cat:"small", name:"Kerala fried chicken", price:520, veg:false, spice:2, pick:true, img:"1562967914-608f82629710", desc:"Buttermilk-brined thigh, kokum glaze, pickled shallots.", long:"Chicken thigh rested overnight in spiced buttermilk, fried crisp to order and tossed in a sticky kokum and jaggery glaze.", pair:"Tender coconut cold brew" },
+  { cat:"small", name:"Ember-roasted beetroot", price:390, veg:true, spice:0, img:"1540189549336-e6e99c3679fe", desc:"Beets roasted in the coals, hung curd, toasted seeds, mint oil.", long:"Whole beetroot buried in the embers until the skins char and the centres turn jammy, served over thick hung curd with toasted seeds.", pair:"Chikmagalur pour-over" },
+  { cat:"small", name:"Smoked prawn koliwada", price:640, veg:false, spice:2, desc:"Coastal prawns, gram flour crust, oak-smoked lime aioli.", long:"Prawns from the Karavali coast in a light, spiced gram flour batter, with aioli made from lime that has spent an afternoon over oak smoke.", pair:"Smoked kokum soda" },
+  { cat:"small", name:"Ghee-roast mushrooms", price:450, veg:true, spice:2, desc:"Mushrooms in Mangalorean ghee roast masala, grilled sourdough.", long:"Our vegetarian take on the Mangalorean classic: mushrooms seared hard and folded through a tangy, deep-red ghee roast masala." },
+  { cat:"small", name:"Hearth sourdough", price:280, veg:true, spice:0, desc:"Baked in the morning fire, smoked ghee, gunpowder.", long:"A naturally leavened loaf baked as the fire climbs each morning. Served warm with smoked ghee and our own podi." },
+
+  { cat:"mains", name:"Oak-fired lamb shoulder", price:1480, veg:false, spice:1, pick:true, img:"1544025162-d76694265947", desc:"Eight hours over oak, Coorg pepper jus, charred onions. Serves two.", long:"Bone-in lamb shoulder rubbed with Coorg black pepper and cooked through the night beside the dying fire. Pulled at the table.", pair:"Ask for the red wine list" },
+  { cat:"mains", name:"Ghee roast chicken", price:980, veg:false, spice:3, pick:true, img:"1565557623262-b51c2513a641", desc:"Half chicken, Byadgi chilli ghee roast, neer dosa.", long:"Grilled, then lacquered with a ghee roast paste of Byadgi chilli, tamarind and roasted spices. With soft neer dosa to mop up the sauce." },
+  { cat:"mains", name:"Wood-fired seabass", price:1350, veg:false, spice:1, img:"1519708227418-c8fd9a32b7a2", desc:"Roasted skin-side to the fire, moilee butter, crisp curry leaves.", long:"Seabass roasted skin-side to the fire, with a sauce built from Kerala moilee and finished with cultured butter." },
+  { cat:"mains", name:"Pandi pork belly", price:1180, veg:false, spice:2, desc:"Coorg-style pork belly, kachampuli glaze, bamboo shoot relish.", long:"A nod to Kodava pandi curry: pork belly braised, crisped over embers and glazed with kachampuli vinegar." },
+
+  { cat:"veg", name:"Paneer tikka steak", price:780, veg:true, spice:2, img:"1567188040759-fb8a883dc6d8", desc:"House-pressed paneer, smoked tomato makhani, grilled greens.", long:"A full slab of house-pressed paneer, marinated and charred, on a makhani made with tomatoes smoked over oak." },
+  { cat:"veg", name:"Jackfruit dum biryani", price:820, veg:true, spice:2, pick:true, img:"1563379091339-03b21ab4a4f8", desc:"Young jackfruit, seeraga samba rice, sealed and finished in the hearth.", long:"Tender jackfruit layered with fragrant seeraga samba rice, sealed under a dough lid and opened at your table. A vegan version is available on request." },
+  { cat:"veg", name:"Ragi pappardelle", price:760, veg:true, spice:0, img:"1473093295043-cdd812d0e601", desc:"Finger millet pasta, brown butter, sage, aged cheese.", long:"Pasta made in-house with ragi flour from Mandya, dressed simply with brown butter, crisp sage and aged cheese." },
+  { cat:"veg", name:"Charred cauliflower", price:690, veg:true, spice:1, img:"1512621776951-a57141f2eefd", desc:"Whole head, cashew korma, chilli oil, pomegranate.", long:"A whole cauliflower roasted until deeply coloured, on a silky cashew korma, with chilli oil and pomegranate." },
+
+  { cat:"desserts", name:"Filter-coffee tiramisu", price:420, veg:true, spice:0, pick:true, img:"1571877227200-a0d98ea607e9", desc:"Chikmagalur decoction, mascarpone, cocoa.", long:"Sponge soaked in strong filter-coffee decoction, layered with mascarpone cream. Our most requested dessert." },
+  { cat:"desserts", name:"Jaggery crème brûlée", price:380, veg:true, spice:0, desc:"Palm jaggery custard, torched crust, cardamom shortbread.", long:"A custard sweetened with palm jaggery for a deep caramel flavour, with a crackling top and cardamom shortbread." },
+  { cat:"desserts", name:"Dark chocolate tart", price:460, veg:true, spice:0, img:"1606313564200-e75d5e30476c", desc:"Single-origin Indian chocolate, sea salt, malai.", long:"A bittersweet ganache tart made with single-origin Indian chocolate, finished with sea salt and fresh malai." },
+  { cat:"desserts", name:"Ember banana", price:390, veg:true, spice:0, desc:"Nendran banana roasted in its skin, toffee, cardamom ice cream.", long:"Nendran banana roasted whole in the embers, split open with toffee sauce and house-churned cardamom ice cream." },
+
+  { cat:"drinks", name:"Chikmagalur pour-over", price:260, veg:true, spice:0, img:"1495474472287-4d71bcdd2085", desc:"Single-estate beans, roasted weekly, brewed to order.", long:"Beans from a single Chikmagalur estate, roasted each week. Ask the team what's on." },
+  { cat:"drinks", name:"Filter coffee", price:180, veg:true, spice:0, img:"1509042239860-f550ce710b93", desc:"Brass-filter decoction, frothed milk, served in a dabarah.", long:"A strong chicory-blend decoction and hot milk, pulled between tumbler and dabarah." },
+  { cat:"drinks", name:"Smoked kokum soda", price:220, veg:true, spice:0, img:"1470337458703-46ad1756a187", desc:"Kokum, oak-smoked salt, ginger, soda.", long:"A sour-sweet soda made from kokum syrup with a rim of oak-smoked salt. Non-alcoholic." },
+  { cat:"drinks", name:"Tender coconut cold brew", price:280, veg:true, spice:0, desc:"Eighteen-hour cold brew over tender coconut water.", long:"Coffee steeped cold for eighteen hours, poured over fresh tender coconut water and ice." },
+  { cat:"drinks", name:"Masala chai", price:160, veg:true, spice:1, desc:"Assam leaf, house masala, oat milk on request.", long:"Strong Assam tea simmered with our masala of ginger, cardamom, clove and pepper." }
+];
+
+const COURSES = [
+  { name:"Snacks from the embers", desc:"Banana chip with kokum, ragi cracker, smoked butter.", veg:"Same course" },
+  { name:"Bread", desc:"Morning sourdough, smoked ghee, gunpowder.", veg:"Same course" },
+  { name:"Raw", desc:"Kingfish, raw mango, curry leaf oil.", veg:"Tender coconut, raw mango, curry leaf oil" },
+  { name:"Garden", desc:"Ash-roasted beetroot, hung curd, toasted seeds.", veg:"Same course" },
+  { name:"Sea", desc:"Seabass, moilee butter, crisp curry leaves.", veg:"Charred cauliflower, moilee butter" },
+  { name:"Fire", desc:"Lamb shoulder, Coorg pepper jus, neer dosa.", veg:"Jackfruit dum, opened at the counter" },
+  { name:"Cool", desc:"Tender coconut granita, kokum.", veg:"Same course" },
+  { name:"Sweet", desc:"Filter-coffee tiramisu, jaggery fudge, coffee.", veg:"Same course" }
+];
+
+const SUPPLIERS = [
+  { name:"A ragi collective in Mandya", what:"Finger millet, foxtail millet, palm jaggery", km:100, desc:"Twelve smallholder families who grow and stone-mill the ragi for our pasta and crackers." },
+  { name:"A pepper and coffee estate in Coorg", what:"Black pepper, coffee, wild honey", km:250, desc:"Shade-grown under silver oak. We visit at harvest and buy the whole pepper lot." },
+  { name:"Day boats out of Mangaluru", what:"Seabass, kingfish, prawns", km:350, desc:"Line-caught fish on the overnight bus. If the boats don't go out, the fish course changes." },
+  { name:"A greens farm near Doddaballapur", what:"Leaves, herbs, edible flowers", km:40, desc:"Picked the afternoon before and delivered at 7 am." },
+  { name:"A small dairy in Hosur", what:"Milk for paneer, curd, ghee and butter", km:45, desc:"We press our own paneer and culture our butter from their milk." }
+];
+
+const EVENTS = [
+  { offset: 6, title: "Supper club: the Karavali coast", desc: "A one-night menu of Mangalorean and Udupi cooking, one long table.", time: "19:30", price: 3500, seats: 24, left: 6 },
+  { offset: 13, title: "Coffee cupping with a Chikmagalur estate", desc: "Taste five lots side by side with the grower. Morning session.", time: "11:00", price: 900, seats: 12, left: 3 },
+  { offset: 21, title: "Guest chef from Kochi", desc: "A four-hands dinner of Kerala coastal cooking at the hearth.", time: "19:30", price: 4200, seats: 30, left: 18 },
+  { offset: 34, title: "Fire and bread masterclass", desc: "Three hours on the hearth: starters, shaping and baking. Lunch included.", time: "10:00", price: 2800, seats: 10, left: 10 }
+];
+
+const ROOMS = [
+  { id:"counter", name:"Hearth Counter", cap:"8 seated", desc:"Buy out the whole counter for a private tasting menu cooked in front of your group." },
+  { id:"oak", name:"The Oak Room", cap:"14 seated, 20 standing", desc:"A closed room with one long oak table, its own playlist and a screen for presentations." },
+  { id:"room", name:"Dining room", cap:"48 seated, 60 standing", desc:"Exclusive hire of the main room for launches, receptions and wedding functions." },
+  { id:"courtyard", name:"Courtyard", cap:"18 seated, 30 standing", desc:"Open-air under the frangipani tree. Best from November to February." }
+];
+
+const GALLERY = [
+  { id:"1517248135467-4c7edcad34c4", cap:"The main dining room in the early evening", tag:"room", shape:"wide" },
+  { id:"1476224203421-9ac39bcb3327", cap:"A spread from the weekend lunch menu", tag:"food", shape:"tall" },
+  { id:"1466978913421-dad2ebd01d17", cap:"Prep at the hearth before service", tag:"kitchen", shape:"sq" },
+  { id:"1528605248644-14dd04022da1", cap:"Sunday long lunch", tag:"people", shape:"wide" },
+  { id:"1555396273-367ea4eb4db5", cap:"The window tables", tag:"room", shape:"tall" },
+  { id:"1504674900247-0877df9cc836", cap:"A plate from the hearth", tag:"food", shape:"sq" },
+  { id:"1577219491135-ce391730fb2c", cap:"Finishing a plate at the pass", tag:"kitchen", shape:"tall" },
+  { id:"1514933651103-005eec06c04b", cap:"The bar after dark", tag:"room", shape:"wide" },
+  { id:"1565557623262-b51c2513a641", cap:"Ghee roast, ready to go out", tag:"food", shape:"wide" },
+  { id:"1556910103-1c02745aae4d", cap:"Morning prep", tag:"kitchen", shape:"wide" },
+  { id:"1414235077428-338989a2e8c0", cap:"Tables set for the first sitting", tag:"room", shape:"sq" },
+  { id:"1571877227200-a0d98ea607e9", cap:"Filter-coffee tiramisu", tag:"food", shape:"tall" }
+];
+
+const JOBS = [
+  { role:"Hearth cook", type:"Full time, kitchen" },
+  { role:"Floor host", type:"Full time, front of house" },
+  { role:"Barista and coffee lead", type:"Full time, café hours" }
+];
+
+const FAQ = [
+  ["Do you take walk-ins?", "Yes, at the bar and courtyard most evenings. The dining room fills on weekends, so a request is a good idea Friday to Sunday."],
+  ["Can you cater to vegetarian, vegan or Jain diets?", "There is a full vegetarian menu and a vegetarian tasting menu. Many dishes can be made vegan. For Jain preparation, tell us when you book and the kitchen will confirm what's possible."],
+  ["How do you handle allergies?", "Tell us when you book and again when you order. Our kitchen handles nuts, dairy, gluten and shellfish, so we can't promise any dish is free of traces. The restaurant will publish full allergen details."],
+  ["Is there a dress code?", "No. Come as you are."],
+  ["Are children welcome?", "Yes, at dinner and especially at Sunday lunch, where under-10s eat free. The Hearth Counter is for guests aged 12 and over."],
+  ["Is a service charge added to the bill?", "No service charge is added automatically. Prices on the menu exclude 5% GST."],
+  ["Can I bring a cake?", "Of course. Let us know in your booking and we'll keep it cold and bring it out with candles."],
+  ["How do I pay?", "UPI, all major cards and cash."],
+  ["Do you host private events?", "Yes, from eight guests at the counter to sixty for a full buy-out. Send an enquiry from the Reserve page."],
+  ["Is there parking?", "Valet from 7 pm on weekdays and all day at weekends. Indiranagar metro station is about ten minutes on foot."]
+];
+
+/* =========================================================
+   UTILITIES
+   ========================================================= */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const rupee = n => "₹" + Math.round(n).toLocaleString("en-IN");
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const DAY = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const addrLines = () => [CONFIG.address.street, CONFIG.address.area, `${CONFIG.address.city}, ${CONFIG.address.state} ${CONFIG.address.pin}`];
+const addrInline = () => `${CONFIG.address.street}, ${CONFIG.address.area}, ${CONFIG.address.city}`;
+const waLink = text => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(text)}`;
+const refCode = p => `${p}-${Date.now().toString(36).slice(-4).toUpperCase()}${Math.random().toString(36).slice(2, 4).toUpperCase()}`;
+
+function nowLocal(){
+  const parts = new Intl.DateTimeFormat("en-GB", { timeZone: CONFIG.timezone, year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", hour12:false, weekday:"short" }).formatToParts(new Date());
+  const g = t => parts.find(p => p.type === t).value;
+  const days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { date:`${g("year")}-${g("month")}-${g("day")}`, day:days[g("weekday")], mins:(+g("hour") % 24) * 60 + +g("minute") };
+}
+const toMins = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+const hhmm = m => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
+function fmtTime(t){
+  const m = typeof t === "number" ? t : toMins(t);
+  let h = Math.floor(m / 60) % 24; const mm = m % 60; const ap = h >= 12 ? "pm" : "am";
+  h = h % 12 || 12; return mm ? `${h}:${String(mm).padStart(2, "0")} ${ap}` : `${h} ${ap}`;
+}
+const addDays = (iso, n) => { const [y, m, d] = iso.split("-").map(Number); return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10); };
+const dowOf = iso => { const [y, m, d] = iso.split("-").map(Number); return new Date(Date.UTC(y, m - 1, d)).getUTCDay(); };
+const longDate = iso => { const [y, m, d] = iso.split("-").map(Number); return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("en-IN", { weekday:"long", day:"numeric", month:"long", year:"numeric", timeZone:"UTC" }); };
+const shortParts = iso => { const [y, m, d] = iso.split("-").map(Number); const dt = new Date(Date.UTC(y, m - 1, d)); return { day: d, mon: dt.toLocaleDateString("en-IN", { month:"short", timeZone:"UTC" }), wd: dt.toLocaleDateString("en-IN", { weekday:"short", timeZone:"UTC" }) }; };
+
+/* Validation shared by every form */
+const V = {
+  name: v => !v.trim() ? "Enter a name." : v.trim().length < 2 ? "Enter at least two characters." : /^[\p{L}][\p{L} .'-]*$/u.test(v.trim()) ? "" : "Use letters, spaces, apostrophes or hyphens.",
+  phone: v => { const s = v.replace(/[\s()-]/g, ""); if (!s) return "Enter a mobile number so the team can reach you."; return /^(\+?91)?0?[6-9]\d{9}$/.test(s) || /^\+(?!91)\d{8,15}$/.test(s) ? "" : "Enter a 10-digit Indian mobile number, or an international number starting with +."; },
+  email: v => !v.trim() ? "Enter an email address." : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? "" : "Check the email address, for example name@example.com."
+};
+function showErr(input, errEl, msg){
+  if (errEl) errEl.textContent = msg || "";
+  if (input) input.setAttribute("aria-invalid", msg ? "true" : "false");
+  return msg;
+}
+function liveValidate(input, errEl, fn){
+  input.addEventListener("blur", () => { if (input.value) showErr(input, errEl, fn(input.value)); });
+  input.addEventListener("input", () => { if (input.getAttribute("aria-invalid") === "true") showErr(input, errEl, fn(input.value)); });
+}
+
+/* Images: hydrate per page so hidden pages never download imagery */
+function watchImg(img){
+  const frame = img.closest(".frame");
+  if (frame && !frame.dataset.alt) frame.dataset.alt = img.alt || CONFIG.name;
+  const ok = () => { img.removeAttribute("data-loading"); frame && frame.classList.remove("failed"); };
+  const bad = () => frame && frame.classList.add("failed");
+  img.addEventListener("load", ok);
+  img.addEventListener("error", bad);
+  if (img.complete && img.getAttribute("src")) img.naturalWidth ? ok() : bad();
+}
+function hydrate(root){
+  $$("img[data-u]", root).forEach(img => {
+    if (img.dataset.done) return;
+    img.dataset.done = "1";
+    const id = img.dataset.u, w = +img.dataset.w || 900;
+    const lo = Math.round(w * .6), hi = Math.round(w * 1.6);
+    img.setAttribute("data-loading", "");
+    img.loading = "lazy"; img.decoding = "async";
+    img.sizes = img.dataset.sizes || `(max-width: 900px) 100vw, ${w}px`;
+    img.srcset = `${IMG(id, lo)} ${lo}w, ${IMG(id, w)} ${w}w, ${IMG(id, hi)} ${hi}w`;
+    img.src = IMG(id, w);
+    watchImg(img);
+  });
+}
+$$(".frame > img[src]").forEach(watchImg);
+
+/* Toast with optional action */
+let toastT;
+function toast(msg, action){
+  const t = $("#toast"), a = $("#toast-action");
+  $("#toast-text").textContent = msg;
+  a.hidden = !action;
+  if (action){ a.textContent = action.label; a.onclick = () => { action.fn(); t.classList.remove("show"); }; }
+  t.classList.add("show");
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), action ? 5000 : 3400);
+}
+
+/* Dialogs: close buttons, outside click, focus return, scroll lock */
+function setupDialog(dlg){
+  let last = null;
+  dlg.addEventListener("close", () => { document.documentElement.style.overflow = ""; if (last && document.contains(last)) last.focus({ preventScroll:true }); dlg.dispatchEvent(new Event("closed")); });
+  dlg.addEventListener("click", e => {
+    if (e.target.closest("[data-close]")) { dlg.close(); return; }
+    if (e.target !== dlg) return;
+    const r = dlg.getBoundingClientRect();
+    const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    if (!inside || dlg.classList.contains("lightbox")) dlg.close();
+  });
+  return () => { if (dlg.open) return; last = document.activeElement; document.documentElement.style.overflow = "hidden"; dlg.showModal(); };
+}
+const OPEN = {};
+["dish-modal","tray","guide","seat-modal","pay-modal","lightbox"].forEach(id => OPEN[id] = setupDialog(document.getElementById(id)));
+
+/* =========================================================
+   GLOBAL DETAILS (filled from CONFIG)
+   ========================================================= */
+function fillGlobals(){
+  $$("[data-address]").forEach(el => el.innerHTML = addrLines().map(esc).join("<br>"));
+  $$("[data-address-inline]").forEach(el => el.textContent = addrInline());
+  $$("[data-tel]").forEach(el => { el.href = "tel:" + CONFIG.phone; el.textContent = CONFIG.phoneDisplay + " (demo)"; });
+  $$("[data-tel-btn]").forEach(el => el.href = "tel:" + CONFIG.phone);
+  $$("[data-tel-label]").forEach(el => el.textContent = "Call " + CONFIG.phoneDisplay);
+  $$("[data-wa]").forEach(el => el.href = waLink(`Hello ${CONFIG.name}, I have a question.`));
+  $$("[data-email]").forEach(el => { el.href = "mailto:" + CONFIG.email; el.textContent = CONFIG.email; });
+  $$("[data-directions]").forEach(el => el.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(addrLines().join(", ")));
+  const socials = CONFIG.socials.map(s => `<a href="${esc(s.url)}"${s.url !== "#" ? ' target="_blank" rel="noopener"' : ""}>${esc(s.label)}</a>`);
+  $$("[data-socials]").forEach(el => el.innerHTML = socials.join(""));
+  $$("[data-socials-list]").forEach(el => el.outerHTML = CONFIG.socials.map((s, i) => `<li>${socials[i]}</li>`).join(""));
+  $$("[data-cost-two]").forEach(el => el.textContent = `About ${rupee(CONFIG.costForTwo)} before GST`);
+  const counter = EXPERIENCES.find(x => x.id === "counter"), sunday = EXPERIENCES.find(x => x.id === "sunday");
+  $$("[data-price-counter]").forEach(el => el.textContent = `${rupee(counter.price)} per guest`);
+  $$("[data-price-sunday]").forEach(el => el.textContent = `${rupee(sunday.price)} per adult`);
+  $$("[data-fssai]").forEach(el => el.textContent = CONFIG.fssai);
+  $$("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
+  $$("[data-order]").forEach(el => el.href = CONFIG.orderLinks[el.dataset.order] || "#");
+
+  const today = nowLocal().day;
+  const order = [1,2,3,4,5,6,0];
+  const fmtSit = s => s.length ? s.map(([o, c]) => `${fmtTime(o)} to ${fmtTime(c)}`).join("<br>") : "Closed";
+  $$("[data-hours]").forEach(el => el.innerHTML = order.map(d => `<tr class="${d === today ? "today" : ""}"><th scope="row">${DAY[d]}${d === today ? " (today)" : ""}</th><td>${fmtSit(CONFIG.hours[d] || [])}</td></tr>`).join(""));
+  $$("[data-hours-compact]").forEach(el => el.innerHTML = `<li>Tuesday to Sunday</li><li>Lunch from noon</li><li>Dinner from 7 pm</li><li>Closed Mondays</li>`);
+
+  const a = CONFIG.announcement, bar = $("#announce");
+  if (a && !sessionStorageSafe.get("ann-" + a.id)){
+    $("#announce-text").innerHTML = `${esc(a.text)} ${a.link ? `<a href="${esc(a.link)}">${esc(a.linkText || "Learn more")}</a>` : ""}`;
+    bar.hidden = false;
+  }
+  $("#announce-close").addEventListener("click", () => { bar.hidden = true; sessionStorageSafe.set("ann-" + a.id, 1); measureHead(); });
+}
+/* In-memory only: some embeds (including Claude artifacts) block browser storage */
+const sessionStorageSafe = (() => { const m = {}; return { get: k => m[k], set: (k, v) => { m[k] = v; } }; })();
+
+/* Live open/closed status */
+function updateStatus(){
+  const n = nowLocal(), sits = CONFIG.hours[n.day] || [];
+  const cur = sits.find(([o, c]) => n.mins >= toMins(o) && n.mins < toMins(c));
+  let text, state;
+  if (cur){ state = "open"; text = `Open now until ${fmtTime(cur[1])}`; }
+  else {
+    state = "closed";
+    const later = sits.find(([o]) => toMins(o) > n.mins);
+    if (later) text = `Closed now. Opens at ${fmtTime(later[0])} today`;
+    else {
+      for (let i = 1; i <= 7; i++){ const d = (n.day + i) % 7, s = CONFIG.hours[d] || []; if (s.length){ text = `Closed now. Opens ${i === 1 ? "tomorrow" : DAY[d]} at ${fmtTime(s[0][0])}`; break; } }
+    }
+  }
+  $$("[data-status]").forEach(el => el.className = `status fade-in ${state}`);
+  $$("[data-status-text], [data-status-short]").forEach(el => el.textContent = text);
+  $$("[data-today-hours]").forEach(el => el.innerHTML = sits.length ? sits.map(([o, c]) => `${fmtTime(o)} to ${fmtTime(c)}`).join(", ") : "Closed today");
+}
+
+/* =========================================================
+   HEADER, NAV, SCROLL
+   ========================================================= */
+const head = $("#head"), toggle = $(".menu-toggle"), drawer = $("#drawer-nav");
+function measureHead(){ document.documentElement.style.setProperty("--hh", head.offsetHeight + "px"); }
+let currentPage = null;
+function setDrawer(openIt){
+  toggle.setAttribute("aria-expanded", String(openIt));
+  toggle.setAttribute("aria-label", openIt ? "Close navigation" : "Open navigation");
+  if (openIt){ drawer.hidden = false; requestAnimationFrame(() => drawer.classList.add("open")); document.documentElement.style.overflow = "hidden"; }
+  else { drawer.classList.remove("open"); document.documentElement.style.overflow = ""; setTimeout(() => { if (!drawer.classList.contains("open")) drawer.hidden = true; }, 360); }
+  $("#main").inert = openIt; $(".foot").inert = openIt;
+  head.classList.add("solid");
+  if (!openIt) syncHead();
+  if (openIt) setTimeout(() => $("a", drawer).focus(), 50);
+}
+toggle.addEventListener("click", () => setDrawer(toggle.getAttribute("aria-expanded") !== "true"));
+drawer.addEventListener("click", e => { if (e.target.closest("a")) setDrawer(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && drawer.classList.contains("open")){ setDrawer(false); toggle.focus(); } });
+addEventListener("resize", () => { if (innerWidth > 1080 && drawer.classList.contains("open")) setDrawer(false); measureHead(); }, { passive:true });
+
+function syncHead(){ head.classList.toggle("solid", currentPage !== "home" || scrollY > 40 || drawer.classList.contains("open")); }
+const parallax = $$("[data-parallax]");
+let ticking = false;
+let compact = false;
+function onScroll(){
+  syncHead();
+  const c = scrollY > 160;
+  if (c !== compact){ compact = c; head.classList.toggle("compact", c); measureHead(); }
+  if (currentPage === "home" && !reduced && innerWidth > 900 && scrollY < innerHeight * 1.2){
+    parallax.forEach(el => el.style.transform = `translate3d(0,${scrollY * parseFloat(el.dataset.parallax)}px,0)`);
+  }
+  ticking = false;
+}
+addEventListener("scroll", () => { if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, { passive:true });
+
+/* Story/home reveals — re-observed on each page visit, safe for fast scrolling */
+const revealObs = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add("in"); revealObs.unobserve(en.target); } }), { threshold:.12, rootMargin:"0px 0px -5% 0px" }) : null;
+function armReveals(root){ $$(".reveal", root).forEach(el => (reduced || !revealObs) ? el.classList.add("in") : revealObs.observe(el)); }
+
+/* =========================================================
+   ROUTER (hash-based so the single file works anywhere)
+   ========================================================= */
+const ROUTES = { "":"home", menu:"menu", experiences:"experiences", story:"story", gallery:"gallery", reserve:"reserve", gift:"gift", order:"order", visit:"visit" };
+const onEnter = {};
+function parseHash(){
+  const h = location.hash.replace(/^#\/?/, "");
+  const [path, qs] = h.split("?");
+  const parts = path.split("/").filter(Boolean);
+  return { page: parts[0] || "", sub: parts[1] || "", params: new URLSearchParams(qs || "") };
+}
+function route(first){
+  if (location.hash && !location.hash.startsWith("#/")) return;
+  const r = parseHash();
+  const name = ROUTES[r.page] ?? "404";
+  const el = $(`.page[data-page="${name}"]`);
+  const same = name === currentPage;
+  const swap = () => {
+    $$(".page.active").forEach(p => p.classList.remove("active"));
+    el.classList.add("active");
+    document.title = el.dataset.title;
+    currentPage = name;
+    hydrate(el); armReveals(el);
+    $$(".nav-links a").forEach(a => a.setAttribute("aria-current", a.getAttribute("href") === "#/" + r.page ? "page" : "false"));
+    syncHead();
+    onEnter[name] && onEnter[name](r);
+    embers.setActive(name === "home");
+    const target = r.sub && document.getElementById("xp-" + r.sub);
+    if (target) requestAnimationFrame(() => target.scrollIntoView({ block:"start" }));
+    else if (!same) window.scrollTo(0, 0);
+    if (!first && !same){ const h1 = el.querySelector("h1"); if (h1){ h1.tabIndex = -1; h1.focus({ preventScroll:true }); } }
+  };
+  if (first || same || reduced) swap();
+  else { const c = $(".curtain"); c.classList.remove("run"); void c.offsetWidth; c.classList.add("run"); setTimeout(swap, 380); }
+}
+addEventListener("hashchange", () => route(false));
+$(".skip").addEventListener("click", e => { e.preventDefault(); $("#main").focus(); });
+
+/* =========================================================
+   MY TABLE (shared by menu, pickup order and reservation)
+   ========================================================= */
+const tray = new Map();
+const trayItems = () => [...tray.entries()].map(([i, q]) => ({ ...MENU[i], i, q }));
+const trayTotal = () => trayItems().reduce((s, d) => s + d.price * d.q, 0);
+const trayCount = () => [...tray.values()].reduce((a, b) => a + b, 0);
+function setQty(i, q){
+  q = Math.max(0, Math.min(20, q));
+  if (q) tray.set(i, q); else tray.delete(i);
+  const n = trayCount();
+  $$("[data-tray-count]").forEach(el => el.textContent = n || "");
+  $$("[data-open-tray].icon-btn").forEach(el => el.setAttribute("aria-label", `My table, ${n} ${n === 1 ? "dish" : "dishes"}`));
+  $$(`[data-add-slot="${i}"]`).forEach(el => el.innerHTML = addControl(i));
+  renderTray();
+}
+function addControl(i){
+  const q = tray.get(+i) || 0, name = esc(MENU[i].name);
+  if (!q) return `<button class="add-btn" type="button" data-add="${i}" aria-label="Add ${name} to My table">+ Add</button>`;
+  return `<span class="qty" role="group" aria-label="${name} quantity"><button type="button" data-dec="${i}" aria-label="Remove one ${name}">−</button><output aria-live="polite">${q}</output><button type="button" data-inc="${i}" aria-label="Add one more ${name}">+</button></span>`;
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-add]"), inc = e.target.closest("[data-inc]"), dec = e.target.closest("[data-dec]");
+  if (a){ const i = +a.dataset.add; setQty(i, 1); toast(`${MENU[i].name} added to My table.`, { label:"View", fn: () => OPEN.tray() }); const s = $(`[data-add-slot="${i}"] [data-inc]`); s && s.focus(); }
+  else if (inc){ setQty(+inc.dataset.inc, (tray.get(+inc.dataset.inc) || 0) + 1); }
+  else if (dec){ const i = +dec.dataset.dec, slot = dec.closest("[data-add-slot]"); setQty(i, (tray.get(i) || 0) - 1); if (!tray.get(i) && slot){ const b = $("[data-add]", slot); b && b.focus(); } }
+  if (e.target.closest("[data-open-tray]")) OPEN.tray();
+});
+function trayText(){
+  const lines = trayItems().map(d => `${d.q} × ${d.name} (${rupee(d.price * d.q)})`);
+  const sub = trayTotal();
+  return `Hello ${CONFIG.name}, I'd like to order for pickup:\n\n${lines.join("\n")}\n\nEstimated total ${rupee(sub * (1 + CONFIG.gstRate))} incl. GST\nName:\nPickup time:`;
+}
+function renderTray(){
+  const items = trayItems(), body = $("#tray-body"), foot = $("#tray-foot");
+  if (!items.length){
+    body.innerHTML = `<div class="tray-empty"><p>Your table is empty.</p><p class="small">Add dishes from the menu to plan your meal, order for pickup, or share them with the kitchen when you reserve.</p><a class="btn btn-solid" href="#/menu" data-close>Browse the menu</a></div>`;
+    foot.hidden = true; return;
+  }
+  foot.hidden = false;
+  body.innerHTML = items.map(d => `<div class="tray-item"><div><h3><i class="vmark ${d.veg ? "" : "nv"}" role="img" aria-label="${d.veg ? "Vegetarian" : "Non-vegetarian"}"></i>${esc(d.name)}</h3><span class="p">${rupee(d.price)} each</span></div><span data-add-slot="${d.i}">${addControl(d.i)}</span></div>`).join("");
+  const sub = trayTotal(), gst = sub * CONFIG.gstRate;
+  $("#tray-totals").innerHTML = `<div><span>Subtotal</span><span>${rupee(sub)}</span></div><div><span>GST at ${CONFIG.gstRate * 100}%</span><span>${rupee(gst)}</span></div><div class="grand"><span>Estimated total</span><span>${rupee(sub + gst)}</span></div>`;
+  $("#tray-wa").href = waLink(trayText());
+}
+$("#tray-clear").addEventListener("click", () => {
+  const snapshot = new Map(tray);
+  [...tray.keys()].forEach(i => setQty(i, 0));
+  toast("My table cleared.", { label:"Undo", fn: () => snapshot.forEach((q, i) => setQty(i, q)) });
+});
+$("#tray-reserve").addEventListener("click", () => { pendingTrayAttach = true; });
+let pendingTrayAttach = false;
+renderTray();
+
+/* =========================================================
+   MENU
+   ========================================================= */
+const menuState = { cat:"all", q:"", veg:false };
+const catWrap = $("#cats"), list = $("#menu-list");
+catWrap.innerHTML = [{ id:"all", label:"Everything" }, ...CATEGORIES].map(c => `<button class="chip" type="button" data-cat="${c.id}" aria-pressed="${c.id === "all"}">${esc(c.label)}</button>`).join("");
+catWrap.addEventListener("click", e => {
+  const b = e.target.closest("[data-cat]"); if (!b || b.dataset.cat === menuState.cat) return;
+  menuState.cat = b.dataset.cat;
+  $$("[data-cat]", catWrap).forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  b.scrollIntoView({ inline:"nearest", block:"nearest" });
+  renderMenu(true);
+  const tools = $(".menu-tools");
+  if (tools.getBoundingClientRect().top <= parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--hh")) + 2){
+    const y = $(".menu-body").getBoundingClientRect().top + scrollY - head.offsetHeight - tools.offsetHeight - 16;
+    window.scrollTo({ top:y, behavior: reduced ? "auto" : "smooth" });
+  }
+});
+$("#veg-only").addEventListener("click", e => { menuState.veg = !menuState.veg; e.currentTarget.setAttribute("aria-pressed", String(menuState.veg)); renderMenu(true); });
+let qT;
+$("#q").addEventListener("input", e => { clearTimeout(qT); qT = setTimeout(() => { menuState.q = e.target.value.trim().toLowerCase(); renderMenu(false); }, 140); });
+
+const catLabel = id => (CATEGORIES.find(c => c.id === id) || {}).label || "";
+const spiceHTML = n => n ? `<span class="spice" role="img" aria-label="Spice ${n} of 3">${[1,2,3].map(k => `<i class="${k <= n ? "on" : ""}"></i>`).join("")}</span>` : "";
+const vmark = d => `<i class="vmark ${d.veg ? "" : "nv"}" role="img" aria-label="${d.veg ? "Vegetarian" : "Non-vegetarian"}"></i>`;
+function filteredMenu(){
+  return MENU.map((d, i) => ({ ...d, i })).filter(d =>
+    (menuState.cat === "all" || d.cat === menuState.cat) &&
+    (!menuState.veg || d.veg) &&
+    (!menuState.q || `${d.name} ${d.desc} ${catLabel(d.cat)} ${d.veg ? "vegetarian veg" : "non-veg"}`.toLowerCase().includes(menuState.q)));
+}
+function dishHTML(d){
+  const thumb = d.img ? `<span class="thumb frame" data-alt=" "><img loading="lazy" decoding="async" data-loading src="${IMG(d.img, 160)}" alt=""></span>` : "";
+  return `<article class="dish ${d.img ? "has-thumb" : ""}" data-i="${d.i}">
+    ${thumb}<button class="open" type="button" data-dish="${d.i}" aria-haspopup="dialog">${vmark(d)}<span>${esc(d.name)}</span></button>
+    <span class="price">${rupee(d.price)}</span>
+    <p class="desc">${esc(d.desc)}</p>
+    <div class="meta">${d.pick ? `<span class="tag pick">Chef's pick</span>` : ""}${spiceHTML(d.spice)}</div>
+    <span class="add" data-add-slot="${d.i}">${addControl(d.i)}</span></article>`;
+}
+function menuHTML(){
+  const items = filteredMenu();
+  $("#menu-count").textContent = items.length ? `${items.length} dishes shown` : "No dishes match";
+  if (!items.length) return `<p class="empty">Nothing matches${menuState.q ? ` “${esc(menuState.q)}”` : ""}${menuState.veg ? " in vegetarian dishes" : ""}. Try an ingredient like pepper or coconut, or <button class="link" type="button" id="clear-filters">clear filters</button>.</p>`;
+  return CATEGORIES.map(c => {
+    const g = items.filter(d => d.cat === c.id); if (!g.length) return "";
+    return `<section class="mgroup" aria-labelledby="mg-${c.id}"><h2 id="mg-${c.id}">${esc(c.label)}<small>${g.length} ${g.length === 1 ? "dish" : "dishes"}</small></h2><p class="intro">${esc(c.intro)}</p>${g.map(dishHTML).join("")}</section>`;
+  }).join("");
+}
+function paintMenu(){
+  list.innerHTML = menuHTML();
+  $$(".frame img", list).forEach(watchImg);
+  if (currentPage === "menu"){ const first = filteredMenu().find(d => d.img); if (first) setPlate(first); }
+  const clr = $("#clear-filters", list);
+  if (clr) clr.addEventListener("click", () => { $("#q").value = ""; menuState.q = ""; menuState.veg = false; $("#veg-only").setAttribute("aria-pressed", "false"); renderMenu(false); $("#q").focus(); });
+}
+function renderMenu(animate){
+  if (!animate || reduced){ paintMenu(); return; }
+  list.classList.remove("swap"); void list.offsetWidth; list.classList.add("swap");
+  setTimeout(paintMenu, 330); setTimeout(() => list.classList.remove("swap"), 740);
+}
+/* Sticky plate crossfade, desktop only */
+const plateFrame = $("#plate-frame"), plateA = $("#plate-a"), plateB = $("#plate-b");
+let plateFront = plateA, plateId = null;
+function setPlate(d){
+  if (!d.img || d.img === plateId || innerWidth <= 900) return;
+  plateId = d.img;
+  const back = plateFront === plateA ? plateB : plateA;
+  back.onload = () => { if (plateId !== d.img) return; plateFrame.classList.remove("failed"); back.classList.remove("back"); plateFront.classList.add("back"); plateFront = back; };
+  back.onerror = () => { if (plateId !== d.img) return; plateFrame.dataset.alt = d.name; plateFrame.classList.add("failed"); };
+  back.alt = d.name; back.src = IMG(d.img, 900);
+  $("#plate-name").textContent = d.name; $("#plate-price").textContent = rupee(d.price);
+}
+["pointerover", "focusin"].forEach(ev => list.addEventListener(ev, e => { const a = e.target.closest(".dish"); if (a) setPlate(MENU[a.dataset.i]); }));
+$("#print-menu").addEventListener("click", () => { document.body.classList.add("print-menu"); window.print(); });
+addEventListener("afterprint", () => document.body.classList.remove("print-menu"));
+
+/* Dish modal (used by menu, rail and guide) */
+function openDish(i){
+  const d = MENU[i];
+  $("#dm-cat").textContent = catLabel(d.cat);
+  $("#dm-title").textContent = d.name;
+  $("#dm-price").textContent = rupee(d.price);
+  $("#dm-meta").innerHTML = `<span class="tag">${vmark(d)} ${d.veg ? "Vegetarian" : "Non-vegetarian"}</span>${d.pick ? `<span class="tag pick">Chef's pick</span>` : ""}${d.spice ? `<span class="tag">${spiceHTML(d.spice)} Spice ${d.spice} of 3</span>` : ""}`;
+  $("#dm-long").textContent = d.long || d.desc;
+  $("#dm-pair").innerHTML = d.pair ? `<b>Goes well with</b>${esc(d.pair)}` : "";
+  $("#dm-pair").hidden = !d.pair;
+  $("#dm-add").setAttribute("data-add-slot", i); $("#dm-add").innerHTML = addControl(i);
+  const f = $("#dm-frame"), img = $("#dm-img");
+  f.dataset.alt = d.name; f.classList.remove("failed");
+  if (d.img){ img.onerror = () => f.classList.add("failed"); img.alt = d.name; img.src = IMG(d.img, 1000); }
+  else { img.removeAttribute("src"); f.classList.add("failed"); }
+  OPEN["dish-modal"]();
+}
+document.addEventListener("click", e => { const b = e.target.closest("[data-dish]"); if (b) openDish(+b.dataset.dish); });
+paintMenu();
+onEnter.menu = () => { const first = filteredMenu().find(d => d.img); if (first) setPlate(first); };
+
+/* =========================================================
+   HELP ME CHOOSE
+   ========================================================= */
+const GQ = {
+  size: [["2","1 or 2"],["4","3 or 4"],["6","5 or more"]],
+  diet: [["any","Everything"],["veg","Vegetarian"]],
+  appetite: [["light","A light meal"],["hungry","Hungry"],["feast","A feast"]],
+  spice: [["1","Mild"],["2","Some heat"],["3","Bring it"]]
+};
+Object.entries(GQ).forEach(([q, opts]) => {
+  $(`[data-q="${q}"]`).innerHTML = opts.map(([v, l], k) => `<span class="check"><input type="radio" name="g-${q}" id="g-${q}-${v}" value="${v}" ${k === (q === "size" ? 0 : q === "spice" ? 1 : q === "appetite" ? 1 : 0) ? "checked" : ""}><label for="g-${q}-${v}">${l}</label></span>`).join("");
+});
+$$("[data-open-guide]").forEach(b => b.addEventListener("click", () => { $("#guide-result").hidden = true; $("#guide-form").hidden = false; OPEN.guide(); }));
+let guidePicks = [];
+$("#guide-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const n = +f.get("g-size"), veg = f.get("g-diet") === "veg", app = f.get("g-appetite"), maxSpice = +f.get("g-spice");
+  const mult = { light:[.5, .34, .5], hungry:[.75, .5, .5], feast:[1, .67, .75] }[app];
+  const want = { small: Math.max(1, Math.ceil(n * mult[0])), main: Math.max(1, Math.ceil(n * mult[1])), dessert: Math.max(1, Math.ceil(n * mult[2] / 2)) };
+  const pool = cats => MENU.map((d, i) => ({ ...d, i })).filter(d => cats.includes(d.cat) && (!veg || d.veg) && d.spice <= maxSpice).sort((a, b) => (b.pick ? 1 : 0) - (a.pick ? 1 : 0));
+  const take = (arr, k) => { const out = new Map(); for (let j = 0; j < k && arr.length; j++){ const d = arr[j % arr.length]; out.set(d.i, (out.get(d.i) || 0) + 1); } return out; };
+  const mainsPool = veg ? pool(["veg"]) : [...pool(["mains"]), ...pool(["veg"]).slice(0, 2)];
+  const picks = new Map([...take(pool(["small"]), want.small), ...take(mainsPool, want.main), ...take(pool(["desserts"]), want.dessert)]);
+  guidePicks = [...picks.entries()];
+  const total = guidePicks.reduce((s, [i, q]) => s + MENU[i].price * q, 0);
+  const r = $("#guide-result");
+  r.innerHTML = `<h3 style="font-size:var(--s1);margin:0 0 .4rem">A spread for ${n === 6 ? "5 or more" : n === 4 ? "3 or 4" : "1 or 2"}</h3><p class="muted small">Based on the sample menu. About ${rupee(total)} before GST, roughly ${rupee(total / (n === 6 ? 5 : n === 4 ? 3.5 : 2))} per person.</p>
+    <ol>${guidePicks.map(([i, q]) => `<li><span>${vmark(MENU[i])}<button class="link" type="button" data-dish="${i}" style="color:inherit">${q > 1 ? q + " × " : ""}${esc(MENU[i].name)}</button></span><span>${rupee(MENU[i].price * q)}</span></li>`).join("")}</ol>
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.2rem"><button class="btn btn-solid" type="button" id="guide-add">Add all to My table</button><button class="btn btn-line" type="button" id="guide-again">Change answers</button></div>`;
+  $("#guide-form").hidden = true; r.hidden = false; r.focus();
+  $("#guide-add").onclick = () => { guidePicks.forEach(([i, q]) => setQty(i, (tray.get(i) || 0) + q)); $("#guide").close(); toast("Suggestions added to My table.", { label:"View", fn: () => OPEN.tray() }); };
+  $("#guide-again").onclick = () => { r.hidden = true; $("#guide-form").hidden = false; $("#guide-form input").focus(); };
+});
+/* the dish modal can open on top of the guide; close guide first */
+$("#guide").addEventListener("click", e => { if (e.target.closest("[data-dish]")) $("#guide").close(); }, true);
+
+/* =========================================================
+   HOME CONTENT
+   ========================================================= */
+const rail = $("#sig-rail");
+rail.innerHTML = MENU.map((d, i) => ({ ...d, i })).filter(d => d.img && (d.pick || ["mains","veg"].includes(d.cat))).slice(0, 7).map(d => `
+  <button class="sig" type="button" data-dish="${d.i}">
+    <span class="frame arch" data-alt="${esc(d.name)}"><img data-u="${d.img}" data-w="600" alt="${esc(d.name)}"></span>
+    <span class="sig-t">${esc(d.name)}<span>${rupee(d.price)}</span></span><span class="sig-d">${esc(d.desc)}</span></button>`).join("");
+$$("[data-rail]").forEach(b => b.addEventListener("click", () => { const card = $(".sig", rail); rail.scrollBy({ left: (+b.dataset.rail) * (card ? card.offsetWidth + 24 : 300), behavior: reduced ? "auto" : "smooth" }); }));
+(() => { /* mouse drag-to-scroll; touch uses native scrolling */
+  let down = false, sx = 0, sl = 0, moved = false;
+  rail.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; down = true; moved = false; sx = e.clientX; sl = rail.scrollLeft; });
+  addEventListener("pointermove", e => { if (!down) return; const dx = e.clientX - sx; if (Math.abs(dx) > 5){ moved = true; rail.classList.add("dragging"); } rail.scrollLeft = sl - dx; });
+  addEventListener("pointerup", () => { if (!down) return; down = false; setTimeout(() => rail.classList.remove("dragging"), 0); });
+  rail.addEventListener("click", e => { if (moved){ e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
+  rail.addEventListener("keydown", e => { if (e.key === "ArrowRight" || e.key === "ArrowLeft"){ e.preventDefault(); rail.scrollBy({ left: e.key === "ArrowRight" ? 300 : -300, behavior: reduced ? "auto" : "smooth" }); } });
+})();
+const supplierHTML = SUPPLIERS.map(s => `<li><h3>${esc(s.name)}</h3><span class="km">${s.km} km</span><span class="what">${esc(s.what)}</span><p>${esc(s.desc)}</p></li>`).join("");
+$("#source-list").innerHTML = supplierHTML; $("#source-list-2").innerHTML = supplierHTML;
+
+/* Events: dates generated from today, always landing on an open day */
+const TODAY = nowLocal();
+const eventsData = EVENTS.map(ev => { let iso = addDays(TODAY.date, ev.offset); while (!(CONFIG.hours[dowOf(iso)] || []).length) iso = addDays(iso, 1); return { ...ev, iso }; });
+function eventHTML(ev, k){
+  const p = shortParts(ev.iso), low = ev.left <= 6;
+  return `<li class="event"><time datetime="${ev.iso}T${ev.time}"><b>${p.day}</b><span>${p.mon}, ${p.wd}</span></time>
+    <div><h3>${esc(ev.title)}</h3><p>${esc(ev.desc)} ${fmtTime(ev.time)}, ${rupee(ev.price)} per guest.</p></div>
+    <div class="side"><span class="seats ${low ? "low" : ""}">${ev.left} of ${ev.seats} seats left</span><button class="btn btn-line btn-sm" type="button" data-event="${k}">Request seats</button></div></li>`;
+}
+$("#events-home").innerHTML = eventsData.slice(0, 3).map(eventHTML).join("");
+$("#events-all").innerHTML = eventsData.map(eventHTML).join("");
+let seatEvent = null;
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-event]"); if (!b) return;
+  seatEvent = eventsData[+b.dataset.event];
+  $("#seat-title").textContent = seatEvent.title;
+  $("#seat-sub").textContent = `${longDate(seatEvent.iso)}, ${fmtTime(seatEvent.time)}. ${rupee(seatEvent.price)} per guest.`;
+  $("#s-seats").innerHTML = Array.from({ length: Math.min(6, seatEvent.left) }, (_, k) => `<option value="${k + 1}">${k + 1} ${k ? "seats" : "seat"}</option>`).join("");
+  $("#seat-form").hidden = false; $("#seat-done").hidden = true; $("#seat-form").reset();
+  $$("#seat-form [aria-invalid]").forEach(x => x.setAttribute("aria-invalid", "false")); $$("#seat-form .err").forEach(x => x.textContent = "");
+  OPEN["seat-modal"]();
+});
+liveValidate($("#s-name"), $("#e-s-name"), V.name); liveValidate($("#s-phone"), $("#e-s-phone"), V.phone);
+$("#seat-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const bad = [[$("#s-name"), $("#e-s-name"), V.name], [$("#s-phone"), $("#e-s-phone"), V.phone]].filter(([i, er, fn]) => showErr(i, er, fn(i.value)));
+  if (bad.length){ bad[0][0].focus(); return; }
+  $("#seat-wa").href = waLink(`Hello ${CONFIG.name}, I'd like to request ${$("#s-seats").value} seat(s) for "${seatEvent.title}" on ${longDate(seatEvent.iso)}.\nName: ${$("#s-name").value.trim()}\nMobile: ${$("#s-phone").value.trim()}`);
+  $("#seat-form").hidden = true; $("#seat-done").hidden = false; $("#seat-done").focus();
+});
+
+/* Gallery strip + gallery page */
+$("#gstrip").innerHTML = GALLERY.slice(0, 4).map((g, k) => `<button class="g" type="button" data-gal="${k}" aria-label="Open photo: ${esc(g.cap)}"><span class="frame" data-alt="${esc(g.cap)}"><img data-u="${g.id}" data-w="${k ? 600 : 1000}" alt="${esc(g.cap)}"></span></button>`).join("");
+$("#gstrip").addEventListener("click", e => { const b = e.target.closest("[data-gal]"); if (b) openLightbox(GALLERY, +b.dataset.gal); });
+const GTAGS = [["all","Everything"],["room","The room"],["food","Food"],["kitchen","Kitchen"],["people","Guests"]];
+let gFilter = "all";
+$("#g-filters").innerHTML = GTAGS.map(([v, l]) => `<button class="chip" type="button" data-gf="${v}" aria-pressed="${v === "all"}">${l}</button>`).join("");
+const gList = () => GALLERY.filter(g => gFilter === "all" || g.tag === gFilter);
+function paintGallery(){
+  $("#gallery").innerHTML = gList().map((g, k) => `<button class="g" type="button" data-shape="${g.shape}" data-gi="${k}" aria-label="Open photo: ${esc(g.cap)}"><span class="frame" data-alt="${esc(g.cap)}"><img data-u="${g.id}" data-w="700" data-sizes="(max-width: 700px) 100vw, 33vw" alt="${esc(g.cap)}"></span><span class="cap" aria-hidden="true">${esc(g.cap)}</span></button>`).join("");
+  hydrate($("#gallery"));
+}
+$("#g-filters").addEventListener("click", e => { const b = e.target.closest("[data-gf]"); if (!b) return; gFilter = b.dataset.gf; $$("[data-gf]").forEach(x => x.setAttribute("aria-pressed", String(x === b))); paintGallery(); });
+$("#gallery").addEventListener("click", e => { const b = e.target.closest("[data-gi]"); if (b) openLightbox(gList(), +b.dataset.gi); });
+onEnter.gallery = () => { if (!$("#gallery").children.length) paintGallery(); };
+
+/* Lightbox */
+const lb = $("#lightbox"), lbImg = $("#lb-img"), lbFrame = $("#lb-frame");
+let lbList = [], lbIndex = 0;
+const lbW = () => innerWidth > 1100 ? 2000 : innerWidth > 600 ? 1400 : 1000;
+function openLightbox(listArr, i){
+  lbList = listArr;
+  $("#lb-thumbs").innerHTML = listArr.map((g, k) => `<button type="button" data-lt="${k}" aria-label="Photo ${k + 1}: ${esc(g.cap)}"><span class="frame quiet"><img loading="lazy" src="${IMG(g.id, 140)}" alt=""></span></button>`).join("");
+  $$("#lb-thumbs img").forEach(watchImg);
+  OPEN.lightbox(); showLB(i, true);
+}
+function showLB(i, instant){
+  lbIndex = (i + lbList.length) % lbList.length;
+  const g = lbList[lbIndex];
+  lbImg.classList.add("out");
+  setTimeout(() => {
+    lbFrame.classList.remove("failed"); lbFrame.dataset.alt = g.cap;
+    lbImg.onload = () => lbImg.classList.remove("out");
+    lbImg.onerror = () => { lbFrame.classList.add("failed"); lbFrame.classList.remove("quiet"); lbImg.classList.remove("out"); };
+    lbImg.alt = g.cap; lbImg.src = IMG(g.id, lbW());
+  }, instant || reduced ? 0 : 160);
+  $("#lb-cap").textContent = g.cap;
+  $("#lb-count").textContent = `${lbIndex + 1} of ${lbList.length}`;
+  $$("#lb-thumbs button").forEach((b, k) => { b.setAttribute("aria-current", String(k === lbIndex)); if (k === lbIndex) b.scrollIntoView({ inline:"center", block:"nearest" }); });
+  [1, -1].forEach(o => { const n = lbList[(lbIndex + o + lbList.length) % lbList.length]; new Image().src = IMG(n.id, lbW()); });
+}
+$("#lb-prev").addEventListener("click", () => showLB(lbIndex - 1));
+$("#lb-next").addEventListener("click", () => showLB(lbIndex + 1));
+$("#lb-thumbs").addEventListener("click", e => { const b = e.target.closest("[data-lt]"); if (b) showLB(+b.dataset.lt); });
+lb.addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft"){ e.preventDefault(); showLB(lbIndex - 1); }
+  if (e.key === "ArrowRight"){ e.preventDefault(); showLB(lbIndex + 1); }
+});
+(() => { let sx = null, sy = null; const st = $("#lb-stage");
+  st.addEventListener("touchstart", e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive:true });
+  st.addEventListener("touchend", e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) showLB(lbIndex + (dx < 0 ? 1 : -1)); else if (dy > 90 && Math.abs(dy) > Math.abs(dx)) lb.close(); sx = sy = null; });
+})();
+
+/* =========================================================
+   EXPERIENCES
+   ========================================================= */
+$("#courses").innerHTML = COURSES.map(c => `<li class="course"><div><h3>${esc(c.name)}</h3><p>${esc(c.desc)}</p><span class="veg-alt">Vegetarian: ${esc(c.veg)}</span></div></li>`).join("");
+(() => { const x = EXPERIENCES.find(e => e.id === "counter");
+  $("#counter-prices").innerHTML = `<div><span>Tasting menu</span><b>${rupee(x.price)}</b></div><div><span>Vegetarian tasting menu</span><b>${rupee(x.priceVeg)}</b></div>${x.pairing.map(([l, p]) => `<div><span>${l}</span><b>+ ${rupee(p)}</b></div>`).join("")}`;
+})();
+const roomsList = $("#rooms-list");
+roomsList.innerHTML = ROOMS.map(r => `<li><button type="button" data-room-btn="${r.id}" aria-pressed="false"><span class="rn">${esc(r.name)}</span><span>${esc(r.cap)}</span><span class="rd">${esc(r.desc)}</span></button></li>`).join("");
+function pickRoom(id){
+  $$("[data-room-btn]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.roomBtn === id)));
+  $$("#plan g[data-room]").forEach(g => g.classList.toggle("on", g.dataset.room === id));
+  $("#enquire-room").href = `#/reserve?tab=events&space=${id}`;
+  $("#enquire-room").textContent = `Enquire about the ${ROOMS.find(r => r.id === id).name}`;
+}
+roomsList.addEventListener("click", e => { const b = e.target.closest("[data-room-btn]"); if (b) pickRoom(b.dataset.roomBtn); });
+$$("#plan g[data-room]").forEach(g => { g.setAttribute("tabindex", "0"); g.setAttribute("role", "button"); g.setAttribute("aria-label", ROOMS.find(r => r.id === g.dataset.room).name);
+  g.addEventListener("click", () => pickRoom(g.dataset.room));
+  g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); pickRoom(g.dataset.room); } });
+});
+pickRoom("oak");
+
+/* =========================================================
+   STORY + VISIT CONTENT
+   ========================================================= */
+$("#jobs").innerHTML = JOBS.map(j => `<li><div><h3>${esc(j.role)}</h3><span>${esc(j.type)}</span></div><a class="btn btn-line btn-sm" href="mailto:${CONFIG.email}?subject=${encodeURIComponent("Application: " + j.role)}">Apply by email</a></li>`).join("");
+$("#faq").innerHTML = FAQ.map(([q, a]) => `<details><summary>${esc(q)}</summary><div class="ans"><p>${esc(a)}</p></div></details>`).join("");
+$("#load-map").addEventListener("click", () => {
+  const m = $("#map");
+  m.insertAdjacentHTML("beforeend", `<iframe title="Map showing ${esc(addrInline())}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${encodeURIComponent(addrLines().join(", "))}&output=embed"></iframe>`);
+  $(".pin", m).hidden = true; $("iframe", m).focus();
+});
+
+/* Newsletter (demo) */
+$$(".newsletter").forEach(f => f.addEventListener("submit", async e => {
+  e.preventDefault();
+  const input = $("input", f), msg = $(".form-msg", f), err = V.email(input.value);
+  msg.classList.toggle("err", !!err); input.setAttribute("aria-invalid", err ? "true" : "false");
+  if (err){ msg.textContent = err; input.focus(); return; }
+  if (CONFIG.integrations.newsletter){
+    try { const r = await fetch(CONFIG.integrations.newsletter, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ email: input.value.trim() }) }); if (!r.ok) throw 0; msg.textContent = "You're on the list. Check your inbox to confirm."; }
+    catch { msg.classList.add("err"); msg.textContent = "That didn't go through. Try again in a moment."; return; }
+  } else msg.textContent = "Demo mode: your email was not stored or sent. Connect a mailing provider to go live.";
+  f.reset();
+}));
+
+/* =========================================================
+   RESERVATION
+   ========================================================= */
+const rf = $("#res-form"), fDate = $("#r-date"), fTime = $("#r-time");
+const res = { xp:"alacarte", guests:2, stage:1 };
+const xpOf = () => EXPERIENCES.find(x => x.id === res.xp);
+$("#xp-options").innerHTML = EXPERIENCES.map(x => `<div class="opt"><input type="radio" name="xp" id="xpo-${x.id}" value="${x.id}" ${x.id === "alacarte" ? "checked" : ""}><label for="xpo-${x.id}"><b>${esc(x.name)}</b><span>${esc(x.note)}${x.price ? `, ${rupee(x.price)} pp` : ""}</span></label></div>`).join("");
+const DIETS = ["Vegetarian","Vegan","Jain","Gluten-free","Nut allergy","Shellfish allergy","Dairy-free"];
+$("#diet-checks").innerHTML = DIETS.map((d, k) => `<span class="check"><input type="checkbox" id="diet-${k}" value="${d}"><label for="diet-${k}">${d}</label></span>`).join("");
+fDate.min = TODAY.date; fDate.max = addDays(TODAY.date, CONFIG.bookAheadDays);
+
+function slotsFor(xp, iso){
+  const dow = dowOf(iso), n = nowLocal();
+  const cut = iso === n.date ? n.mins + 60 : -1;
+  let mins = [];
+  if (xp === "counter"){ if ([4,5,6].includes(dow)) mins = [toMins("19:00"), toMins("21:30")]; }
+  else if (xp === "sunday"){ if (dow === 0) for (let m = toMins("12:00"); m <= toMins("14:00"); m += 30) mins.push(m); }
+  else {
+    (CONFIG.hours[dow] || []).forEach(([o, c], si) => {
+      if (dow === 0 && si === 0) return; /* Sunday lunch is the long lunch */
+      for (let m = toMins(o); m <= toMins(c) - 60; m += 30) mins.push(m);
+    });
+  }
+  return mins.filter(m => m > cut);
+}
+function dateRule(){
+  return { alacarte:"Lunch Tuesday to Saturday, dinner Tuesday to Sunday. Closed Mondays.", counter:"The counter runs Thursday, Friday and Saturday at 7 pm and 9:30 pm.", sunday:"Sundays only, seatings from noon to 2 pm." }[res.xp];
+}
+function validateDate(){
+  const v = fDate.value;
+  if (!v) return showErr(fDate, $("#e-date"), "Choose a date.");
+  if (v < fDate.min) return showErr(fDate, $("#e-date"), "That date has passed. Choose today or later.");
+  if (v > fDate.max) return showErr(fDate, $("#e-date"), `Requests open ${CONFIG.bookAheadDays} days ahead. Choose an earlier date.`);
+  if (!slotsFor(res.xp, v).length){
+    const dow = dowOf(v);
+    const why = !(CONFIG.hours[dow] || []).length ? `We're closed on ${DAY[dow]}s.` : v === TODAY.date ? "There are no request times left today." : `${xpOf().name} doesn't run on ${DAY[dow]}s.`;
+    return showErr(fDate, $("#e-date"), `${why} Choose another date.`);
+  }
+  return showErr(fDate, $("#e-date"), "");
+}
+function fillTimes(){
+  const keep = fTime.value;
+  if (!fDate.value || validateDate()){ fTime.innerHTML = `<option value="">Choose a valid date first</option>`; fTime.disabled = true; return; }
+  const mins = slotsFor(res.xp, fDate.value);
+  const groups = {};
+  mins.forEach(m => (groups[m < 17 * 60 ? "Lunch" : "Dinner"] ||= []).push(m));
+  fTime.innerHTML = `<option value="">Select a time</option>` + Object.entries(groups).map(([g, arr]) => `<optgroup label="${g}">${arr.map(m => `<option value="${hhmm(m)}">${fmtTime(m)}</option>`).join("")}</optgroup>`).join("");
+  fTime.disabled = false;
+  if ([...fTime.options].some(o => o.value === keep)) fTime.value = keep;
+}
+function setGuests(n){
+  const max = xpOf().maxGuests;
+  res.guests = Math.max(1, Math.min(max, n));
+  $("#g-count").textContent = `${res.guests} ${res.guests === 1 ? "guest" : "guests"}`;
+  $("#g-minus").disabled = res.guests <= 1; $("#g-plus").disabled = res.guests >= max;
+  $("#g-hint").textContent = res.guests >= max ? `${xpOf().name} takes up to ${max} guests per request. For more, send a private dining enquiry.` : "";
+}
+function setXp(id){
+  res.xp = id; const r = $(`#xpo-${id}`); if (r) r.checked = true;
+  $("#h-date").textContent = dateRule();
+  $("#r-seat").closest(".field").hidden = id === "counter" || res.stage !== 1;
+  setGuests(res.guests);
+  if (fDate.value) fillTimes();
+}
+$("#xp-options").addEventListener("change", e => setXp(e.target.value));
+fDate.addEventListener("change", fillTimes);
+fTime.addEventListener("change", () => showErr(fTime, $("#e-time"), fTime.value ? "" : "Choose a time."));
+$("#g-minus").addEventListener("click", () => setGuests(res.guests - 1));
+$("#g-plus").addEventListener("click", () => setGuests(res.guests + 1));
+liveValidate($("#r-name"), $("#e-name"), V.name); liveValidate($("#r-phone"), $("#e-phone"), V.phone); liveValidate($("#r-email"), $("#e-email"), V.email);
+$("#r-msg").addEventListener("input", e => $("#msg-count").textContent = `${e.target.value.length} of 500 characters`);
+
+function setProgress(step){
+  $$(".progress li").forEach(li => { const s = +li.dataset.step; li.classList.toggle("done", s < step); s === step ? li.setAttribute("aria-current", "step") : li.removeAttribute("aria-current"); });
+}
+function showStage(s){
+  res.stage = s;
+  $$("[data-stage]", rf).forEach(el => el.hidden = +el.dataset.stage !== s);
+  if (s === 1) $("#r-seat").closest(".field").hidden = res.xp === "counter";
+  if (s === 2){
+    const n = trayCount(); $("#tray-attach-wrap").hidden = !n;
+    $("#tray-attach-n").textContent = trayItems().map(d => `${d.q} × ${d.name}`).join(", ");
+    if (pendingTrayAttach && n) $("#tray-attach").checked = true;
+  }
+  rf.hidden = false; $("#res-review").hidden = true; $("#res-done").hidden = true;
+  setProgress(s);
+}
+$("#to-step2").addEventListener("click", () => {
+  const errs = [validateDate() && fDate, showErr(fTime, $("#e-time"), fTime.value ? "" : "Choose a time.") && fTime].filter(Boolean);
+  if (errs.length){ errs[0].focus(); return; }
+  showStage(2); $("#r-name").focus();
+});
+$("#back-1").addEventListener("click", () => { showStage(1); fDate.focus(); });
+function payload(){
+  return {
+    restaurant: CONFIG.name, experience: res.xp, date: fDate.value, time: fTime.value, guests: res.guests,
+    seating: res.xp === "counter" ? "Hearth Counter" : ($("#r-seat").value || null),
+    name: $("#r-name").value.trim(), phone: $("#r-phone").value.trim(), email: $("#r-email").value.trim(),
+    dietary: $$("#diet-checks input:checked").map(i => i.value), occasion: $("#r-occasion").value || null,
+    message: $("#r-msg").value.trim() || null,
+    preorder: $("#tray-attach").checked ? trayItems().map(d => ({ dish: d.name, qty: d.q })) : [],
+    source: "website", submitted_at: new Date().toISOString()
+  };
+}
+rf.addEventListener("submit", e => {
+  e.preventDefault();
+  const checks = [[$("#r-name"), $("#e-name"), V.name], [$("#r-phone"), $("#e-phone"), V.phone], [$("#r-email"), $("#e-email"), V.email]];
+  const bad = checks.filter(([i, er, fn]) => showErr(i, er, fn(i.value))).map(c => c[0]);
+  if (!$("#r-consent").checked){ showErr($("#r-consent"), $("#e-consent"), "Tick this box to confirm you understand this is a request."); bad.push($("#r-consent")); }
+  else showErr($("#r-consent"), $("#e-consent"), "");
+  if (bad.length){ bad[0].focus(); toast(bad.length === 1 ? "One field needs attention." : `${bad.length} fields need attention.`); return; }
+  const p = payload();
+  const rows = [["Experience", xpOf().name], ["Date", longDate(p.date)], ["Time", fmtTime(p.time)], ["Guests", `${p.guests}`],
+    ["Seating", p.seating || "No preference"], ["Name", p.name], ["Mobile", p.phone], ["Email", p.email],
+    ["Dietary needs", p.dietary.join(", ") || "None given"], ["Occasion", p.occasion || "None"], ["Message", p.message || "None"]];
+  if (p.preorder.length) rows.push(["Dishes to share", p.preorder.map(d => `${d.qty} × ${d.dish}`).join(", ")]);
+  if (xpOf().price) rows.push(["Indicative cost", `${rupee(xpOf().price * p.guests)} before GST and drinks`]);
+  $("#summary-list").innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("");
+  rf.hidden = true; $("#res-review").hidden = false; setProgress(3); $("#res-review").focus();
+});
+$("#edit-btn").addEventListener("click", () => { showStage(2); $("#r-name").focus(); });
+
+/* INTEGRATION POINT: reservations
+   - FastAPI: @app.post("/reservations") returns {"reference": "...", "status": "pending"}
+   - Or a provider (EazyDiner, District, SevenRooms) / restaurant management system API
+   - Notifications (WhatsApp Business API, SMS, email) should be sent by the backend
+   The UI never says "confirmed" unless the backend returns status "confirmed". */
+async function submitTo(endpoint, data, prefix){
+  if (endpoint){
+    const r = await fetch(endpoint, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(data) });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const j = await r.json(); return { demo:false, reference: j.reference || "", status: j.status || "pending" };
+  }
+  await new Promise(r => setTimeout(r, 650));
+  return { demo:true, reference: refCode(prefix), status:"pending" };
+}
+let lastRes = null;
+$("#send-btn").addEventListener("click", async e => {
+  const b = e.currentTarget; b.disabled = true; b.textContent = "Sending";
+  try {
+    const p = payload(); const result = await submitTo(CONFIG.integrations.reservations, p, "EO-DEMO");
+    lastRes = { p, result };
+    $("#ref").textContent = result.reference;
+    $("#done-contact").textContent = `${p.phone} or ${p.email}`;
+    $("#demo-badge").hidden = !result.demo;
+    $("#res-done h2").textContent = result.status === "confirmed" ? "Your table is confirmed" : "Request received for review";
+    const lines = [`Hello ${CONFIG.name}, I'd like to request a table.`, `Reference: ${result.reference}`, `${xpOf().name}, ${longDate(p.date)} at ${fmtTime(p.time)}`, `${p.guests} guests${p.seating ? ", " + p.seating : ""}`, `Name: ${p.name}`, `Mobile: ${p.phone}`];
+    if (p.dietary.length) lines.push(`Dietary: ${p.dietary.join(", ")}`);
+    if (p.occasion) lines.push(`Occasion: ${p.occasion}`);
+    if (p.message) lines.push(`Note: ${p.message}`);
+    if (p.preorder.length) lines.push(`Dishes: ${p.preorder.map(d => `${d.qty} × ${d.dish}`).join(", ")}`);
+    $("#done-wa").href = waLink(lines.join("\n"));
+    $("#res-review").hidden = true; $("#res-done").hidden = false; setProgress(4); $("#res-done").focus();
+    pendingTrayAttach = false;
+  } catch { toast("Your request didn't go through. Try again, or call the restaurant."); }
+  finally { b.disabled = false; b.textContent = "Send request"; }
+});
+$("#done-ics").addEventListener("click", () => {
+  if (!lastRes) return;
+  const { p, result } = lastRes;
+  const start = p.date.replace(/-/g, "") + "T" + p.time.replace(":", "") + "00";
+  const endM = toMins(p.time) + xpOf().duration;
+  const endDate = endM >= 1440 ? addDays(p.date, 1) : p.date;
+  const end = endDate.replace(/-/g, "") + "T" + hhmm(endM % 1440).replace(":", "") + "00";
+  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Ember & Oak//Reservation request//EN","BEGIN:VEVENT",
+    `UID:${result.reference}@emberandoak.example`, `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").slice(0, 15)}Z`,
+    `DTSTART;TZID=${CONFIG.timezone}:${start}`, `DTEND;TZID=${CONFIG.timezone}:${end}`,
+    `SUMMARY:${CONFIG.name}, ${xpOf().name} (requested, not yet confirmed)`, `LOCATION:${addrLines().join(", ").replace(/,/g, "\\,")}`,
+    `DESCRIPTION:Reference ${result.reference}. ${p.guests} guests. This table is not booked until the restaurant confirms.`, "STATUS:TENTATIVE","END:VEVENT","END:VCALENDAR"].join("\r\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([ics], { type:"text/calendar" })); a.download = "ember-and-oak-request.ics";
+  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+});
+$("#new-btn").addEventListener("click", () => {
+  rf.reset(); fTime.innerHTML = `<option value="">Choose a date first</option>`; fTime.disabled = true;
+  $$("[aria-invalid]", rf).forEach(x => x.setAttribute("aria-invalid", "false")); $$(".err", rf).forEach(x => x.textContent = "");
+  res.guests = 2; setXp("alacarte"); showStage(1); fDate.focus();
+});
+
+/* Tabs */
+const tabs = $$('[role="tab"]');
+function selectTab(t, focus){
+  tabs.forEach(x => { const on = x === t; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute("aria-controls")).hidden = !on; });
+  if (focus) t.focus();
+}
+tabs.forEach((t, k) => {
+  t.addEventListener("click", () => selectTab(t));
+  t.addEventListener("keydown", e => { if (e.key === "ArrowRight" || e.key === "ArrowLeft"){ e.preventDefault(); selectTab(tabs[(k + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length], true); } });
+});
+onEnter.reserve = r => {
+  const xp = r.params.get("xp"); if (xp && EXPERIENCES.some(x => x.id === xp)) setXp(xp);
+  const tab = r.params.get("tab"); selectTab(tab === "events" ? $("#tab-events") : $("#tab-table"));
+  const space = r.params.get("space"); if (space) $("#ev-space").value = space;
+  if (pendingTrayAttach && trayCount() && res.stage === 2) showStage(2);
+};
+setXp("alacarte");
+
+/* Event enquiry */
+$("#ev-space").innerHTML += ROOMS.map(r => `<option value="${r.id}">${esc(r.name)} (${esc(r.cap)})</option>`).join("");
+$("#ev-date").min = addDays(TODAY.date, 3); $("#ev-date").max = addDays(TODAY.date, 365);
+const evChecks = [
+  ["ev-type", v => v ? "" : "Choose the type of event."],
+  ["ev-date", v => !v ? "Choose a date." : v < $("#ev-date").min ? "Events need at least three days' notice." : v > $("#ev-date").max ? "We take enquiries up to a year ahead." : (!(CONFIG.hours[dowOf(v)] || []).length ? `We're closed on ${DAY[dowOf(v)]}s, but exclusive hire may be possible. Mention it in your notes and choose another date for now.` : "")],
+  ["ev-guests", v => !v ? "Enter the number of guests." : +v < 8 ? "Private dining starts at 8 guests. For fewer, use a table request." : +v > 120 ? "For more than 120 guests, call us to discuss." : ""],
+  ["ev-name", V.name], ["ev-phone", V.phone], ["ev-email", V.email]
+];
+evChecks.forEach(([id, fn]) => liveValidate($("#" + id), $("#e-" + id), fn));
+$("#event-form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const bad = evChecks.filter(([id, fn]) => showErr($("#" + id), $("#e-" + id), fn($("#" + id).value)));
+  if (bad.length){ $("#" + bad[0][0]).focus(); return; }
+  const data = { type: $("#ev-type").value, space: $("#ev-space").value || null, date: $("#ev-date").value, guests: +$("#ev-guests").value, budget: $("#ev-budget").value || null, name: $("#ev-name").value.trim(), phone: $("#ev-phone").value.trim(), email: $("#ev-email").value.trim(), notes: $("#ev-notes").value.trim() || null };
+  try {
+    const r = await submitTo(CONFIG.integrations.events, data, "EV-DEMO");
+    $("#ev-ref").textContent = r.reference;
+    $("#ev-wa").href = waLink(`Hello ${CONFIG.name}, private dining enquiry (${r.reference}):\n${data.type}, ${longDate(data.date)}, ${data.guests} guests${data.space ? ", " + ROOMS.find(x => x.id === data.space).name : ""}.\nName: ${data.name}\nMobile: ${data.phone}`);
+    $("#event-form").hidden = true; $("#event-done").hidden = false; $("#event-done").focus();
+  } catch { toast("Your enquiry didn't go through. Try again, or call the restaurant."); }
+});
+$("#ev-new").addEventListener("click", () => { $("#event-form").reset(); $("#event-form").hidden = false; $("#event-done").hidden = true; $$("#event-form [aria-invalid]").forEach(x => x.setAttribute("aria-invalid", "false")); $$("#event-form .err").forEach(x => x.textContent = ""); $("#ev-type").focus(); });
+
+/* =========================================================
+   GIFT CARDS
+   ========================================================= */
+const GIFTS = [
+  { id:"g2500", label:"₹2,500", sub:"Coffee and small plates for two", amt:2500 },
+  { id:"g5000", label:"₹5,000", sub:"Dinner for two", amt:5000 },
+  { id:"g10000", label:"₹10,000", sub:"A long dinner for four", amt:10000 },
+  { id:"counter2", label:"Hearth Counter for two", sub:"Eight courses, two guests", amt: EXPERIENCES.find(x => x.id === "counter").price * 2, title:"The Hearth Counter for two" },
+  { id:"sunday2", label:"Sunday long lunch for two", sub:"Set sharing lunch", amt: EXPERIENCES.find(x => x.id === "sunday").price * 2, title:"Sunday long lunch for two" },
+  { id:"custom", label:"Your amount", sub:"₹1,000 to ₹50,000" }
+];
+$("#gift-options").innerHTML = GIFTS.map((g, k) => `<div class="opt"><input type="radio" name="gift" id="gopt-${g.id}" value="${g.id}" ${k === 1 ? "checked" : ""}><label for="gopt-${g.id}"><b>${esc(g.label)}</b><span>${esc(g.sub)}${g.title ? ", " + rupee(g.amt) : ""}</span></label></div>`).join("");
+const gc = { get opt(){ return GIFTS.find(g => g.id === $("#gift-options input:checked").value); } };
+function giftAmount(){ const o = gc.opt; return o.id === "custom" ? +$("#gc-custom").value || 0 : o.amt; }
+function paintCard(){
+  const o = gc.opt, amt = giftAmount();
+  $("#custom-wrap").hidden = o.id !== "custom";
+  $("#gc-amt").textContent = o.title ? o.title : amt ? rupee(amt) : "₹ —";
+  $("#gc-amt").style.fontSize = o.title ? "clamp(1.4rem,3.2vw,2rem)" : "";
+  $("#gc-to").textContent = $("#gc-recipient").value.trim() || "Someone special";
+  const m = $("#gc-message").value.trim(), from = $("#gc-from").value.trim();
+  $("#gc-msg").textContent = m ? `“${m}”${from ? " from " + from : ""}` : from ? `From ${from}` : "";
+  const email = $('input[name="gdel"]:checked').value === "email";
+  $("#gc-email-wrap").hidden = !email; $("#gc-date-wrap").hidden = !email;
+}
+$("#gift-form").addEventListener("input", paintCard); $("#gift-form").addEventListener("change", paintCard);
+$("#gc-date").min = TODAY.date; $("#gc-date").max = addDays(TODAY.date, 365); $("#gc-date").value = TODAY.date;
+const gcChecks = [
+  ["gc-custom", v => gc.opt.id !== "custom" ? "" : !v ? "Enter an amount." : +v < 1000 || +v > 50000 ? "Choose an amount from ₹1,000 to ₹50,000." : +v % 100 ? "Use a round amount, in hundreds." : ""],
+  ["gc-recipient", v => v.trim() ? "" : "Enter the recipient's name as it should appear on the card."],
+  ["gc-from", v => v.trim() ? "" : "Enter your name."],
+  ["gc-email", v => $('input[name="gdel"]:checked').value !== "email" ? "" : V.email(v)],
+  ["gc-date", v => $('input[name="gdel"]:checked').value !== "email" ? "" : !v ? "Choose a delivery date." : v < TODAY.date ? "Choose today or a later date." : v > $("#gc-date").max ? "Choose a date within a year." : ""],
+  ["gc-buyer", V.email]
+];
+gcChecks.forEach(([id, fn]) => liveValidate($("#" + id), $("#e-" + id), fn));
+$("#gift-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const bad = gcChecks.filter(([id, fn]) => showErr($("#" + id), $("#e-" + id), fn($("#" + id).value)));
+  if (bad.length){ $("#" + bad[0][0]).focus(); return; }
+  const email = $('input[name="gdel"]:checked').value === "email";
+  const rows = [["Gift", gc.opt.title || "Gift card"], ["Value", rupee(giftAmount())], ["For", $("#gc-recipient").value.trim()], ["From", $("#gc-from").value.trim()],
+    ["Delivery", email ? `Email to ${$("#gc-email").value.trim()} on ${longDate($("#gc-date").value)}` : "Printable PDF sent to you"], ["Receipt to", $("#gc-buyer").value.trim()]];
+  $("#pay-summary").innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("");
+  OPEN["pay-modal"]();
+});
+if (!reduced && matchMedia("(hover:hover)").matches){
+  const card = $("#gcard");
+  card.parentElement.addEventListener("pointermove", e => { const r = card.getBoundingClientRect(); card.style.setProperty("--ry", ((e.clientX - r.left) / r.width - .5) * 10 + "deg"); card.style.setProperty("--rx", -((e.clientY - r.top) / r.height - .5) * 8 + "deg"); });
+  card.parentElement.addEventListener("pointerleave", () => { card.style.setProperty("--rx", "0deg"); card.style.setProperty("--ry", "0deg"); });
+}
+paintCard();
+
+/* =========================================================
+   EMBERS (WebGL). Loaded lazily, paused off-screen, skipped
+   for reduced motion or missing WebGL. The page is complete
+   without it.
+   ========================================================= */
+const embers = (() => {
+  const canvas = $("#embers");
+  let state = "idle", renderer, scene, camera, mat, raf = 0, visible = true, active = false, t0 = 0;
+  const supported = () => { try { const c = document.createElement("canvas"); return !!(window.WebGLRenderingContext && (c.getContext("webgl") || c.getContext("experimental-webgl"))); } catch { return false; } };
+  function load(){
+    if (state !== "idle" || reduced || !supported()) return;
+    state = "loading";
+    const s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"; s.async = true;
+    s.onload = () => { try { build(); state = "ready"; tick(); } catch { state = "failed"; } };
+    s.onerror = () => { state = "failed"; };
+    document.head.appendChild(s);
+  }
+  function build(){
+    const T = window.THREE;
+    renderer = new T.WebGLRenderer({ canvas, alpha:true, antialias:false, powerPreference:"low-power" });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+    scene = new T.Scene();
+    camera = new T.OrthographicCamera(-1, 1, 1, -1, 0, 10);
+    const N = innerWidth < 700 ? 70 : 150;
+    const pos = new Float32Array(N * 3), seed = new Float32Array(N * 4);
+    for (let k = 0; k < N; k++){
+      const wide = innerWidth < 900;
+      pos[k*3] = wide ? Math.random() * 2 - 1 : Math.pow(Math.random(), .6) * 1.25 - .2; /* desktop: favour the right side, away from the headline */
+      pos[k*3+1] = Math.random() * 2.4 - 1.2; pos[k*3+2] = 0;
+      seed[k*4] = .05 + Math.random() * .12; seed[k*4+1] = Math.random() * 6.28; seed[k*4+2] = 1.5 + Math.random() * 4.5; seed[k*4+3] = Math.random();
+    }
+    const geo = new T.BufferGeometry();
+    geo.setAttribute("position", new T.BufferAttribute(pos, 3));
+    geo.setAttribute("seed", new T.BufferAttribute(seed, 4));
+    mat = new T.ShaderMaterial({
+      transparent:true, depthWrite:false, blending:T.AdditiveBlending,
+      uniforms:{ uT:{ value:0 }, uPR:{ value:renderer.getPixelRatio() } },
+      vertexShader:`attribute vec4 seed; uniform float uT; uniform float uPR; varying float vA; varying float vH;
+        void main(){ float y = mod(position.y + 1.2 + uT*seed.x, 2.4) - 1.2;
+          float x = position.x + sin(uT*.6 + seed.y)*.03 + sin(uT*1.7 + seed.y*2.)*.008;
+          float life = (y + 1.2)/2.4; vA = smoothstep(0.,.15,life)*(1.-smoothstep(.55,1.,life))*(.45+.55*sin(uT*3.+seed.y*5.)*.5+.25);
+          vH = seed.w; gl_Position = vec4(x, y, 0., 1.); gl_PointSize = seed.z*uPR*(1.-life*.5); }`,
+      fragmentShader:`varying float vA; varying float vH;
+        void main(){ float d = length(gl_PointCoord-.5); float a = smoothstep(.5,0.,d);
+          vec3 c = mix(vec3(.84,.72,.48), vec3(.95,.45,.22), vH); gl_FragColor = vec4(c, a*vA*.85); }`
+    });
+    scene.add(new T.Points(geo, mat));
+    size(); addEventListener("resize", size, { passive:true });
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; tick(); }).observe($(".hero"));
+    document.addEventListener("visibilitychange", tick);
+    canvas.classList.add("on");
+  }
+  function size(){ if (!renderer) return; const w = canvas.clientWidth, h = canvas.clientHeight; if (w && h) renderer.setSize(w, h, false); }
+  function frame(t){
+    if (!t0) t0 = t;
+    mat.uniforms.uT.value = (t - t0) / 1000;
+    renderer.render(scene, camera);
+    raf = requestAnimationFrame(frame);
+  }
+  function tick(){
+    const run = state === "ready" && active && visible && !document.hidden;
+    if (run && !raf) raf = requestAnimationFrame(frame);
+    if (!run && raf){ cancelAnimationFrame(raf); raf = 0; }
+  }
+  return { setActive(on){ active = on; if (on && state === "idle"){ const go = () => load(); "requestIdleCallback" in window ? requestIdleCallback(go, { timeout:2500 }) : setTimeout(go, 1200); } tick(); } };
+})();
+
+/* =========================================================
+   BOOT
+   ========================================================= */
+fillGlobals();
+updateStatus(); setInterval(updateStatus, 60000);
+measureHead();
+addEventListener("load", measureHead);
+document.fonts && document.fonts.ready.then(measureHead);
+route(true);
+onScroll();
+
+</script>
+</body>
+</html>

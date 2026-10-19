@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ember & Oak — View dishes on your table (AR demo)</title>
+<meta name="theme-color" content="#241914">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--espresso:#241914;--espresso-2:#2F221B;--cream:#F5EFE5;--ember:#C86A42;--ember-ink:#9E4E2C;--gold:#D6B77A;--soft:#CDBFAE;--line:rgba(245,239,229,.16);--ease:cubic-bezier(.22,.7,.18,1)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--espresso);color:var(--cream);font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:560px;margin:0 auto;padding:1.2rem 1.2rem calc(2rem + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;gap:.6rem;font-family:Gloock,Georgia,serif;font-size:1.3rem;margin-bottom:1.2rem}
+h1{font-family:Gloock,Georgia,serif;font-weight:400;font-size:clamp(2rem,8vw,2.8rem);line-height:1;margin:0 0 .6rem}
+.lead{color:var(--soft);margin:0 0 1.4rem;line-height:1.5}
+.chips{display:flex;gap:.4rem;overflow-x:auto;scrollbar-width:none;margin:0 -1.2rem 1rem;padding:0 1.2rem}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;min-height:44px;padding:.45rem 1rem;border-radius:999px;border:1px solid rgba(245,239,229,.35);background:none;color:inherit;font:inherit;font-size:.93rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--cream);color:var(--espresso);border-color:var(--cream)}
+.card{background:var(--espresso-2);border-radius:4px;overflow:hidden}
+.slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;aspect-ratio:4/5;background:#1C1410}
+.slides::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:start;position:relative;overflow:hidden}
+.slide img{width:100%;height:100%;object-fit:cover;display:block}
+.slide.failed img{display:none}
+.slide.failed::after{content:attr(data-alt);position:absolute;inset:0;display:grid;place-items:center;font-family:Gloock,serif;color:var(--gold);background:radial-gradient(110% 70% at 50% 115%,rgba(200,106,66,.5),transparent 62%),var(--espresso)}
+model-viewer{width:100%;height:100%;--poster-color:transparent;background:radial-gradient(90% 70% at 50% 60%,#3B2B22,#1C1410)}
+.ar-btn{position:absolute;left:50%;bottom:1rem;transform:translateX(-50%);display:inline-flex;align-items:center;gap:.5rem;min-height:50px;padding:.8rem 1.4rem;border:0;border-radius:999px;background:var(--ember-ink);color:#fff;font:600 1rem "Hanken Grotesk",sans-serif;white-space:nowrap;box-shadow:0 10px 30px -10px rgba(0,0,0,.6);cursor:pointer}
+.ar-btn svg{width:20px;height:20px}
+.badge{position:absolute;top:.8rem;left:.8rem;z-index:2;padding:.3rem .65rem;border-radius:4px;background:rgba(36,25,20,.75);font-size:.8rem;color:var(--gold);backdrop-filter:blur(4px)}
+.hint{position:absolute;left:1rem;right:1rem;bottom:1rem;text-align:center;font-size:.8rem;color:var(--soft);background:rgba(28,20,16,.8);padding:.7rem;border-radius:6px}
+.loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--soft);font-size:.9rem;pointer-events:none}
+.dots{display:flex;justify-content:center;gap:.4rem;padding:.9rem 0 .2rem}
+.dots button{width:44px;height:28px;border:0;background:none;padding:0;display:grid;place-items:center;cursor:pointer;color:inherit}
+.dots button::before{content:"";width:8px;height:8px;border-radius:4px;background:rgba(245,239,229,.35);transition:width .3s var(--ease),background .3s}
+.dots button[aria-current="true"]::before{width:22px;background:var(--gold)}
+.info{padding:1rem 1.2rem 1.4rem}
+.info h2{font-family:Gloock,Georgia,serif;font-weight:400;font-size:1.7rem;margin:0 0 .3rem;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.info h2 span{font:500 1rem "Hanken Grotesk",sans-serif}
+.info p{margin:0;color:var(--soft);line-height:1.5}
+.how{margin-top:1.6rem;border-top:1px solid var(--line);padding-top:1.2rem;font-size:.92rem;color:var(--soft);line-height:1.55}
+.how ol{padding-left:1.2rem;margin:.6rem 0 0}
+.how li{margin-bottom:.4rem}
+.note{margin-top:1.2rem;font-size:.82rem;color:var(--soft);border:1px dashed rgba(214,183,122,.45);padding:.7rem .9rem;border-radius:6px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c3 5 8 8 8 15a8 8 0 0 1-16 0c0-4 2-6 4-8 0 3 1 5 3 6-1-5 0-9 1-13z" fill="none" stroke="#D6B77A" stroke-width="1.4"/></svg>Ember &amp; Oak</header>
+  <h1>See it on your table</h1>
+  <p class="lead">Swipe to the last slide, then tap <b>View on your table</b>. Point your camera at the table until the dish appears, then walk around it.</p>
+
+  <div class="chips" role="group" aria-label="Choose a dish" id="chips"></div>
+
+  <article class="card" aria-labelledby="dish-name">
+    <div class="slides" id="slides" tabindex="0" aria-label="Dish photos and 3D view">
+      <div class="slide" data-alt="Photo 1"><img id="ph1" alt=""></div>
+      <div class="slide" data-alt="Photo 2"><img id="ph2" alt=""></div>
+      <div class="slide" id="slide3d">
+        <span class="badge">3D · AR</span>
+        <model-viewer id="mv" alt="" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="fixed"
+          camera-controls touch-action="pan-y" autoplay auto-rotate auto-rotate-delay="1500" rotation-per-second="18deg"
+          shadow-intensity="1.1" shadow-softness=".8" environment-image="neutral" exposure="1.05" camera-orbit="25deg 62deg auto"
+          interaction-prompt="none">
+          <button slot="ar-button" class="ar-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>View on your table</button>
+        </model-viewer>
+        <div class="loading" id="loading">Preparing the dish…</div>
+        <p class="hint" id="hint" hidden></p>
+      </div>
+    </div>
+    <div class="dots" id="dots" role="group" aria-label="Slides">
+      <button type="button" aria-label="Photo 1" aria-current="true"></button>
+      <button type="button" aria-label="Photo 2"></button>
+      <button type="button" aria-label="3D and AR view"></button>
+    </div>
+    <div class="info"><h2 id="dish-name"></h2><p id="dish-desc"></p></div>
+  </article>
+
+  <div class="how">
+    <strong style="color:var(--cream)">How to use</strong>
+    <ol>
+      <li>Open this page on your phone and allow camera access.</li>
+      <li>Slowly move the phone over the table until the dish lands on it.</li>
+      <li>Walk around or bring the phone closer. The dish stays where you placed it, at real size.</li>
+    </ol>
+    <p class="note">Demo: the dishes are built in code to show the experience. In production each dish is a scan of the real plate (see solution.md). Steam plays in AR on Android. On iPhone the dish places correctly, but steam needs a hand-made USDZ file.</p>
+  </div>
+</div>
+
+<script type="module">
+import * as THREE from "three";
+import { GLTFExporter } from "three/addons/exporters/GLTFExporter.js";
+
+const U = id => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=70`;
+const DISHES = [
+  { id:"curry", name:"Ghee roast chicken", price:"₹980", desc:"Half chicken in Byadgi chilli ghee roast, served in a clay bowl. Steam included.", photos:["1565557623262-b51c2513a641","1585937421612-70a008356fbe"], build: buildCurry },
+  { id:"coffee", name:"Filter coffee", price:"₹180", desc:"Brass-filter decoction and frothed milk, in a steel tumbler and dabarah.", photos:["1509042239860-f550ce710b93","1495474472287-4d71bcdd2085"], build: buildCoffee },
+  { id:"tiramisu", name:"Filter-coffee tiramisu", price:"₹420", desc:"Chikmagalur decoction, mascarpone and cocoa. Served cold, so no steam.", photos:["1571877227200-a0d98ea607e9","1551024506-0bccd828d307"], build: buildTiramisu },
+  { id:"biryani", name:"Jackfruit dum biryani", price:"₹820", desc:"Seeraga samba rice and young jackfruit, opened hot from the handi.", photos:["1563379091339-03b21ab4a4f8","1631515243349-e0cb75fb8d3a"], build: buildBiryani }
+];
+
+/* ---------- UI ---------- */
+const mv = document.getElementById("mv"), slides = document.getElementById("slides"), dots = [...document.querySelectorAll("#dots button")];
+const loading = document.getElementById("loading"), hint = document.getElementById("hint");
+document.getElementById("chips").innerHTML = DISHES.map((d, i) => `<button class="chip" type="button" data-i="${i}" aria-pressed="${i === 0}">${d.name}</button>`).join("");
+document.getElementById("chips").addEventListener("click", e => { const b = e.target.closest("[data-i]"); if (b) select(+b.dataset.i); });
+dots.forEach((b, i) => b.addEventListener("click", () => slides.scrollTo({ left: i * slides.clientWidth, behavior: "smooth" })));
+slides.addEventListener("scroll", () => { const i = Math.round(slides.scrollLeft / slides.clientWidth); dots.forEach((b, k) => b.setAttribute("aria-current", String(k === i))); }, { passive:true });
+slides.addEventListener("keydown", e => { if (e.key === "ArrowRight" || e.key === "ArrowLeft"){ e.preventDefault(); slides.scrollBy({ left: (e.key === "ArrowRight" ? 1 : -1) * slides.clientWidth, behavior:"smooth" }); } });
+["ph1","ph2"].forEach(id => { const img = document.getElementById(id); img.addEventListener("error", () => img.parentElement.classList.add("failed")); img.addEventListener("load", () => img.parentElement.classList.remove("failed")); });
+
+const cache = {};
+let current = -1;
+async function select(i){
+  if (i === current) return; current = i;
+  const d = DISHES[i];
+  document.querySelectorAll(".chip").forEach((b, k) => b.setAttribute("aria-pressed", String(k === i)));
+  document.getElementById("dish-name").innerHTML = `${d.name}<span>${d.price}</span>`;
+  document.getElementById("dish-desc").textContent = d.desc;
+  ["ph1","ph2"].forEach((id, k) => { const img = document.getElementById(id); img.parentElement.dataset.alt = d.name; img.alt = `${d.name}, photo ${k + 1}`; img.src = U(d.photos[k]); });
+  mv.alt = `3D model of ${d.name}`;
+  loading.hidden = false;
+  try {
+    cache[d.id] ||= await exportGLB(d.build());
+    if (current === i) mv.src = cache[d.id];
+  } catch (err) { loading.textContent = "The 3D view couldn't load on this device."; console.error(err); }
+}
+mv.addEventListener("load", () => {
+  loading.hidden = true;
+  if (!mv.canActivateAR){ hint.hidden = false; hint.textContent = "Open this page on an AR-capable phone to place the dish on your table. You can still rotate it here."; }
+  else hint.hidden = true;
+});
+mv.addEventListener("ar-status", e => { if (e.detail.status === "failed"){ hint.hidden = false; hint.textContent = "Couldn't find a surface. Try a well-lit table with some texture, and move the phone slowly."; } });
+
+/* ---------- 3D helpers (units: metres, real size) ---------- */
+function canvasTex(w, h, paint){
+  const c = document.createElement("canvas"); c.width = w; c.height = h; paint(c.getContext("2d"), w, h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
+}
+const rnd = (a, b) => a + Math.random() * (b - a);
+function speckle(base, dots){ return canvasTex(512, 512, (g, w, h) => { g.fillStyle = base; g.fillRect(0, 0, w, h); dots.forEach(([col, n, r0, r1, a]) => { g.globalAlpha = a ?? 1; for (let k = 0; k < n; k++){ g.fillStyle = col; g.beginPath(); g.ellipse(rnd(0, w), rnd(0, h), rnd(r0, r1), rnd(r0, r1) * rnd(.4, 1), rnd(0, 3.14), 0, 6.28); g.fill(); } }); g.globalAlpha = 1; }); }
+function lathe(profile, mat, seg = 64){ return new THREE.Mesh(new THREE.LatheGeometry(profile.map(([x, y]) => new THREE.Vector2(x, y)), seg), mat); }
+function lumpy(r, detail, amt, mat){
+  const geo = new THREE.IcosahedronGeometry(r, detail), p = geo.attributes.position, v = new THREE.Vector3();
+  for (let k = 0; k < p.count; k++){ v.fromBufferAttribute(p, k); const n = 1 + Math.sin(v.x * 140) * amt + Math.cos(v.y * 170 + v.z * 90) * amt; v.multiplyScalar(n); p.setXYZ(k, v.x, v.y, v.z); }
+  geo.computeVertexNormals(); return new THREE.Mesh(geo, mat);
+}
+function leaf(len, col){
+  const s = new THREE.Shape(); s.moveTo(0, 0); s.quadraticCurveTo(len * .5, len * .28, len, 0); s.quadraticCurveTo(len * .5, -len * .28, 0, 0);
+  const m = new THREE.Mesh(new THREE.ShapeGeometry(s, 6), new THREE.MeshStandardMaterial({ color: col, roughness: .45, side: THREE.DoubleSide })); m.rotation.x = -Math.PI / 2; return m;
+}
+const clay = () => new THREE.MeshStandardMaterial({ map: speckle("#8A4A2C", [["#6E3820", 900, 1, 3, .5], ["#A4603C", 600, 1, 2, .4]]), roughness: .85 });
+const steel = () => new THREE.MeshStandardMaterial({ color: "#C9C6C0", metalness: 1, roughness: .22 });
+const ceramic = () => new THREE.MeshStandardMaterial({ color: "#EFE7DA", roughness: .35 });
+
+/* Steam: soft crossed planes rising in a seamless loop. Baked as keyframes so it plays in AR. */
+let puffTex;
+function addSteam(root, clipTracks, { y0 = .06, spread = .03, count = 8, rise = .17, size = .07, period = 3.4 } = {}){
+  puffTex ||= canvasTex(128, 128, (g, w, h) => { const gr = g.createRadialGradient(w/2, h/2, 0, w/2, h/2, w/2); gr.addColorStop(0, "rgba(255,255,255,.9)"); gr.addColorStop(.45, "rgba(255,255,255,.35)"); gr.addColorStop(1, "rgba(255,255,255,0)"); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+  const mat = new THREE.MeshBasicMaterial({ map: puffTex, transparent: true, opacity: .3, depthWrite: false, side: THREE.DoubleSide });
+  const geo = new THREE.PlaneGeometry(size, size);
+  for (let i = 0; i < count; i++){
+    const puff = new THREE.Group(); puff.name = `steam_${root.children.length}_${i}`;
+    const a = new THREE.Mesh(geo, mat), b = new THREE.Mesh(geo, mat); b.rotation.y = Math.PI / 2; puff.add(a, b);
+    const ox = rnd(-spread, spread), oz = rnd(-spread, spread), phase = i / count, seed = rnd(0, 6.28);
+    const tw = (1 - phase) * period; /* moment this puff wraps back to the bottom */
+    const times = [...Array.from({ length: 21 }, (_, k) => k / 20 * period), Math.max(0, tw - .001), tw].filter(t => t <= period).sort((m, n) => m - n);
+    const pos = [], scl = [];
+    times.forEach(t => {
+      let u = ((t / period) + phase) % 1; if (Math.abs(t - tw) < 1e-6) u = 0; if (Math.abs(t - (tw - .001)) < 1e-6) u = .9999;
+      pos.push(ox + Math.sin(u * 6.28 + seed) * .012, y0 + u * rise, oz + Math.cos(u * 5 + seed) * .01);
+      const s = Math.sin(u * Math.PI) * (.55 + u * .9); scl.push(s, s, s);
+    });
+    clipTracks.push(new THREE.VectorKeyframeTrack(`${puff.name}.position`, times, pos), new THREE.VectorKeyframeTrack(`${puff.name}.scale`, times, scl));
+    puff.position.set(ox, y0, oz); root.add(puff);
+  }
+}
+
+/* ---------- Dishes ---------- */
+function buildCurry(){
+  const g = new THREE.Group(), tracks = [];
+  g.add(lathe([[0, 0], [.055, 0], [.06, .004], [.085, .03], [.095, .058], [.09, .06], [.082, .034], [.058, .012], [0, .012]], clay()));
+  const gravy = new THREE.Mesh(new THREE.CircleGeometry(.084, 64), new THREE.MeshStandardMaterial({ map: speckle("#6E1A0A", [["#8E2A10", 700, 2, 9, .55], ["#4A1006", 300, 2, 6, .5], ["#C9772E", 120, 1, 3, .6]]), roughness: .62 }));
+  gravy.rotation.x = -Math.PI / 2; gravy.position.y = .048; g.add(gravy);
+  const meat = new THREE.MeshStandardMaterial({ map: speckle("#7E2A12", [["#4E1708", 500, 2, 6, .6], ["#B4481E", 300, 2, 5, .5]]), roughness: .4 });
+  [[.02, .01], [-.025, .02], [.005, -.03], [-.03, -.018], [.035, -.012], [0, .038]].forEach(([x, z]) => { const m = lumpy(rnd(.014, .019), 2, .08, meat); m.scale.set(1.3, .7, 1); m.position.set(x, .052, z); m.rotation.y = rnd(0, 3); g.add(m); });
+  for (let k = 0; k < 7; k++){ const l = leaf(.022, "#2F4A1E"); l.position.set(rnd(-.05, .05), .061, rnd(-.05, .05)); l.rotation.z = rnd(0, 6.28); g.add(l); }
+  addSteam(g, tracks, { y0: .065, spread: .035 });
+  return { root: g, tracks };
+}
+function buildCoffee(){
+  const g = new THREE.Group(), tracks = [];
+  g.add(lathe([[0, 0], [.04, 0], [.045, .004], [.062, .02], [.068, .036], [.064, .036], [.058, .022], [.04, .007], [0, .007]], steel()));
+  const tumbler = lathe([[0, 0], [.024, 0], [.026, .004], [.03, .085], [.0325, .088], [.0295, .088], [.027, .006], [0, .006]], steel());
+  tumbler.position.y = .007; g.add(tumbler);
+  const foam = new THREE.Mesh(new THREE.CircleGeometry(.029, 48), new THREE.MeshStandardMaterial({ map: speckle("#C69C6D", [["#E6CDAA", 500, 1, 4, .7], ["#9B6B3F", 200, 1, 3, .5]]), roughness: .7 }));
+  foam.rotation.x = -Math.PI / 2; foam.position.y = .089; g.add(foam);
+  const pool = new THREE.Mesh(new THREE.RingGeometry(.03, .058, 48), new THREE.MeshStandardMaterial({ color: "#5B3A22", roughness: .25 }));
+  pool.rotation.x = -Math.PI / 2; pool.position.y = .016; g.add(pool);
+  addSteam(g, tracks, { y0: .095, spread: .012, count: 7, size: .05, rise: .14 });
+  return { root: g, tracks };
+}
+function buildTiramisu(){
+  const g = new THREE.Group();
+  const plate = lathe([[0, 0], [.08, 0], [.1, .008], [.112, .012], [.108, .013], [.09, .009], [0, .006]], ceramic()); g.add(plate);
+  const sponge = new THREE.MeshStandardMaterial({ map: speckle("#8C5A33", [["#6B3F20", 400, 1, 4, .6]]), roughness: .8 });
+  const cream = new THREE.MeshStandardMaterial({ map: speckle("#F2E6CF", [["#E5D3B3", 200, 2, 6, .4]]), roughness: .6 });
+  let y = .006; [[sponge, .012], [cream, .014], [sponge, .012], [cream, .016]].forEach(([m, h]) => { const b = new THREE.Mesh(new THREE.BoxGeometry(.075, h, .075), m); b.position.y = y + h / 2; y += h; g.add(b); });
+  const cocoa = new THREE.Mesh(new THREE.BoxGeometry(.075, .002, .075), new THREE.MeshStandardMaterial({ map: speckle("#3A2215", [["#5A3520", 900, 1, 3, .7]]), roughness: 1 }));
+  cocoa.position.y = y + .001; g.add(cocoa);
+  const bean = new THREE.MeshStandardMaterial({ color: "#2A160C", roughness: .35 });
+  [[.012, .01], [-.014, -.008]].forEach(([x, z]) => { const s = new THREE.Mesh(new THREE.SphereGeometry(.006, 16, 12), bean); s.scale.set(1.3, .6, 1); s.position.set(x, y + .004, z); g.add(s); });
+  const mint = leaf(.025, "#3E6B2E"); mint.position.set(-.004, y + .003, .02); mint.rotation.z = .8; g.add(mint);
+  return { root: g, tracks: [] };
+}
+function buildBiryani(){
+  const g = new THREE.Group(), tracks = [];
+  const copper = new THREE.MeshStandardMaterial({ color: "#B4643A", metalness: .85, roughness: .35 });
+  g.add(lathe([[0, 0], [.05, 0], [.075, .02], [.085, .05], [.078, .075], [.072, .085], [.08, .09], [.077, .093], [.066, .086], [.07, .074], [.077, .05], [.068, .022], [.045, .006], [0, .006]], copper));
+  const rice = new THREE.Mesh(new THREE.SphereGeometry(.068, 48, 24, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshStandardMaterial({ map: canvasTex(512, 512, (c, w, h) => { c.fillStyle = "#EFE3C8"; c.fillRect(0, 0, w, h); for (let k = 0; k < 2600; k++){ c.fillStyle = Math.random() < .28 ? "#E9A23B" : Math.random() < .1 ? "#5A3212" : Math.random() < .5 ? "#FBF4E3" : "#E2D2B0"; c.save(); c.translate(rnd(0, w), rnd(0, h)); c.rotate(rnd(0, 3.14)); c.beginPath(); c.ellipse(0, 0, rnd(4, 7), rnd(1.2, 2), 0, 0, 6.28); c.fill(); c.restore(); } }), roughness: .75 }));
+  rice.scale.y = .45; rice.position.y = .07; g.add(rice);
+  const jack = new THREE.MeshStandardMaterial({ map: speckle("#C98A3E", [["#9E6326", 300, 1, 4, .6]]), roughness: .5 });
+  [[.02, .01], [-.02, .015], [.0, -.025]].forEach(([x, z]) => { const m = lumpy(.011, 1, .1, jack); m.position.set(x, .097, z); g.add(m); });
+  for (let k = 0; k < 6; k++){ const l = leaf(.02, "#3E6B2E"); l.position.set(rnd(-.035, .035), .1, rnd(-.035, .035)); l.rotation.z = rnd(0, 6.28); g.add(l); }
+  addSteam(g, tracks, { y0: .1, spread: .04, count: 10, rise: .19 });
+  return { root: g, tracks };
+}
+
+/* Export to an in-memory GLB that <model-viewer> loads like a hosted file */
+async function exportGLB({ root, tracks }){
+  const scene = new THREE.Scene(); scene.add(root);
+  const animations = tracks.length ? [new THREE.AnimationClip("Idle", -1, tracks)] : [];
+  const buf = await new GLTFExporter().parseAsync(scene, { binary: true, animations });
+  return URL.createObjectURL(new Blob([buf], { type: "model/gltf-binary" }));
+}
+
+select(0);
+</script>
+</body>
+</html>
